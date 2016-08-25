@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<book>
+    <unit value="1">
+        <grammar>Personal Pronouns. VerbTo be. Possessive Adjectives. Wh-questions.</grammar>
+        <vocabulary>Nations, nationalities, names, alphabet, places.</vocabulary>
+    </unit>
+    <unit value="2">
+        <grammar>Possessive Adjectives. Wh-questions.</grammar>
+        <vocabulary>Names, alphabet, places.</vocabulary>
+    </unit>
+    <unit value="3">
+        <grammar>Personal Pronouns. VerbTo be.</grammar>
+        <vocabulary>Nations, nationalities.</vocabulary>
+    </unit>
+
+</book>
