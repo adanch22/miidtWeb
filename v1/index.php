@@ -34,13 +34,13 @@ $app->post('/admin/login/', function() use ($app) {
         $response['message'] = "user login!";
         session_start();
         $_SESSION['admin_name'] = $admin_name;
-        echo "<script>window.open(\"../../index.php\",\"_self\");</script>";
     } else {
         // user credentials are wrong
         $response['error'] = true;
         $response['message'] = 'Login failed. Incorrect credentials';
-        echoRespnse(200, $response);
+        echo "<script>alert('Login failed. Incorrect credentials');</script>";
     }
+    echo "<script>window.open(\"../../index.php\",\"_self\");</script>";
 });
 
             /*          courses         */
