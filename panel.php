@@ -50,18 +50,20 @@ $admin_id = $demo->getUser($_SESSION['admin_name']);
 </head>
 <body class="body">
 <!--ICON CIEX --------------------------------------------------------------------------------------------------------->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 logo">
-            <img src="logo.png" alt="Norway" class="img-circle center-block">
-        </div>
-        <div class="col-md-12 admin">
-            <h1 class="text-center blink">
-                Admin Panel
-            </h1>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 logo">
+                <img src="logo.png" alt="Norway" class="img-circle center-block">
+            </div>
+            <div class="col-md-12 admin">
+                <h1 class="text-center blink">
+                    Admin Panel
+                </h1>
+            </div>
         </div>
     </div>
-</div>
+</header>
 <!--Contents --------------------------------------------------------------------------------------------------------->
 <div class="container-fluid">
     <div class="row">
