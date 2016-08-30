@@ -35,15 +35,18 @@ class panel {
 
     public function getUser($admin_name) {
 
-        $stmt = $this->conn->prepare("SELECT admin_id from admins WHERE admin_name = ?");
+        $stmt = $this->conn->prepare("SELECT admin_id, is_teacher from admins WHERE admin_name = ?");
         $stmt->bind_param("s", $admin_name);
         $stmt->execute();
         $stmt->store_result();
         $num_rows = $stmt->num_rows;
+        $user = array();
         if ($num_rows > 0) {
-            $stmt->bind_result($admin_id);
+            $stmt->bind_result($admin_id,$is_teacher);
             $stmt->fetch();
-            return $admin_id;
+            $user["admin_id"] = $admin_id;
+            $user["is_teacher"] = $is_teacher;
+            return $user;
         } else {
             $user_name = 'Admin';
             $password_hash = PassHash::hash('Admin');

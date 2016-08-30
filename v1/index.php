@@ -14,6 +14,38 @@ $app = new \Slim\Slim();
             /*          admin         */
 
 /***************************************************
+ *  Resgister admin
+ *  use this url to register new admin
+ ***************************************************/
+$app->post('/admin/register/', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('admin_name', 'password','is_teacher'));
+
+    $response = array();
+
+    // reading post params
+    $user_name = $app->request->post('admin_name');
+    $password = $app->request->post('password');
+    $is_teacher = $app->request->post('is_teacher');
+
+    $db = new DbHandler();
+        $res = $db->createAdmin($user_name, $password, $is_teacher);
+        if ($res == CREATED_SUCCESSFULLY) {
+            $response["error"] = false;
+            $response["message"] = "Admin successfully registered";
+            echoRespnse(201, $response);
+        } else if ($res == CREATE_FAILED) {
+            $response["error"] = true;
+            $response["message"] = "Oops! An error occurred while registering";
+            echoRespnse(200, $response);
+        } else if ($res == ALREADY_EXISTED){
+            $response["error"] = true;
+            $response["message"] = "Teacher Already existed";
+            echoRespnse(200, $response);
+        }
+});
+
+/***************************************************
  *  Login admin
  *  use this url to login an admin
  ***************************************************/
@@ -41,6 +73,46 @@ $app->post('/admin/login/', function() use ($app) {
         echo "<script>alert('Login failed. Incorrect credentials');</script>";
     }
     echo "<script>window.open(\"../../index.php\",\"_self\");</script>";
+});
+
+/***************************************************
+ *  Get admins
+ *  use this url to get admin by id
+ ***************************************************/
+$app->get('/admin/type/:adm_id', function($admin_id) {
+    $response = array();
+    $db = new DbHandler();
+    $result = $db->isTeacher($admin_id);
+    $isTeacher = $result->fetch_assoc();
+    echoRespnse(200, $isTeacher);
+});
+
+/***************************************************
+ *  search admin "teachers"
+ *  use this url to search teachers
+ ***************************************************/
+$app->post('/admin/teacher/search/', function() use($app) {
+    // check for required params
+    verifyRequiredParams(array('admin_name'));
+
+    // reading post params
+    $admin_name = $app->request()->post('admin_name');
+
+    $response = array();
+    $db = new DbHandler();
+
+    // fetching all user tasks
+    $result = $db->searchTeachers('%'.$admin_name.'%');
+
+    $response["error"] = false;
+    $response["admin"] = array();
+
+    // pushing single chat room into array
+    $flag=0;
+    while ($user = $result->fetch_assoc()) {
+        array_push($response["admin"], $user);
+    }
+    echoRespnse(200, $response);
 });
 
             /*          courses         */
@@ -80,12 +152,18 @@ $app->post('/course/add', function() use ($app) {
  *  Get courses
  *  use this url to get courses
  ***************************************************/
-$app->get('/courses/', function() {
+$app->get('/courses/:adm_id', function($admin_id) {
     $response = array();
     $db = new DbHandler();
+    $result = $db->isTeacher($admin_id);
+    $isTeacher = $result->fetch_assoc();
 
-    // fetching all user tasks
-    $result = $db->getAllCourses();
+    if($isTeacher["is_teacher"]){
+        $result = $db->getSomeCourses($admin_id);
+    }else{
+        // fetching all user tasks
+        $result = $db->getAllCourses();
+    }
 
     $response["error"] = false;
     $response["course"] = array();
@@ -407,6 +485,37 @@ $app->post('/student/search/', function() use($app) {
     echoRespnse(200, $response);
 });
 
+
+/***************************************************
+ *  Delete student
+ *  use this url to delete students
+ ***************************************************/
+$app->post('/student/delete/', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('matricula'));
+
+    $response = array();
+
+    // reading post params
+    $matricula = $app->request->post('matricula');
+
+    $db = new DbHandler();
+    $res = $db->delete("student_id", "students", "matricula", $matricula);
+    if ($res == DELETED_SUCCESSFULLY) {
+        $response["error"] = false;
+        $response["message"] = "User successfully delete";
+        echoRespnse(201, $response);
+    } else if ($res == DELETE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while deleting";
+        echoRespnse(200, $response);
+    } else if ($res == NOT_EXISTED) {
+        $response["error"] = true;
+        $response["message"] = "Sorry, this user not existed";
+        echoRespnse(200, $response);
+    }
+});
+
             /*          student_course      */
 
 /***************************************************
@@ -717,36 +826,7 @@ $app->post('/classes/delete/', function() use ($app) {
     }
 });
 
-/***************************************************
- *  Delete student
- *  use this url to delete students
- ***************************************************/
-$app->post('/student/delete/', function() use ($app) {
-    // check for required params
 
-    verifyRequiredParams(array('matricula'));
-
-    $response = array();
-
-    // reading post params
-    $matricula = $app->request->post('matricula');
-
-    $db = new DbHandler();
-    $res = $db->delete("student_id", "students", "matricula", $matricula);
-    if ($res == DELETED_SUCCESSFULLY) {
-        $response["error"] = false;
-        $response["message"] = "User successfully delete";
-        echoRespnse(201, $response);
-    } else if ($res == DELETE_FAILED) {
-        $response["error"] = true;
-        $response["message"] = "Oops! An error occurred while deleting";
-        echoRespnse(200, $response);
-    } else if ($res == NOT_EXISTED) {
-        $response["error"] = true;
-        $response["message"] = "Sorry, this user not existed";
-        echoRespnse(200, $response);
-    }
-});
 
 
 

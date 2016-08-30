@@ -17,6 +17,7 @@ if(isset($_SESSION['admin_name'])) {
 require_once __DIR__ . '/../adminpanel.php';
 $panel = new panel();
 $name="";
+
 ?>
 <!Doctype html>
 <html>

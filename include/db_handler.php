@@ -98,32 +98,43 @@ class DbHandler {
         }
     }
 
+    /**************************************************
+     * check if admin is teacher
+     ***************************************************/
+    public function isTeacher($admin_id){
+        $stmt = $this->conn->prepare("SELECT is_teacher FROM admins WHERE admin_id = ?");
+        $stmt->bind_param("i", $admin_id);
+        $stmt->execute();
+        $tasks = $stmt->get_result();
+        $stmt->close();
+        return $tasks;
 
+    }
     /**************************************************
      *  Resgister admin
      ***************************************************/
-    public function createAdmin($admin_name, $password){
+    public function createAdmin($admin_name, $password, $is_teacher){
         // First check if user already existed in db
         if(!$this->isAdminExists($admin_name)){
             // Generating password hash
             $password_hash = PassHash::hash($password);
 
             // insert query
-            $stmt = $this->conn->prepare("INSERT INTO admins(admin_name, password) values(?,?)");
-            $stmt->bind_param("ss", $admin_name, $password_hash);
+            $stmt = $this->conn->prepare("INSERT INTO admins(admin_name, password, is_teacher) values(?,?,?)");
+            $stmt->bind_param("ssi", $admin_name, $password_hash, $is_teacher);
             $result = $stmt->execute();
             $stmt->close();
 
             // Check for successful insertion
             if ($result) {
                 // User successfully inserted
-                return ADMIN_CREATED_SUCCESSFULLY;
+                return CREATED_SUCCESSFULLY;
             } else {
                 // Failed to create userid
-                return ADMIN_CREATE_FAILED;
+                return CREATE_FAILED;
             }
         }else{
-            return ADMIN_ALREADY_EXISTED;
+            return ALREADY_EXISTED;
         }
     }
 
@@ -252,6 +263,7 @@ class DbHandler {
         $stmt->close();
         return $tasks;
     }
+
 
     /**************************************************
      *  Delete Classroom
@@ -455,15 +467,16 @@ class DbHandler {
     }
 
     public function getAdmin($admin_id) {
-        $stmt = $this->conn->prepare("SELECT admin_id, admin_name FROM admins WHERE admin_id = ?");
+        $stmt = $this->conn->prepare("SELECT admin_id, admin_name, is_teacher FROM admins WHERE admin_id = ?");
         $stmt->bind_param("i", $admin_id);
         if ($stmt->execute()) {
             // $user = $stmt->get_result()->fetch_assoc();
-            $stmt->bind_result($admin_id, $admin_name);
+            $stmt->bind_result($admin_id, $admin_name, $is_teacher);
             $stmt->fetch();
             $user = array();
             $user["admin_id"] = $admin_id;
             $user["admin_name"] = $admin_name;
+            $user["is_teacher"] = $is_teacher;
             $stmt->close();
             return $user;
         } else {
@@ -612,6 +625,17 @@ class DbHandler {
         $stmt->close();
         return $tasks;
     }
+    // fetching all courses
+    public function getSomeCourses($admin_id) {
+        $stmt = $this->conn->prepare("SELECT co.course_id, co.course_name, co.created_at as course_created_at, co.level_id 
+        FROM courses co LEFT JOIN courses_admins c_a ON c_a.course_id = co.course_id LEFT JOIN admins ad ON ad.admin_id = c_a.admin_id 
+        WHERE ad.admin_id = ?");
+        $stmt->bind_param("i", $admin_id);
+        $stmt->execute();
+        $tasks = $stmt->get_result();
+        $stmt->close();
+        return $tasks;
+    }
 
     // fetching all chat rooms
     public function getCoursesByStudentId($student_id) {
@@ -676,6 +700,15 @@ class DbHandler {
         return $tasks;
     }
 
+
+    function searchTeachers($admin_name){
+        $stmt = $this->conn->prepare("SELECT admin_id, admin_name, created_at FROM admins WHERE admin_name LIKE ? AND is_teacher = 1");
+        $stmt->bind_param("s", $admin_name);
+        $stmt->execute();
+        $tasks = $stmt->get_result();
+        $stmt->close();
+        return $tasks;
+    }
 
     /**
      * Checking for duplicate user by email address

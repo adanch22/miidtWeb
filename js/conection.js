@@ -1,5 +1,6 @@
 $(document).ready(function () {
     getCourses();
+    setOptions();
     var fileExtension = "";
     var fileName="";
     var searching=false;
@@ -64,7 +65,7 @@ $(document).ready(function () {
 
 //get courses
     function getCourses() {
-        $.getJSON("v1/courses/", function (data) {
+        $.getJSON("v1/courses/"+admin_id, function (data) {
             var li = '';
             $.each(data.course, function (i, course) {
                 courses=
@@ -83,15 +84,27 @@ $(document).ready(function () {
                 $('button#optionAddStudent').removeClass("disabled");
                 $('button#optionAddStudent').attr("data-target", ".addStudent");
 
-                $('button#optionDeleteStudent').removeClass("disabled");
-                $('button#optionDeleteStudent').attr("data-target", ".deleteStudent");
-
             });
            // $('#scrollMsj').scrollTop($('#scrollMsj').prop("scrollHeight"));
         }).done(function () {
 
         }).fail(function () {
             alert('Sorry! Unable to fetch topic messages');
+        }).always(function () {
+
+        });
+    }
+
+    function setOptions() {
+        $.getJSON("v1/admin/type/"+admin_id, function (data) {
+            if(data.is_teacher){//Teacher
+                $('div#onlyAdmin').html("");
+            }
+
+        }).done(function () {
+
+        }).fail(function () {
+            alert('Sorry! Internal error');
         }).always(function () {
 
         });
@@ -250,6 +263,27 @@ $(document).ready(function () {
         });
     }
 
+    //action for button ADDTEACHER
+    $('button#addTeacher').on('click', function () {
+        var nam = $('input#inputNameAddTeacher').val();
+        if (nam!=null && nam!="") {
+            $.post("v1/admin/register/",
+                {admin_name: nam, is_teacher: "1", password: "ciex2016"},
+                function (data) {
+                    alert(data.message);
+                }).done(function () {
+
+            }).fail(function () {
+                alert('Sorry! Internal error');
+            }).always(function () {
+
+            });
+        }else{
+            alert("Empty fields")
+        }
+    });
+
+
 //action for button SEARCHSTUDENT
     $('.searchButton').click(function(){
         if($('.searchTextBox').val() == '')
@@ -336,25 +370,86 @@ $(document).ready(function () {
     });
 
 
+//Fetch the teachers
+    $('#searchBoxTeacher').on('keyup', function(event){
+        $('#teachersFind').html('');
+        if(!searching && $('#searchBoxTeacher').val().length >= 2){
+            var nam = $('#searchBoxTeacher').val();
+            searching=true;
+            $.post("v1/admin/teacher/search/",
+                {admin_name: nam},
+                function (data) {
+                    var li = '';
+                    $.each(data.admin, function (i, admin) {
+                        li += '<li  class="btn btn-default btn-sm btn-block" date="'+admin.created_at+'" id="'+admin.admin_id+'" >'+admin.admin_name+'</li>';
+                    });
 
+                    $('#teachersFind').html(li);
+                    $('ul#teachersFind li').click(function() {
+                        $('ul#teachersFind li').hide();
+                        $(this).show();
+                        $(this).addClass('btn-primary');
+                        var li =
+                            '<div class="modal-body">' +
+                            '<div class="row">' +
+                            '<div class="col-md-4 col-sm-4 col-xs-4">' +
+                            '<div class="form-group">' +
+                            '<img src="images/icon-person.png" alt="HTML5 Icon" width="128" height="128">' +
+                            '<label>'+$(this).attr("date")+'</label>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-8 col-sm-8 col-xs-8">' +
+                            '<div class="form-group">' +
+                            '<label for="inputNameEditStudent">Name:</label>' +
+                            '<input type="text" class="form-control" id="inputNameEditStudent" placeholder="'+$(this).text()+'">' +
+                            '<br><label for="inputLevelEditStudent">Courses:</label>' +
+                            '<input type="text" class="form-control" id="inputLevelEditStudent" placeholder="Write at least one course!">' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'+
+                            '</div>';
+                        $('#teachersFind').html(li);
+                        $('#inputLevelEditTeacher').val($(this).attr("course"));
+                    });
+                    if(!$('#contentTeachers').hasClass("OpenFind") && li!=''){
+                        $('#contentTeachers').toggleClass('OpenFind');
+                    }
+                    searching=false;
+                }).done(function () {
+
+            }).fail(function () {
+                alert('Sorry! Internal error');
+                searching=false;
+            }).always(function () {
+                searching=false;
+            });
+            searching=false;
+        }else{
+            if($('.searchContent').hasClass("OpenFind")){
+                $('.searchContent').toggleClass('OpenFind');
+            }
+        }
+    });
 
 //action for button DELETESTUDENT
     $('button#deleteStudent').on('click', function () {
-        var mat = $('input#inputMatriculaDelete').val();
-        $.post("v1/student/delete",
-            {matricula: mat},
-            function (data) {
-                if(data.error==false){
-                    $('#'+mat).hide();
-                }
-                alert(data.message);
-            }).done(function () {
+        var mat = $('input#inputMatriculaEditStudent').attr('placeholder');
+        if(mat != null && mat != ""){
+            $.post("v1/student/delete/",
+                {matricula: mat},
+                function (data) {
+                    alert(data.message);
+                    if(!data.error){
+                        $('#studentsFind').html('');
+                    }
+                }).done(function () {
 
-        }).fail(function () {
-            alert('Sorry! Internal error');
-        }).always(function () {
+            }).fail(function () {
+                alert('Sorry! Internal error');
+            }).always(function () {
 
-        });
+            });
+        }
     });
 
 //action for button ADDCOURSE
@@ -457,8 +552,15 @@ $(document).ready(function () {
         getStudents();
     });
 
+    $('button#optionEditStudent').on('click',function(){
+        $('#searchBoxStudent').val('');
+        $('#searchBoxStudent').removeClass('Open');
+        $('.searchContent').removeClass('OpenFind');
+    });
 
 });
+
+
 
 function cleanSpecialChar(el){
     var textfield = document.getElementById(el);
