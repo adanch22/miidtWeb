@@ -866,4 +866,50 @@ class DbHandler {
         return md5(uniqid(rand(), true));
     }
 
+
+    /****************************************************************************************************
+     *  CODIGO ADAN CHAVEZ OLIVERA
+     *
+     *Agregar objetos de aprendizaje
+     ****************************************************************************************************/
+    public function addlearningobjects($name, $image, $book_id) {
+        // First check if user already existed in db
+        // if (!$this->exists("learningobject_id", "learningobjects", "learningobjects_name", $name)) {
+
+        // insert query   ;INSERT INTO learningobjects (learninobject_name, learninobject_image, book_id) VALUES (?, ?, ?)
+        $stmt = $this->conn->prepare("INSERT INTO learningobjects(learningobject_name, learningobject_image, book_id) values(?,?,?)");
+        $stmt->bind_param("ssi", $name, $image, $book_id);
+        $result = $stmt->execute();
+        $learningobject_id = $this->conn->insert_id;
+        $stmt->close();
+
+        // Check for successful insertion
+        if ($result) {
+            $response["result"] = CREATED_SUCCESSFULLY;
+            $response["learningobject_id"] = $learningobject_id;
+
+            // User successfully inserted
+            return $response;
+        } else {
+            $response["result"] = CREATE_FAILED;
+            // Failed to create userid
+            return $response;
+        }
+        /* } else {
+             // already existed in the db
+             $response['result']=ALREADY_EXISTED;
+             return $response;
+         }*/
+    }
+
+
+
+    // fetching all learningobjects
+    public function getAllLearningObjects() {
+        $stmt = $this->conn->prepare("SELECT * FROM learningobjects");
+        $stmt->execute();
+        $tasks = $stmt->get_result();
+        $stmt->close();
+        return $tasks;
+    }
 }

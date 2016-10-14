@@ -28,7 +28,7 @@ $is_teacher = $user["is_teacher"];
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="icon" href="logo.png">
-    <title>CIEX Admin: <?= $_SESSION['admin_name']?></title>
+    <title>MIIDT Admin: <?= $_SESSION['admin_name']?></title>
 
 
     <!-- Bootstrap -->
@@ -60,7 +60,7 @@ $is_teacher = $user["is_teacher"];
             </div>
             <div class="col-md-12 admin">
                 <h1 class="text-center blink">
-                    Admin Panel Ciex
+                    Admin Panel MIIDT
                 </h1>
             </div>
         </div>
@@ -138,6 +138,11 @@ $is_teacher = $user["is_teacher"];
                         <button type="button" id="remove" class="btn btn-success btn-block disabled" data-toggle="modal">
                             <i class="fa fa-minus"></i>&nbsp;Delete/Clean Course</button>
                         <div class="line"></div>
+
+                        <button type="button" id="openlearningObjects" class="btn btn-success btn-block">
+                            Open learningobjects&nbsp;</button>
+                        <div class="line"></div>
+
                         <button type="button" id="closeSession" class="btn btn-danger btn-block">close session&nbsp;<i class="fa fa-sign-out"></i></button>
                     </div>
                 </div>

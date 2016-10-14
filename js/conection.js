@@ -558,6 +558,12 @@ $(document).ready(function () {
         $('.searchContent').removeClass('OpenFind');
     });
 
+
+    //codigo de boton para abir /ciex/learningobjects/index.php
+    $('button#openlearningObjects').on('click',function(){
+        window.open("learningobjects/index.php","_self");
+    });
+
 });
 
 

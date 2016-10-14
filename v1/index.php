@@ -1196,4 +1196,69 @@ function authenticate(\Slim\Route $route) {
     }
 }
 
+
+/****************************************************************************************************
+ * CODIGO ADAN CHAVEZ OLIVERA
+ *
+ * agregar objetos de aprendizaje
+ ****************************************************************************************************/
+$app->post('/learningobjects/add/', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('learningobject_name', 'learningobject_image', 'book_id'));
+
+    $response = array();
+
+    // reading post params
+    $learningobject_name = $app->request->post('learningobject_name');
+    $learningobject_image = $app->request->post('learningobject_image');
+    $book_id = $app->request->post('book_id');
+
+    $db = new DbHandler();
+    $res = $db->addlearningobjects($learningobject_name, $learningobject_image, $book_id);
+    if ($res['result'] == CREATED_SUCCESSFULLY) {
+        $response["error"] = false;
+        $response["learningobject_id"] = $res['learningobject_id'];
+        $response["message"] = "User successfully registered";
+        echoRespnse(201, $response);
+    } else if ($res['result'] == CREATE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while registereing";
+        echoRespnse(200, $response);
+    } else if ($res['result'] == ALREADY_EXISTED) {
+        $response["error"] = true;
+        $response["message"] = "Sorry, this OA existed";
+        echoRespnse(200, $response);
+    }
+
+    $xml = new parseXML();
+    $res = $xml->crearMetadatos();
+});
+
+/***************************************************
+ *  get learningObjects
+ ***************************************************/
+$app->get('/learningObjects/', function() {
+    $response = array();
+    $db = new DbHandler();
+
+    // fetching all user tasks
+    $result = $db->getAllLearningObjects();
+
+    $response["error"] = false;
+    $response["course"] = array();
+
+    // pushing single chat room into array
+    while ($learningobject = $result->fetch_assoc()) {
+        $tmp = array();
+        $tmp["learningobject_id"] = $learningobject["learningobject_id"];
+        $tmp["learningobject_name"] = $learningobject["learningobject_name"];
+        $tmp["book_id"] = $learningobject["book_id"];
+        array_push($response["course"], $tmp);
+    }
+
+    echoRespnse(200, $response);
+});
+
+
+
 $app->run();
