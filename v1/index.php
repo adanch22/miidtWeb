@@ -5,6 +5,8 @@ ini_set('display_errors', 'On');
 
 require_once '../include/db_handler.php';
 require_once '../include/PassHash.php';
+require_once '../include/parseXML.php';
+
 require '.././libs/vendor/slim/slim/Slim/Slim.php';
 
 \Slim\Slim::registerAutoloader();
@@ -1211,6 +1213,10 @@ $app->post('/learningobjects/add/', function() use ($app) {
     // reading post params
     $learningobject_name = $app->request->post('learningobject_name');
     $learningobject_image = $app->request->post('learningobject_image');
+/*    $learningobject_idioma = $app->request->post('learningobject_idioma');
+    $learningobject_descripcion = $app->request->post('learningobject_descripcion');
+    $learningobject_version = $app->request->post('learningobject_version');
+    $learningobject_autor = $app->request->post('learningobject_autor');*/
     $book_id = $app->request->post('book_id');
 
     $db = new DbHandler();
@@ -1218,11 +1224,12 @@ $app->post('/learningobjects/add/', function() use ($app) {
     if ($res['result'] == CREATED_SUCCESSFULLY) {
         $response["error"] = false;
         $response["learningobject_id"] = $res['learningobject_id'];
-        $response["message"] = "User successfully registered";
+        $response["message"] = "El Objeto de aprendizaje ha sido agregado";
         echoRespnse(201, $response);
     } else if ($res['result'] == CREATE_FAILED) {
         $response["error"] = true;
-        $response["message"] = "Oops! An error occurred while registereing";
+        $response["message"] = "Oops! un error ocurrio en el registro ";
+
         echoRespnse(200, $response);
     } else if ($res['result'] == ALREADY_EXISTED) {
         $response["error"] = true;
@@ -1230,8 +1237,18 @@ $app->post('/learningobjects/add/', function() use ($app) {
         echoRespnse(200, $response);
     }
 
-    $xml = new parseXML();
-    $res = $xml->crearMetadatos();
+    /*$xml = new parseXML();
+    $res2 = $xml->addMetadata($learningobject_name,$learningobject_idioma,
+        $learningobject_descripcion, $learningobject_version, $learningobject_autor );
+    if ($res2['result'] == "SUCCESSFULLY") {
+        $response["error"] = false;
+        $response["message"] = "User successfully registered";
+        echoRespnse(201, $response);
+    } else if ($res2['result'] == "FAILED") {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while registereing";
+        echoRespnse(200, $response);
+    }*/
 });
 
 /***************************************************
@@ -1243,7 +1260,6 @@ $app->get('/learningObjects/', function() {
 
     // fetching all user tasks
     $result = $db->getAllLearningObjects();
-
     $response["error"] = false;
     $response["course"] = array();
 
@@ -1258,6 +1274,189 @@ $app->get('/learningObjects/', function() {
 
     echoRespnse(200, $response);
 });
+
+
+/***************************************************
+ *  add exercises
+ ***************************************************/
+$app->post('/learningObjects/addexercises/', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('learningobject', 'exercise_type', 'exercise_name','exercise_description',
+        'exercise_question', 'exercise_answer1', 'exercise_answer2', 'exercise_answer3', 'exercise_ok'));
+
+    $response = array();
+
+    // reading post params
+    $learningobject = $app->request->post('learningobject');
+    $exercise_name = $app->request->post('exercise_name');
+    $exercise_description = $app->request->post('exercise_description');
+    $exercise_question = $app->request->post('exercise_question');
+    $exercise_answer1 = $app->request->post('exercise_answer1');
+    $exercise_answer2 = $app->request->post('exercise_answer2');
+    $exercise_answer3 = $app->request->post('exercise_answer3');
+    $exercise_type = $app->request->post('exercise_type');
+    $exercise_ok = $app->request->post('exercise_ok');
+
+
+
+
+    $xml = new parseXML();
+    $res2 = $xml->addexercises($learningobject,$exercise_type ,$exercise_name, $exercise_description,
+        $exercise_question, $exercise_answer1, $exercise_answer2, $exercise_answer3, $exercise_ok);
+    if ($res2['result'] == "SUCCESSFULLY") {
+        $response["error"] = false;
+        $response["message"] = "El ejercicio fue agregado correctamente";
+        echoRespnse(201, $response);
+    } else if ($res2['result'] == "FAILED") {
+        $response["error"] = true;
+        $response["message"] = "Oops! Un error ocurrio en el registro";
+        echoRespnse(200, $response);
+    }
+});
+
+
+$app->post('/learningObjects/addresources/', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('learningobject', 'exercise_type','exercise_description'));
+
+    $response = array();
+
+    // reading post params
+    $learningobject = $app->request->post('learningobject');
+    $exercise_description = $app->request->post('exercise_description');
+    $exercise_type = $app->request->post('exercise_type');
+
+
+    $xml = new parseXML();
+    $res2 = $xml->addresources($learningobject,$exercise_type , $exercise_description);
+    if ($res2['result'] == "SUCCESSFULLY") {
+        $response["error"] = false;
+        $response["message"] = "El recurso multimedia ha sido agregado correctamente";
+        echoRespnse(201, $response);
+    } else if ($res2['result'] == "FAILED") {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while registereing";
+        echoRespnse(200, $response);
+    }
+});
+
+
+
+/***************************************************
+ *  create metadata
+ ***************************************************/
+$app->post('/learningobjects/createmetadata/', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('learningobject_name', 'learningobject_idioma',
+        'learningobject_descripcion', 'learningobject_version', 'learningobject_autor', 'book_name'));
+
+    $response = array();
+
+    // reading post params
+    $learningobject_name = $app->request->post('learningobject_name');
+    $learningobject_idioma = $app->request->post('learningobject_idioma');
+    $learningobject_descripcion = $app->request->post('learningobject_descripcion');
+    $learningobject_version = $app->request->post('learningobject_version');
+    $learningobject_autor = $app->request->post('learningobject_autor');
+    $book_name = $app->request->post('book_name');
+
+    $xml = new parseXML();
+    $res = $xml->addMetadata($learningobject_name,$learningobject_idioma,
+        $learningobject_descripcion, $learningobject_version, $learningobject_autor, $book_name );
+
+    if ($res['result'] == "SUCCESSFULLY") {
+        $response["error"] = false;
+        $response["message"] = "User successfully registered";
+        echoRespnse(201, $response);
+    } else if ($res['result'] == "FAILED") {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while registereing";
+        echoRespnse(200, $response);
+    }
+});
+
+
+
+
+/***************************************************
+ *  Add books
+ ***************************************************/
+$app->post('/books/add/', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('book_name', 'book_image', 'level_id'));
+
+    $response = array();
+
+    // reading post params
+    $book_name = $app->request->post('book_name');
+    $book_image = $app->request->post('book_image');
+    $level_id = $app->request->post('level_id');
+
+    $db = new DbHandler();
+    $res = $db->addbooks($book_name, $book_image, $level_id);
+    if ($res['result'] == CREATED_SUCCESSFULLY) {
+        $response["error"] = false;
+        $response["learningobject_id"] = $res['learningobject_id'];
+        $response["message"] = "La temática ha sido agregada correctamente ";
+        echoRespnse(201, $response);
+    } else if ($res['result'] == CREATE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while registereing";
+        echoRespnse(200, $response);
+    } else if ($res['result'] == ALREADY_EXISTED) {
+        $response["error"] = true;
+        $response["message"] = "Sorry, this OA existed";
+        echoRespnse(200, $response);
+    }
+});
+
+
+/***************************************************
+ *  get books
+ ***************************************************/
+$app->get('/books/', function() {
+    $response = array();
+    $db = new DbHandler();
+
+    // fetching all user tasks
+    $result = $db->getAllbooks();
+
+    $response["error"] = false;
+    $response["book"] = array();
+
+    // pushing single chat room into array
+    while ($book = $result->fetch_assoc()) {
+        $tmp = array();
+        $tmp["book_id"] = $book["book_id"];
+        $tmp["book_name"] = $book["book_name"];
+        $tmp["book_image"] = $book["book_image"];
+
+        array_push($response["book"], $tmp);
+    }
+
+    echoRespnse(200, $response);
+});
+
+
+
+
+/***************************************************
+ *  get exercises
+ ***************************************************/
+$app->get('/exercises/:id', function($name_learningobjects) {
+    $response = array() ;
+    $xml = new parseXML();
+
+    // fetching all user tasks
+    $result = $xml->getAllexercises($name_learningobjects);
+
+    $response["error"] = false;
+    $response["exercise"]  = $result;
+
+
+    echoRespnse(200, $response);
+});
+
 
 
 

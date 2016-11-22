@@ -9,7 +9,7 @@
                 <div class="navbar-brand">
                     <a href="index.php"><h1>Objetos de Aprendizaje</h1></a>
                     <p>
-                        <span>HOME</span>
+                        <span>Sitio web para docentes</span>
                     </p>
                 </div>
 
@@ -31,7 +31,7 @@
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon  glyphicon-folder-open"></span><br class="hidden-xs"> Opcion</a>
+                            <span class="glyphicon  glyphicon-folder-open"></span><br class="hidden-xs"> Opciones</a>
                     </li>
                     <li>
                         <a href="#">

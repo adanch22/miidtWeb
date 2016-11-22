@@ -903,10 +903,60 @@ class DbHandler {
     }
 
 
-
+    /**************************************************
+     *  get all learningobjects
+     ***************************************************/
     // fetching all learningobjects
     public function getAllLearningObjects() {
+
         $stmt = $this->conn->prepare("SELECT * FROM learningobjects");
+      //  $stmt->bind_param("i", $book_id);
+        $stmt->execute();
+        $tasks = $stmt->get_result();
+       // $num_rows = $tasks->num_rows;
+        $stmt->close();
+        return $tasks;
+    }
+
+
+
+    /**************************************************
+     *  add books(tematicas)
+     ***************************************************/
+    public function addbooks($name, $image, $level_id) {
+        // First check if user already existed in db
+        // if (!$this->exists("learningobject_id", "learningobjects", "learningobjects_name", $name)) {
+        // insert query   ;INSERT INTO learningobjects (learninobject_name, learninobject_image, book_id) VALUES (?, ?, ?)
+        $stmt = $this->conn->prepare("INSERT INTO books(book_name, book_image, level_id) values(?,?,?)");
+        $stmt->bind_param("ssi", $name, $image, $level_id);
+        $result = $stmt->execute();
+        $book_id = $this->conn->insert_id;
+        $stmt->close();
+
+        // Check for successful insertion
+        if ($result) {
+            $response["result"] = CREATED_SUCCESSFULLY;
+            $response["learningobject_id"] = $book_id;
+
+            // User successfully inserted
+            return $response;
+        } else {
+            $response["result"] = CREATE_FAILED;
+            // Failed to create userid
+            return $response;
+        }
+        /* } else {
+             // already existed in the db
+             $response['result']=ALREADY_EXISTED;
+             return $response;
+         }*/
+    }
+
+
+
+    // fetching all books
+    public function getAllbooks() {
+        $stmt = $this->conn->prepare("SELECT * FROM books");
         $stmt->execute();
         $tasks = $stmt->get_result();
         $stmt->close();

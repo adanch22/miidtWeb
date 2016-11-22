@@ -69,7 +69,7 @@ $(document).ready(function () {
             var li = '';
             $.each(data.course, function (i, course) {
                 courses=
-                li += '<li  class="btn btn-default btn-block" course_name='+course.course_name+' id='+course.course_id+'><label>Group: </label><span>'+" "+course.course_name+' </span></li>';
+                li += '<li  class="btn btn-default btn-block" course_name='+course.course_name+' id='+course.course_id+'><label>Nombre: </label><span>'+" "+course.course_name+' </span></li>';
             });
             $('ul#courses').html(li);
             $('ul#courses li').click(function() {
@@ -219,7 +219,7 @@ $(document).ready(function () {
         var c_id = $('button#send').attr("course_id");
         if (nam && mat && c_id) {
             $.post("v1/student/add/",
-                {student_name: nam, matricula: mat, password: "ciex2016"},
+                {student_name: nam, matricula: mat, password: "miidt2016"},
                 function (data) {
                     if (!data.error) {
                         var li = '<li  class="btn btn-default btn-sm btn-block" id='+mat+'>'+nam+'</li>';
@@ -564,7 +564,11 @@ $(document).ready(function () {
         window.open("learningobjects/index.php","_self");
     });
 
+
 });
+
+
+
 
 
 

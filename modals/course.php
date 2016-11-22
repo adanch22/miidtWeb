@@ -13,19 +13,19 @@
             <!--configs------------------------------------------------------------------------------------------------>
             <div class="modal-header">
                 <button type="button" id="buttonCloseAddCourse" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel">Add course</h4>
+                <h4 class="modal-title" id="gridSystemModalLabel">Agregar curso</h4>
             </div>
             <!--inputs------------------------------------------------------------------------------------------------->
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="inputNameAddCourse">Name:</label>
+                            <label for="inputNameAddCourse">Nombre:</label>
                             <input type="text" class="form-control" id="inputNameAddCourse" placeholder="Type Name">
                             <br>
                             <select class="form-control" id="levelSelected">
-                                <option>Basic</option>
-                                <option>Intermediate</option>
+                                <option>Basico</option>
+                                <option>Intermedio</option>
                             </select>
 
                         </div>
@@ -34,8 +34,8 @@
             </div>
             <!--Buttons------------------------------------------------------------------------------------------------>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" id="addCourse" class="btn btn-primary">Create</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="addCourse" class="btn btn-primary">Crear</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -48,7 +48,7 @@
             <!--configs------------------------------------------------------------------------------------------------>
             <div class="modal-header">
                 <button type="button" id="buttonCloseDeleteCourse"  class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel">Remove or clean course</h4>
+                <h4 class="modal-title" id="gridSystemModalLabel">Elimar o limpiar curso</h4>
             </div>
             <!--inputs------------------------------------------------------------------------------------------------->
             <div class="modal-body">
@@ -63,8 +63,8 @@
             </div>
             <!--Buttons------------------------------------------------------------------------------------------------>
             <div class="modal-footer">
-                <button type="button" id="deleteCourse" class="btn btn-primary">Delete</button>
-                <button type="button" id="cleanCourse" class="btn btn-primary">Clean</button>
+                <button type="button" id="deleteCourse" class="btn btn-primary">Eliminar</button>
+                <button type="button" id="cleanCourse" class="btn btn-primary">Limpiar</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

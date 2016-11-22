@@ -60,7 +60,7 @@ $is_teacher = $user["is_teacher"];
             </div>
             <div class="col-md-12 admin">
                 <h1 class="text-center blink">
-                    Admin Panel MIIDT
+                     Panel de administrador < MIIDT >
                 </h1>
             </div>
         </div>
@@ -100,7 +100,7 @@ $is_teacher = $user["is_teacher"];
                     <div class="butimg">
                         <form enctype="multipart/form-data" class="formulario">
                             <button type="button" class="btn btn-success" id="send">
-                                <i class="fa fa-send-o"></i>Go!</button>
+                                <i class="fa fa-send-o"></i>Enviar!</button>
                             <span class="btn  botton btn-file">
                                 <span id="loadImage">Image&nbsp;<i class="fa fa-camera"></i></span>
                                 <input name="archivo" type="file" id="imagen"/>
@@ -119,31 +119,31 @@ $is_teacher = $user["is_teacher"];
                     <div class="panel-body" id="options">
                         <!--options here-->
                         <button type="button" id="optionAddStudent" class="btn btn-success btn-block disabled" data-toggle="modal" >
-                            <i class="fa fa-user-plus"></i>&nbsp;Add new student</button>
+                            <i class="fa fa-user-plus"></i>&nbsp;Agregar Nuevo Estudiante</button>
                         <div class="line"></div>
                         <button type="button" id="optionEditStudent" class="btn btn-success btn-block" data-toggle="modal" data-target=".editStudent">
-                            <i class="fa fa-users"></i>&nbsp;Edit student</button>
+                            <i class="fa fa-users"></i>&nbsp;Editar Estudiante</button>
                         <div class="line"></div>
                         <div id="onlyAdmin">
                             <button type="button" id="optionAddTeacher" class="btn btn-info btn-block" data-toggle="modal" data-target=".addTeacher">
-                                <i class="fa fa-user-plus"></i>&nbsp;Add new teacher</button>
+                                <i class="fa fa-user-plus"></i>&nbsp;Agregar Nuevo Maestro</button>
                             <div class="line"></div>
                             <button type="button" id="optionEditTeacher" class="btn btn-info btn-block" data-toggle="modal" data-target=".editTeacher">
-                                <i class="fa fa-users"></i>&nbsp;Edit teacher</button>
+                                <i class="fa fa-users"></i>&nbsp;Editar Maestro</button>
                             <div class="line"></div>
                         </div>
                         <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target=".addCourse">
-                            <i class="fa fa-plus"></i>&nbsp;Add New Course</button>
+                            <i class="fa fa-plus"></i>&nbsp;Agregar Nuevo Curso</button>
                         <div class="line"></div>
                         <button type="button" id="remove" class="btn btn-success btn-block disabled" data-toggle="modal">
-                            <i class="fa fa-minus"></i>&nbsp;Delete/Clean Course</button>
+                            <i class="fa fa-minus"></i>&nbsp;Eliminar/Borrar Curso</button>
                         <div class="line"></div>
 
                         <button type="button" id="openlearningObjects" class="btn btn-success btn-block">
-                            Open learningobjects&nbsp;</button>
+                            Abrir Objetos de Aprendizaje&nbsp;</button>
                         <div class="line"></div>
 
-                        <button type="button" id="closeSession" class="btn btn-danger btn-block">close session&nbsp;<i class="fa fa-sign-out"></i></button>
+                        <button type="button" id="closeSession" class="btn btn-danger btn-block">Cerrar sesion&nbsp;<i class="fa fa-sign-out"></i></button>
                     </div>
                 </div>
             </div>

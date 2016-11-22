@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: azulyoro
- * Date: 11/04/16
- * Time: 6:11 PM
- */
 
 session_start();
-if(isset($_SESSION['admin_name'])) {
-    header("location:../index.php");
+if(isset($_SESSION['student_name'])) {
+    header("location:../learningobjects/index.php");
 }
 
 ?>
@@ -27,7 +21,7 @@ $name="";
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="icon" href="../logo.png">
-    <title>MIIDT:LOGIN</title>
+    <title>MIIDT: Estudiantes</title>
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +43,7 @@ $name="";
         <div class="modal-content">
             <!--configs------------------------------------------------------------------------------------------------>
             <div class="modal-header">
-                <h4 class="modal-title" id="gridSystemModalLabel">MIIDT: OBJETOS DE APRENDIZAJE </h4>
+                <h4 class="modal-title" id="gridSystemModalLabel">Acceso a estudiantes</h4>
             </div>
             <!--inputs------------------------------------------------------------------------------------------------->
             <div class="modal-body">
@@ -57,8 +51,8 @@ $name="";
                     <div class="col-lg-12 col-sm-12 col-md-12">
                         <form method="post" action="../v1/admin/login">
                             <div class="form-group">
-                                <label for="inputAdminName">Admin</label>
-                                <input type="text" class="form-control" name="admin_name"  placeholder="Type Admin Name">
+                                <label for="inputAdminName">Matricula</label>
+                                <input type="text" class="form-control" name="admin_name"  placeholder="Escribe la matricula">
                                 <br>
                                 <label for="inputAdminPassword">Password</label>
                                 <input type="password" class="form-control" name="password"
@@ -66,8 +60,7 @@ $name="";
                             </div>
                             <!--Buttons------------------------------------------------------------------------------------>
                             <div class="modal-footer">
-                                <button type="button" id="downloadApp" class="btn btn-info">Download App</button>
-                                <input type="submit" id="loginButton_" class="btn btn-primary" value="Log in">
+                                <input type="submit" id="loginButton_" class="btn btn-primary" value="Ingresar">
                             </div>
                         </form>
                     </div>

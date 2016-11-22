@@ -9,8 +9,13 @@
     <link rel="stylesheet" href="css/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+    <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
     <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/fileinput.min.js" type="text/javascript"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
@@ -34,20 +39,20 @@
                         <div class="line"></div>
                         <button type="button" id="option0" class="btn btn-success btn-block" data-toggle="modal" data-target=".viewtematicas">Temáticas</button>
                         <div class="line"></div>
-                        <button type="button" id="option1" class="btn btn-success btn-block" data-toggle="modal" data-target=".addObjectlearning">Crear objeto de aprendizaje</button>
+                        <button type="button" id="option1" class="btn btn-success btn-block" data-toggle="modal" data-target="#addObjectlearning">Crear objeto de aprendizaje</button>
                         <div class="line"></div>
-                        <button type="button" id="option2" class="btn btn-success btn-block" data-toggle="modal" data-target=".addexercise">Agregar ejercicio</button>
+                        <button type="button" id="option2" class="btn btn-success btn-block" data-toggle="modal" data-target="#addexercise">Agregar ejercicio</button>
                         <div class="line"></div>
-                        <button type="button" id="option3" class="btn btn-success btn-block " data-toggle="modal">Agregar recurso</button>
+                        <button type="button" id="option4" class="btn btn-success btn-block " data-toggle="modal" data-target="#addresource">Agregar recurso</button>
                         <div class="line"></div>
-                        <button type="button" id="option4" class="btn btn-danger btn-block">
+                        <button type="button" id="optionreturn" class="btn btn-danger btn-block">
                             Regresar a principal &nbsp;<i class="fa fa-sign-out"></i></button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-9 col-md-9 col-xs-12 " id="workspaceContent" >
+        <div class="col-lg-9 col-md-9 col-xs-12 " id="workspaceContent" data-spy="scroll" data-offset="50">
 
             <div class="panel-group">
                 <div id="panelworkspace" class="panel panel-primary">
@@ -55,34 +60,45 @@
 
                     <div class="panel-body">
                         <!-- area para objetos de aprendizaje -->
-                        <div class="col-lg-7 col-md-7 col-xs-12" id="oaContent">
+                        <div class="col-lg-10 col-md-10 col-xs-12" id="oaContent">
+
+                            <div class="panel-group">
+                                <div id="paneltematica" class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" class="btn btn-default btn-block" href="#collapse0">Lista de Temáticas</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse0" class="panel-collapse collapse">
+                                        <div class="panel-body " id="scrOA" style=" margin-right: 2px;  max-height:50%;  overflow-y: scroll;">
+                                            <ul class="list-group" id="tematicas">
+                                            <!--temáticas  here-->
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="panel-group">
                                 <div id="paneloa" class="panel panel-default">
-                                    <div class="panel-heading">Objetos de aprendizaje</div>
-                                    <div class="panel-body " id="scrOA" style=" margin-right: 2px;  max-height:50%;  overflow-y: scroll;">
-                                        <ul class="listaoa" id="learningobjects">
-                                            <!--OA here-->
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" class="btn btn-default btn-block" href="#collapse1">Lista de Objetos de Aprendiazaje</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse1" class="panel-collapse collapse">
+                                        <div class="panel-body">
 
-                                        </ul>
+                                            <ul class="list-group" id="learningobjects">
+                                                <!--OA  here-->
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-md-5 col-xs-12" id="exerciseCoenten">
-
-                           <div class="panel-group">
-
-                               <!-- <div id="panelexercise" class="panel panel-default">
-                                    <div class="panel-heading">ejercicios de Mi primer OA</div>
-                                    <div class="panel-body">
-
-                                        <ul id="actividades" class="list-group">
-                                            <li  class="btn btn-default btn-xs btn-block"><label>Ejercicio 1</label></li>
-                                            <li  class="btn btn-default btn-xs btn-block"><label>Ejercicio 2</label></li>
-                                        </ul>
-                                    </div>
-                                </div>-->
-                            </div>
+                        <div class="col-lg-2 col-md-2 col-xs-12" id="exerciseCoenten">
 
                         </div>
 
@@ -116,8 +132,10 @@ require_once __DIR__. '/inc/modals.php';
 <!-- jQuery (Bootstrap JS plugins depend on it) -->
 <script src="js/script.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+
 </body>
 
 
