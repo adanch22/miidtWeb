@@ -5,7 +5,7 @@ ini_set('display_errors', 'On');
 
 require_once '../include/db_handler.php';
 require_once '../include/PassHash.php';
-require_once '../include/parseXML.php';
+require_once '../include/ParseXML.php';
 
 require '.././libs/vendor/slim/slim/Slim/Slim.php';
 
@@ -13,7 +13,7 @@ require '.././libs/vendor/slim/slim/Slim/Slim.php';
 
 $app = new \Slim\Slim();
 
-            /*          admin         */
+/*          admin         */
 
 /***************************************************
  *  Resgister admin
@@ -31,20 +31,20 @@ $app->post('/admin/register/', function() use ($app) {
     $is_teacher = $app->request->post('is_teacher');
 
     $db = new DbHandler();
-        $res = $db->createAdmin($user_name, $password, $is_teacher);
-        if ($res == CREATED_SUCCESSFULLY) {
-            $response["error"] = false;
-            $response["message"] = "Admin successfully registered";
-            echoRespnse(201, $response);
-        } else if ($res == CREATE_FAILED) {
-            $response["error"] = true;
-            $response["message"] = "Oops! An error occurred while registering";
-            echoRespnse(200, $response);
-        } else if ($res == ALREADY_EXISTED){
-            $response["error"] = true;
-            $response["message"] = "Teacher Already existed";
-            echoRespnse(200, $response);
-        }
+    $res = $db->createAdmin($user_name, $password, $is_teacher);
+    if ($res == CREATED_SUCCESSFULLY) {
+        $response["error"] = false;
+        $response["message"] = "Admin successfully registered";
+        echoRespnse(201, $response);
+    } else if ($res == CREATE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while registering";
+        echoRespnse(200, $response);
+    } else if ($res == ALREADY_EXISTED){
+        $response["error"] = true;
+        $response["message"] = "Teacher Already existed";
+        echoRespnse(200, $response);
+    }
 });
 
 /***************************************************
@@ -72,7 +72,7 @@ $app->post('/admin/login/', function() use ($app) {
         // user credentials are wrong
         $response['error'] = true;
         $response['message'] = 'Login failed. Incorrect credentials';
-        echo "<script>alert('Login failed. Incorrect credentials');</script>";
+        echo "<script>alert('Error en abrir sesión . Datos incorrectos');</script>";
     }
     echo "<script>window.open(\"../../index.php\",\"_self\");</script>";
 });
@@ -117,7 +117,7 @@ $app->post('/admin/teacher/search/', function() use($app) {
     echoRespnse(200, $response);
 });
 
-            /*          courses         */
+/*          courses         */
 
 /***************************************************
  *  Add course
@@ -271,7 +271,7 @@ $app->post('/course/clean/', function() use ($app) {
     }
 });
 
-            /*          students         */
+/*          students         */
 
 /***************************************************
  *  Add student
@@ -418,6 +418,7 @@ $app->post('/student/authenticate/', function() use ($app) {
     // check for correct user_tag and password
     if ($db->isValidApiKey($device_key)) {
         $response['error'] = false;
+
         $response['message'] = "Successfully login";
     } else {
         // unknown error occurred
@@ -518,7 +519,7 @@ $app->post('/student/delete/', function() use ($app) {
     }
 });
 
-            /*          student_course      */
+/*          student_course      */
 
 /***************************************************
  *  Assign Course to student
@@ -552,7 +553,7 @@ $app->post('/student_course/', function() use ($app) {
     }
 });
 
-            /*          messages         */
+/*          messages         */
 
 /***************************************************
  *  Send Message to a Classroom
@@ -647,7 +648,7 @@ $app->get('/course/messages/:id/', function($course_id) {
     echoRespnse(200, $response);
 });
 
-            /*          books         */
+/*          books         */
 
 /***************************************************
  *  Fetching single course
@@ -781,19 +782,19 @@ $app->post('/classes/register', function() use ($app) {
     $db = new DbHandler();
     $user_id = $db->getUserIdByMatricula($matricula);
     $res = $db->createClasses($user_id, $classroom_id);
-       if ($res == CLASSES_CREATED_SUCCESSFULLY) {
-          $response["error"] = false;
-          $response["message"] = "User successfully added to a class";
-          echoRespnse(201, $response);
-       } else if ($res == CLASSES_CREATE_FAILED) {
-          $response["error"] = true;
-          $response["message"] = "Oops! An error occurred while adding the user to a class";
-          echoRespnse(200, $response);
-        }else if ($res == USER_EXIST_IN_CLASSROOM){
-          $response["error"] = true;
-          $response["message"] = "Usuario actualmente registrado en este curso";
-          echoRespnse(200, $response);
-        }
+    if ($res == CLASSES_CREATED_SUCCESSFULLY) {
+        $response["error"] = false;
+        $response["message"] = "User successfully added to a class";
+        echoRespnse(201, $response);
+    } else if ($res == CLASSES_CREATE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while adding the user to a class";
+        echoRespnse(200, $response);
+    }else if ($res == USER_EXIST_IN_CLASSROOM){
+        $response["error"] = true;
+        $response["message"] = "Usuario actualmente registrado en este curso";
+        echoRespnse(200, $response);
+    }
 });
 
 /***************************************************
@@ -827,18 +828,6 @@ $app->post('/classes/delete/', function() use ($app) {
         echoRespnse(200, $response);
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1133,10 +1122,12 @@ function authenticateLogin(\Slim\Route $route) {
     $response = array();
     $app = \Slim\Slim::getInstance();
 
+    //declarar
+    /*    $xml = new parseXML();
+        $xml->addregister();*/
     // Verifying Authorization Header
     if (isset($headers['HTTP_ACCEPT'])) {
         $db = new DbHandler();
-
         // get the api key
         $device_key = $headers['HTTP_ACCEPT'];
         // validating api key
@@ -1173,9 +1164,13 @@ function authenticate(\Slim\Route $route) {
     $response = array();
     $app = \Slim\Slim::getInstance();
 
+    //declarar
+    /*    $xml = new parseXML();
+        $xml->addregister();*/
     // Verifying Authorization Header
     if (isset($headers['HTTP_ACCEPT'])) {
         $db = new DbHandler();
+
 
         // get the api key
         $device_key = $headers['HTTP_ACCEPT'];
@@ -1204,7 +1199,7 @@ function authenticate(\Slim\Route $route) {
  *
  * agregar objetos de aprendizaje
  ****************************************************************************************************/
-$app->post('/learningobjects/add/', function() use ($app) {
+/*$app->post('/learningobjects/add/', function() use ($app) {
     // check for required params
     verifyRequiredParams(array('learningobject_name', 'learningobject_image', 'book_id'));
 
@@ -1213,10 +1208,10 @@ $app->post('/learningobjects/add/', function() use ($app) {
     // reading post params
     $learningobject_name = $app->request->post('learningobject_name');
     $learningobject_image = $app->request->post('learningobject_image');
-/*    $learningobject_idioma = $app->request->post('learningobject_idioma');
+    $learningobject_idioma = $app->request->post('learningobject_idioma');
     $learningobject_descripcion = $app->request->post('learningobject_descripcion');
     $learningobject_version = $app->request->post('learningobject_version');
-    $learningobject_autor = $app->request->post('learningobject_autor');*/
+    $learningobject_autor = $app->request->post('learningobject_autor');
     $book_id = $app->request->post('book_id');
 
     $db = new DbHandler();
@@ -1248,8 +1243,53 @@ $app->post('/learningobjects/add/', function() use ($app) {
         $response["error"] = true;
         $response["message"] = "Oops! An error occurred while registereing";
         echoRespnse(200, $response);
-    }*/
+    }
+});*/
+$app->post('/learningobjects/add/', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('learningobject_name','learningobject_image','book_id' ,'learningobject_idioma',
+        'learningobject_descripcion', 'learningobject_version', 'learningobject_author', 'book_name'));
+
+    $response = array();
+
+    // reading post params
+    $learningobject_name = $app->request->post('learningobject_name');
+    $learningobject_image = $app->request->post('learningobject_image');
+    $learningobject_idioma = $app->request->post('learningobject_idioma');
+    $learningobject_descripcion = $app->request->post('learningobject_descripcion');
+    $learningobject_version = $app->request->post('learningobject_version');
+    $learningobject_autor = $app->request->post('learningobject_author');
+    $book_id = $app->request->post('book_id');
+    $book_name = $app->request->post('book_name');
+
+    $db = new DbHandler();
+    $res = $db->addlearningobjects($learningobject_name, $learningobject_image, $book_id);
+    if ($res['result'] == CREATED_SUCCESSFULLY) {
+
+        $xml = new parseXML();
+        $res2 = $xml->addMetadata($learningobject_name,$learningobject_idioma, $learningobject_descripcion,
+            $learningobject_version, $learningobject_autor, $book_name, $learningobject_image ,$res['learningobject_id']);
+
+        $response["error"] = false;
+        $response["learningobject_id"] = $res['learningobject_id'];
+        $response["message"] = "El Objeto de aprendizaje ha sido agregado correctamente";
+        echoRespnse(201, $response);
+    } else if ($res['result'] == CREATE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! un error ocurrio en el registro ";
+
+        echoRespnse(200, $response);
+    } else if ($res['result'] == ALREADY_EXISTED) {
+        $response["error"] = true;
+        $response["message"] = "Sorry, this OA existed";
+        echoRespnse(200, $response);
+    }
+
 });
+
+
+
+
 
 /***************************************************
  *  get learningObjects
@@ -1268,12 +1308,62 @@ $app->get('/learningObjects/', function() {
         $tmp = array();
         $tmp["learningobject_id"] = $learningobject["learningobject_id"];
         $tmp["learningobject_name"] = $learningobject["learningobject_name"];
+        $tmp["learningobject_type"] = $learningobject["learningobject_type"];
         $tmp["book_id"] = $learningobject["book_id"];
         array_push($response["course"], $tmp);
     }
 
     echoRespnse(200, $response);
 });
+
+
+/***************************************************
+ *  Delete book
+ ***************************************************/
+$app->post('/learningobjects/delete/', function() use ($app) {
+    // check for required params
+
+    verifyRequiredParams(array('id_oa', 'name_tematica'));
+
+    $response = array();
+
+    // reading post params
+    $id_oa = $app->request->post('id_oa');
+    $id_tematica = $app->request->post('name_tematica');
+
+    $db = new DbHandler();
+
+    $result = $db->searchlearningobject($id_oa);
+    // pushing single chat room into array
+    $unit = array('learningobject_name' => '');
+
+    while ($learningobject = $result->fetch_assoc()) {
+        $unit['learningobject_name'] = $learningobject["learningobject_name"];
+    }
+
+    $res = $db->deletelearningobject($id_oa);
+
+    if ($res == CREATED_SUCCESSFULLY) {
+
+        $xml = new parseXML();
+        $res2 = $xml->removeMetadata($id_tematica,$unit['learningobject_name'], $id_oa);
+        $response["error"] = false;
+        $response["message"] = "El OA se elimino correctamente";
+        // $response["message"] = $unit['learningobject_name'];
+
+        echoRespnse(201, $response);
+    } else if ($res == CREATE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while deleting";
+        echoRespnse(200, $response);
+    } /*else if ($res == USER_NOT_EXISTED) {
+        $response["error"] = true;
+        $response["message"] = "Sorry, this user not existed";
+        echoRespnse(200, $response);
+    }*/
+});
+
+
 
 
 /***************************************************
@@ -1342,40 +1432,6 @@ $app->post('/learningObjects/addresources/', function() use ($app) {
 
 
 
-/***************************************************
- *  create metadata
- ***************************************************/
-$app->post('/learningobjects/createmetadata/', function() use ($app) {
-    // check for required params
-    verifyRequiredParams(array('learningobject_name', 'learningobject_idioma',
-        'learningobject_descripcion', 'learningobject_version', 'learningobject_autor', 'book_name'));
-
-    $response = array();
-
-    // reading post params
-    $learningobject_name = $app->request->post('learningobject_name');
-    $learningobject_idioma = $app->request->post('learningobject_idioma');
-    $learningobject_descripcion = $app->request->post('learningobject_descripcion');
-    $learningobject_version = $app->request->post('learningobject_version');
-    $learningobject_autor = $app->request->post('learningobject_autor');
-    $book_name = $app->request->post('book_name');
-
-    $xml = new parseXML();
-    $res = $xml->addMetadata($learningobject_name,$learningobject_idioma,
-        $learningobject_descripcion, $learningobject_version, $learningobject_autor, $book_name );
-
-    if ($res['result'] == "SUCCESSFULLY") {
-        $response["error"] = false;
-        $response["message"] = "User successfully registered";
-        echoRespnse(201, $response);
-    } else if ($res['result'] == "FAILED") {
-        $response["error"] = true;
-        $response["message"] = "Oops! An error occurred while registereing";
-        echoRespnse(200, $response);
-    }
-});
-
-
 
 
 /***************************************************
@@ -1437,6 +1493,37 @@ $app->get('/books/', function() {
     echoRespnse(200, $response);
 });
 
+/***************************************************
+ *  Delete book
+ ***************************************************/
+$app->post('/books/delete/', function() use ($app) {
+    // check for required params
+
+    verifyRequiredParams(array('id_tematica'));
+
+    $response = array();
+
+    // reading post params
+    $id_tematica = $app->request->post('id_tematica');
+
+    $db = new DbHandler();
+//    $user_id = $db->getUserByMatricula($matricula);
+    $res = $db->deletebook($id_tematica);
+
+    if ($res == CREATED_SUCCESSFULLY) {
+        $response["error"] = false;
+        $response["message"] = "La temática se elimino correctamente";
+        echoRespnse(201, $response);
+    } else if ($res == CREATE_FAILED) {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while deleting";
+        echoRespnse(200, $response);
+    } /*else if ($res == USER_NOT_EXISTED) {
+        $response["error"] = true;
+        $response["message"] = "Sorry, this user not existed";
+        echoRespnse(200, $response);
+    }*/
+});
 
 
 
@@ -1451,13 +1538,23 @@ $app->get('/exercises/:id', function($name_learningobjects) {
     $result = $xml->getAllexercises($name_learningobjects);
 
     $response["error"] = false;
-    $response["exercise"]  = $result;
+    $response["exercise"]  = array();
+    //$response["exercise"]  = $result;
+
+
+    foreach ($result as $valor) {
+        $tmp = array();
+        $tmp["exercise_type"] = $valor['exercise_type'];
+        $tmp["exercise_id"] = $valor['exercise_id'];
+
+        array_push($response["exercise"], $tmp);
+    }
 
 
     echoRespnse(200, $response);
 });
 
 
-
-
 $app->run();
+
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unit>
+  <exercise value="video">
+    <image>videoquiz</image>
+    <information>Ejemplodevideoquiz/Proposiciones.mp4</information>
+    <question value="[]">null</question>
+  </exercise>
+
+  <exercise value="multipleoptions">
+    <title>opción multiple </title>
+    <information></information>
+    <question value="1">¿Como se llama el titulo?</question>
+    <answer1>Proposiciones en el lenguaje simbolico</answer1>
+    <answer2>Proposiciones en el lenguaje historico</answer2>
+    <answer3>Proposiciones en la ingenieria</answer3>
+  </exercise>
+
+  <exercise value="multipleoptions">
+    <title>opción multiple </title>
+    <information></information>
+    <question value="3">La negacion de una negacion es:</question>
+    <answer1>Una mentira</answer1>
+    <answer2>Una negacion al cuadrado</answer2>
+    <answer3>Una afirmacion</answer3>
+  </exercise>
+
+   <exercise value="multipleoptions">
+    <title>opción multiple </title>
+    <information></information>
+    <question value="1">La oracion es una:</question>
+    <answer1>Conjuncion</answer1>
+    <answer2>Discusion</answer2>
+    <answer3> Una vil mentira de la sociedad</answer3>
+  </exercise>
+</unit>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book>
+  <unit value="Ejemplodeejerciciosyrecursosmultimedia/oa">
+    <title>Ejemplo de ejercicios y recursos multimedia</title>
+    <description>Mi descripción</description>
+    <author>Ing. Adán Chávez Olivera</author>
+    <type>default</type>
+    
+  </unit>
+  <unit value="Ejemplodevideoquiz/oa">
+    <title>Ejemplo de videoquiz</title>
+    <description>ejemplo de ejecucion de un OA  videoquiz </description>
+    <author>Ing. Adán Chávez  Olivera</author>
+    <type>videoquiz</type>
+  </unit>
+</book>

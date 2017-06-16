@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<unit>
+    <exercise value="presentation">
+        <image>ignacio-manuel-altamirano.jpg</image>
+        <information>Ignacio Manuel Altamirano.\nTixtla, Gro.\nMexican.</information>
+        <question value="[His name is] Ignacio {Manuel} {Altamirano}">What is his name?</question>
+        <question value="[He is from] Tixtla{, Gro}">Where is he from?</question>
+        <question value="[He is] Mexican{.}">What is his nationality</question>
+    </exercise>
+
+    <exercise value="presentation">
+        <image>frida-kahlo.jpg</image>
+        <information>Frida Kahlo.\nCoyoacan, Mexico.\nMexican.</information>
+        <question value="[Her name is] Frida {Kahlo} ">What is her name?</question>
+        <question value="[She is from] Coyoacan{, Mexico}">Where is she from?</question>
+        <question value="[She is] Mexican{.}">What is her nationality</question>
+    </exercise>
+
+    <exercise value="presentation">
+        <question value="[My first name is] (-)">What is your first name?</question>
+        <question value="[She is] Mexican{.}">Where are you from?</question>
+    </exercise>
+</unit>

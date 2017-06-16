@@ -866,7 +866,6 @@ class DbHandler {
         return md5(uniqid(rand(), true));
     }
 
-
     /****************************************************************************************************
      *  CODIGO ADAN CHAVEZ OLIVERA
      *
@@ -877,7 +876,7 @@ class DbHandler {
         // if (!$this->exists("learningobject_id", "learningobjects", "learningobjects_name", $name)) {
 
         // insert query   ;INSERT INTO learningobjects (learninobject_name, learninobject_image, book_id) VALUES (?, ?, ?)
-        $stmt = $this->conn->prepare("INSERT INTO learningobjects(learningobject_name, learningobject_image, book_id) values(?,?,?)");
+        $stmt = $this->conn->prepare("INSERT INTO learningobjects(learningobject_name, learningobject_type, book_id) values(?,?,?)");
         $stmt->bind_param("ssi", $name, $image, $book_id);
         $result = $stmt->execute();
         $learningobject_id = $this->conn->insert_id;
@@ -910,10 +909,10 @@ class DbHandler {
     public function getAllLearningObjects() {
 
         $stmt = $this->conn->prepare("SELECT * FROM learningobjects");
-      //  $stmt->bind_param("i", $book_id);
+        //  $stmt->bind_param("i", $book_id);
         $stmt->execute();
         $tasks = $stmt->get_result();
-       // $num_rows = $tasks->num_rows;
+        // $num_rows = $tasks->num_rows;
         $stmt->close();
         return $tasks;
     }
@@ -959,6 +958,65 @@ class DbHandler {
         $stmt = $this->conn->prepare("SELECT * FROM books");
         $stmt->execute();
         $tasks = $stmt->get_result();
+        $stmt->close();
+        return $tasks;
+    }
+
+    /**************************************************
+     *  Delete book
+     ***************************************************/
+    public function deletebook($id_tematica){
+
+        $stmt = $this->conn->prepare("DELETE FROM books WHERE book_id = ?");
+
+        $stmt->bind_param("i", $id_tematica);
+
+        $result = $stmt->execute();
+
+        $stmt->close();
+
+        // Check for successful insertion
+        if ($result) {
+            // User successfully inserted
+            return CREATED_SUCCESSFULLY;
+        } else {
+            // Failed to create userid
+            return CREATE_FAILED;
+        }
+    }
+
+    /**************************************************
+     *  Delete learningobjects
+     ***************************************************/
+    public function deletelearningobject($id_oa){
+
+        $stmt = $this->conn->prepare("DELETE FROM learningobjects WHERE learningobject_id = ?");
+
+        $stmt->bind_param("i", $id_oa);
+
+        $result = $stmt->execute();
+
+        $stmt->close();
+
+        // Check for successful insertion
+        if ($result) {
+            // User successfully inserted
+            return CREATED_SUCCESSFULLY;
+        } else {
+            // Failed to create userid
+            return CREATE_FAILED;
+        }
+    }
+
+    /**************************************************
+     *  search learningobjects
+     ***************************************************/
+    public function searchlearningobject($id) {
+        $stmt = $this->conn->prepare("SELECT learningobject_name,learningobject_type  from learningobjects WHERE learningobject_id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $tasks = $stmt->get_result();
+        // $num_rows = $tasks->num_rows;
         $stmt->close();
         return $tasks;
     }

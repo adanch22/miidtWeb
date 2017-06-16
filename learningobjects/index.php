@@ -1,5 +1,29 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: azulyoro
+ * Date: 11/04/16
+ * Time: 6:11 PM
+ */
+
+session_start();
+if(!isset($_SESSION['admin_name'])) {
+    header("location:/ciex/register/login.php");
+}
+
+error_reporting(-1);
+ini_set('display_errors', 'On');
+
+require_once __DIR__ . '/../adminpanel.php';
+$demo = new panel();
+$user = $demo->getUser($_SESSION['admin_name']);
+$admin_id = $user["admin_id"];
+$is_teacher = $user["is_teacher"];
+?>
+
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,97 +53,213 @@
 <div id="main-content" class="container">
     <div id="home-tiles" class="row">
 
-        <div class="col-lg-3 col-md-3 " id="optionsContent" >
 
-            <div class="panel-group">
-                <div id="paneloptions" class="panel panel-primary">
-                    <div class="panel-heading">Opciones</div>
+        <div class=" panel-body col-sm-12 col-md-12 col-lg-3 hidden-xs sidebar " id="optionsContent">
+            <ul class="nav nav-sidebar">
 
-                    <div class="panel-body">
-                        <div class="line"></div>
-                        <button type="button" id="option0" class="btn btn-success btn-block" data-toggle="modal" data-target=".viewtematicas">Temáticas</button>
-                        <div class="line"></div>
-                        <button type="button" id="option1" class="btn btn-success btn-block" data-toggle="modal" data-target="#addObjectlearning">Crear objeto de aprendizaje</button>
-                        <div class="line"></div>
-                        <button type="button" id="option2" class="btn btn-success btn-block" data-toggle="modal" data-target="#addexercise">Agregar ejercicio</button>
-                        <div class="line"></div>
-                        <button type="button" id="option4" class="btn btn-success btn-block " data-toggle="modal" data-target="#addresource">Agregar recurso</button>
-                        <div class="line"></div>
-                        <button type="button" id="optionreturn" class="btn btn-danger btn-block">
-                            Regresar a principal &nbsp;<i class="fa fa-sign-out"></i></button>
-                    </div>
-                </div>
-            </div>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><button type="button" id="optionp0" class="btn btn-default btn-block ">Temáticas</button></li>
+                <li><button type="button" id="optionp1" class="btn btn-block btn-default">Objetos de aprendizaje </button></li>
+                <li><button type="button" id="optionp2" class="btn btn-block btn-default">Ejercicios Y Actividades</button></li>
+                <li><button type="button" id="optionreturn" class="btn btn-danger btn-block">Regresar a principal</button></li>
+
+            </ul>
+            <ul class="nav nav-sidebar">
+
+            </ul>
         </div>
 
-        <div class="col-lg-9 col-md-9 col-xs-12 " id="workspaceContent" data-spy="scroll" data-offset="50">
+
+        <div class="col-lg-9 col-md-12 col-xs-12 main" id="workspaceContent" data-spy="scroll" data-offset="50">
 
             <div class="panel-group">
-                <div id="panelworkspace" class="panel panel-primary">
-                    <div class="panel-heading">Área de trabajo</div>
+                <div id="panelworkspace" class="panel-body">
 
                     <div class="panel-body">
+
                         <!-- area para objetos de aprendizaje -->
-                        <div class="col-lg-10 col-md-10 col-xs-12" id="oaContent">
+                        <div class="col-lg-12 col-md-12 col-xs-12" id="oaHome">
 
                             <div class="panel-group">
-                                <div id="paneltematica" class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" class="btn btn-default btn-block" href="#collapse0">Lista de Temáticas</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapse0" class="panel-collapse collapse">
-                                        <div class="panel-body " id="scrOA" style=" margin-right: 2px;  max-height:50%;  overflow-y: scroll;">
-                                            <ul class="list-group" id="tematicas">
-                                            <!--temáticas  here-->
+                                <div id="paneloaHome" class="panel panel-body">
+                                    <div class="panel-group ">
+                                        <div class="panel-body " >
+                                            <img src="img/ic_launcher-web.png" class="img-responsive center-block" width="300" height="236">
+                                            <h1 id="banner" class="center-block" align="center">B I E N V E N I D @</h1>
 
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+
+                        </div>
+
+                        <!-- area para objetos de aprendizaje -->
+                        <div class="col-lg-12 col-md-12 col-xs-12" id="tematicaContent">
+
                             <div class="panel-group">
-                                <div id="paneloa" class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" class="btn btn-default btn-block" href="#collapse1">Lista de Objetos de Aprendiazaje</a>
-                                        </h4>
+                                <div id="paneltematica" class="panel panel-body">
+                                    <div class="panel-default " align="center" >
+                                        <h2 class="">Temáticas</h2>
+                                        <div id="remove-tematica" class="upload-msg"></div><!--Para mostrar la respuesta del archivo llamado via ajax -->
+
                                     </div>
-                                    <div id="collapse1" class="panel-collapse collapse">
+                                    <div class="panel-default " align="center" >
+                                        <h5 class="backgroud btn-block">.</h5>
+                                    </div>
+                                    <div  class="panel-group ">
+
                                         <div class="panel-body">
+                                            <button type="button" id="option0" class="col-lg-3 btn btn-primary" data-toggle="modal" data-target=".viewtematicas"><i class='glyphicon glyphicon-plus'></i> </button>
+                                            <button type="button" id="optionr1" id_book="" name_book="" class="col-lg-1 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#tematicaDelete"><i class='glyphicon glyphicon-trash'></i> </button>
+                                            <button type="button" id="optione1" class="col-lg-1 btn btn-info btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-edit'></i> </button>
 
-                                            <ul class="list-group" id="learningobjects">
-                                                <!--OA  here-->
+
+                                        </div>
+                                        <div class="panel-body " id="scrOA" style=" margin-right: 2px;  max-height:50%;  overflow-y: scroll;">
+                                            <ul class="list-group " id="tematicas">
+                                                <!--temáticas  here-->
+
                                             </ul>
                                         </div>
                                     </div>
+                                    <div class="panel-default " align="center" >
+                                        <h5 class="backgroud btn-block">.</h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-12" id="exerciseCoenten">
+
 
                         </div>
 
+
+                        <div class="col-lg-12 col-md-12 col-xs-12" id="oaContent">
+
+
+                            <div class="panel-group">
+                                <div id="paneloa" class="panel panel-body">
+                                    <div class="panel-default " align="center" >
+                                        <h2 class=" btn-block" >Objetos de Aprendizaje</h2>
+                                        <div id="remove-oa" class="upload-msg">
+                                        </div>
+
+                                        <div class="panel-default " align="center" >
+                                            <h5 class="backgroud btn-block">.</h5>
+                                        </div>
+
+                                        <h5 align="left">Lista de temáticas</h5>
+                                        <div class="col-lg-12">
+
+                                            <div class="col-lg-4 form-inline">
+                                                <select class="form-control" id="tematicasSelected">
+
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6  form-inline" >
+
+                                                <button type="button" id="option1" class="col-lg-6 btn btn-primary" data-toggle="modal" data-target="#addObjectlearning"><i class='glyphicon glyphicon-plus'></i> OA</button>
+                                                <button type="button" id="optionr2" id_oa="" name_oa=""class="col-lg-2 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#oaDelete"><i class='glyphicon glyphicon-trash'></i> </button>
+                                                <button type="button" id="optione2" class="col-lg-2 btn btn-info btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-edit'></i> </button>
+
+                                            </div>
+                                        </div>
+                                        <div class="panel-body"></div>
+                                        <div id="" class=" align="">
+                                        <h5  class=" btn-block" align="left">Objetos de Aprendiazaje</h5>
+                                        <ul class="list-group" id="learningobjects">
+                                            <!--OA  here-->
+                                        </ul>
+
+                                    </div>
+                                    <div class="panel-body">
+
+                                    </div>
+                                    <div class="panel-default " align="center" >
+                                        <h5 class="backgroud btn-block">.</h5>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
-                        <!-- area para ejercicios de los OA -->
+
+
+                    <div class="col-lg-12 col-md-12 col-xs-12" id="oaContentexercise">
+                        <div class="panel-group">
+                            <div id="panelexercise" class="panel panel-body">
+                                <div class="panel-default " align="center" >
+                                    <h2 class=" btn-block">Ejercicios  y recursos multimedia</h2>
+                                    <div id="alert-exercise" class="upload-msg"></div><!--Para mostrar la respuesta del archivo llamado via ajax -->
+                                </div>
+                                <div class="panel-default " align="center" >
+                                    <h5 class="backgroud btn-block">.</h5>
+
+                                </div>
+
+                                <div id="" class="panel-body ">
+                                    <div class="panel-body">
+                                        <div class=" col-lg-6 form-group">
+                                            <label for="sel1">Selecciona una temática</label>
+                                            <select class="form-control" id="bookexerciseSelect">
+                                                <option>selecciona una temática</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6 form-group">
+                                            <label for="sel1">Selecciona un OA:</label>
+                                            <select class=" form-control" id="oaexerciseSelect">
+
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <button type="button" id="option2" class="col-lg-2 btn btn-primary btn-md  invisible" data-toggle="modal" data-target="#addexercise"><i class='glyphicon glyphicon-pencil'></i> </button>
+                                        <button type="button" id="option4" class="col-lg-2 btn btn-primary  btn-md invisible" data-toggle="modal" data-target="#addresource"><i class='glyphicon glyphicon-picture'></i> </button>
+                                        <button type="button" id="option5" class="col-lg-2 btn btn-primary btn-md  invisible" data-toggle="modal" data-target="#addexercise"><i class='glyphicon glyphicon-facetime-video'></i>  </button>
+                                        <button type="button" id="option6"  class="col-lg-2 btn btn-primary  btn-md invisible" data-toggle="modal" data-target="#addresource"><i class='glyphicon glyphicon-pencil'></i> </button>
+                                        <button type="button" id="option7" value="" class="col-lg-1 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-trash'></i> </button>
+                                        <button type="button" id="option8" class="col-lg-1 btn btn-info btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-edit'></i> </button>
+
+
+                                    </div>
+                                    <div class="col-lg-12 panel-body " id="scrOA" style=" margin-right: 2px;  max-height:50%;  overflow-y: scroll;">
+                                        <ul class="list-group " id="exercises">
+                                            <!--exercises  here-->
+
+                                        </ul>
+
+
+
+                                    </div>
+
+
+                                </div>
+                                <div class="panel-default " align="center" >
+                                    <h5 class="backgroud btn-block">.</h5>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
 
                 </div>
             </div>
         </div>
 
-       <!-- <div class="col-md-9 col-sm-12 col-xs-12">
-            <p id="map-tile"><span> área de trabajo 1</span></p>
-            <!-- <a href="https://www.google.com/maps/place/David+Chu's+China+Bistro/@39.3635874,-76.7138622,17z/data=!4m6!1m3!3m2!1s0x89c81a14e7817803:0xab20a0e99daa17ea!2sDavid+Chu's+China+Bistro!3m1!1s0x89c81a14e7817803:0xab20a0e99daa17ea" target="_blank">
-              <div id="map-tile">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3084.675372390488!2d-76.71386218529199!3d39.3635874269356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c81a14e7817803%3A0xab20a0e99daa17ea!2sDavid+Chu&#39;s+China+Bistro!5e0!3m2!1sen!2sus!4v1452824864156" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
-                <span>map</span>
-              </div>
-            </a>-->
-        </div>
-    </div><!-- End of #home-tiles -->
+
+    </div>
+</div><!-- End of #home-tiles -->
 </div><!-- End of #main-content -->
 
 <?php

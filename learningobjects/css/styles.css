@@ -1,6 +1,6 @@
 body {
   font-size: 16px;
-  color: #fff;
+  color: #FFFFFF;
   background-color: #E0E0E0;
   font-family: 'Oxygen', sans-serif;
 }
@@ -12,16 +12,21 @@ body {
   border: 0;
 }
 
+#header-nav-app {
+  height: 200px;
+  border-radius: 0;
+  border: 0;
+}
 #logo-img {
-  background: url('../img/oaldpi.png') no-repeat;
-  width: 250px;
-  height: 155px;
-  margin: 0px 10px 10px 0;
+  background: url('../img/oadpi.png') no-repeat;
+  width: 120px;
+  height: 100px;
+  margin: 5px 5px 5px 0;
 }
 
 
 .navbar-brand {
-  padding-top: 20px;
+  padding-top: 5px;
 }
 .navbar-brand h1 { /* pagename */
   color: #fff;
@@ -33,6 +38,7 @@ body {
   margin-bottom: 0;
   line-height: .75;
 }
+
 .navbar-brand a:hover, .navbar-brand a:focus {
   text-decoration: none;
 }
@@ -59,6 +65,10 @@ body {
 }
 #nav-list a span {
   font-size: 2em;
+}
+
+.panel-group h5{
+  color: #0b0b0b;
 }
 
 
@@ -134,24 +144,74 @@ body {
   opacity: 1;
 }
 
+.margin_e{
+  margin-top: 2px;
+}
+
+.backgroud{
+  background-color: #cccccc;
+  color: #cccccc;
+}
+
+.btn-press {
+  background: rgba(0,0,0,0);
+  color: #0f0f0f;
+  box-shadow: inset 0 0 0 1px #0f0f0f;
+}
+
+
 /********** Opciones **********/
-#paneloptions,#panelworkspace {
-  height: 500px;
+#panelworkspace {
+  background-color: #FFFFFF;
+  height: auto;
+  color: #0f0f0f;
+}
+
+#optionsContent{
+  background-color: #E0E0E0;
+  display: block;
+
+}
+
+#paneloaHome{
+  height: 400px;
+
+}
+
+
+#paneldowloadapp {
+  height: auto;
+}
+
+
+#option0{
 }
 /*botones de opciones*/
-#option0, #option1, #option2, #option3, #option4{
-  margin-top: 10px;
-  height: 40px;
+#optionp0, #optionp1, #optionp2, #optionp3 {
+  margin-top: 5px;
+  height:40px;
+}
+
+#option0, #option1, #option2, #option3, #option4,  #option5,  #option6,  #option7,  #option8{
+  margin-top: 0px;
+  margin-left: 5px;
+}
+
+#optionr1, #optione1, #optionr2, #optione2{
+  margin-top: 0px;
+  margin-left: 5px;
 }
 
 /*boton para regresar a panel*/
 #optionreturn {
-  margin-top: 20px;
-  height: 50px;
+  margin-top: 5px;
+  height: 40px;
   font-size: 16px;
 
 }
 
+
+/*imagen*/
 
 .panel-body .listaoa li {
   color: #000;
@@ -174,18 +234,34 @@ body {
 
 }
 
+#collapsable-options{
+  font-size: 11px;
+}
 
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 /********** Large devices only **********/
 @media (min-width: 1200px) {
 
+  #panelstudentworkspace{
+    height: 350px;
+  }
 
 }
 
 /********** Medium devices only **********/
 @media (min-width: 992px) and (max-width: 1199px) {
   /* Header */
+  #header-nav-app {
+    height: 200px;
+    border-radius: 0;
+    border: 0;
+  }
   #logo-img {
     background: url('../img/oadpi.png') no-repeat;
     width: 120px;
@@ -208,6 +284,10 @@ body {
     margin-right: 10px;
   }
 
+  #panelstudentworkspace{
+    height: 350px;
+  }
+
   /* Home Page */
 
 
@@ -217,13 +297,21 @@ body {
 /********** Small devices only **********/
 @media (min-width: 768px) and (max-width: 991px) {
   /* Home Page */
+
   .navbar-brand h1 { /* page name */
     padding-top: 10px;
-    font-size: 2.0em; /* 1vw = 1% of viewport width */
+    font-size: .0em; /* 1vw = 1% of viewport width */
   }
   .navbar-brand p { /* Kosher cert */
-    font-size: .8em;
+    font-size: 2em;
     margin-top: 12px;
+  }
+  #paneloptions{
+    height:auto;
+  }
+
+  #panelstudentworkspace{
+    height: 250px;
   }
   /* End Home Page */
 }
@@ -231,6 +319,11 @@ body {
 /********** Extra small devices only **********/
 @media (max-width: 767px) {
   /* Header */
+  #header-nav-app {
+    height: 100px;
+    border-radius: 0;
+    border: 0;
+  }
   .navbar-brand {
     padding-top: 10px;
     height: 80px;
@@ -275,6 +368,14 @@ body {
   .panel-footer section hr {
     width: 50%;
   }
+
+  #paneloptions{
+    height:auto;
+  }
+
+  #paneloa, #panelexercise{
+    font-size: 10px;
+  }
   /* End Footer */
 
   /* Home Page */
@@ -285,12 +386,13 @@ body {
 /********** Super extra small devices Only :-) (e.g., iPhone 4) **********/
 @media (max-width: 479px) {
   /* Header */
+
   .navbar-brand h1 { /* Restaurant name */
     padding-top: 5px;
     font-size: 6vw;
   }
   /* End Header */
-  
+
   /* Home page */
 
   .col-xxs-12 {
@@ -301,7 +403,13 @@ body {
     float: left;
     width: 100%;
   }
+
+  #paneloptions{
+    height:auto;
+  }
+
+  #paneloa, #panelexercise{
+    font-size: 8px;
+  }
 }
-
-
 
