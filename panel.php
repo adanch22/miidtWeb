@@ -51,8 +51,9 @@ $is_teacher = $user["is_teacher"];
 
 </head>
 <body class="body">
-<!--ICON CIEX --------------------------------------------------------------------------------------------------------->
-<header>
+<!--ICON miidt --------------------------------------------------------------------------------------------------------->
+<?php include 'include/panel_header.php'; ?>
+<!--<header>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 logo">
@@ -60,83 +61,43 @@ $is_teacher = $user["is_teacher"];
             </div>
             <div class="col-md-12 admin">
                 <h1 class="text-center blink">
-                     Panel de administrador < MIIDT >
                 </h1>
             </div>
         </div>
     </div>
-</header>
+</header>-->
+
 <!--Contents --------------------------------------------------------------------------------------------------------->
 <div class="container-fluid">
     <div class="row">
-        <!--coursesContent ---------------------------------------------------------------------------------------------->
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="coursesContent" >
-            <div class="panel-group">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        Courses
-                    </div>
-                    <div class="panel-body " id="scrCourse" style=" margin-right: 2px;  max-height:50%;  overflow-y: scroll;">
-                        <ul id="courses" class="coursecontent">
-                            <!--courses here-->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--MessageContent -------------------------------------------------------------------------------------------->
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="messageContent"  >
-            <div class="text-right box">
-                <!--showMessages--------------------------------------------------------------------------------------->
-                <div class="msg_container" id="scrollMsj">
-                    <ul id="messages">
-                        <!--messages here-->
-                    </ul>
-                </div>
-                <div class="send_container">
-                    <!--inputMessages---------------------------------------------------------------------------------->
-                    <textarea placeholder="Type a message here" class="form-control" id="message"></textarea>
-                    <!--sendButton and image loader-------------------------------------------------------------------->
-                    <div class="butimg">
-                        <form enctype="multipart/form-data" class="formulario">
-                            <button type="button" class="btn btn-success" id="send">
-                                <i class="fa fa-send-o"></i>Enviar!</button>
-                            <span class="btn  botton btn-file">
-                                <span id="loadImage">Image&nbsp;<i class="fa fa-camera"></i></span>
-                                <input name="archivo" type="file" id="imagen"/>
-                            </span>
-                            <div style="padding-left: 40%; padding-right: 40%"><img src="loader.gif" id="loader"/></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!--OptionsContent -------------------------------------------------------------------------------------------->
-        <div class="col-lg-4 col-md-4 " id="optionsContent" >
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id="optionsContent" >
             <div class="panel-group">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Options</div>
                     <div class="panel-body" id="options">
                         <!--options here-->
-                        <button type="button" id="optionAddStudent" class="btn btn-success btn-block disabled" data-toggle="modal" >
-                            <i class="fa fa-user-plus"></i>&nbsp;Agregar Nuevo Estudiante</button>
+                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target=".addCourse">
+                            <i class="fa fa-plus"></i>&nbsp;Agregar Curso</button>
                         <div class="line"></div>
-                        <button type="button" id="optionEditStudent" class="btn btn-success btn-block" data-toggle="modal" data-target=".editStudent">
-                            <i class="fa fa-users"></i>&nbsp;Editar Estudiante</button>
+                        <button type="button" id="remove" class="btn btn-success btn-block disabled" data-toggle="modal">
+                            <i class="fa fa-minus"></i>&nbsp;Eliminar/Borrar Curso</button>
                         <div class="line"></div>
+
                         <div id="onlyAdmin">
                             <button type="button" id="optionAddTeacher" class="btn btn-info btn-block" data-toggle="modal" data-target=".addTeacher">
-                                <i class="fa fa-user-plus"></i>&nbsp;Agregar Nuevo Maestro</button>
+                                <i class="fa fa-user-plus"></i>&nbsp;Agregar Maestro</button>
                             <div class="line"></div>
                             <button type="button" id="optionEditTeacher" class="btn btn-info btn-block" data-toggle="modal" data-target=".editTeacher">
                                 <i class="fa fa-users"></i>&nbsp;Editar Maestro</button>
                             <div class="line"></div>
                         </div>
-                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target=".addCourse">
-                            <i class="fa fa-plus"></i>&nbsp;Agregar Nuevo Curso</button>
+
+                        <button type="button" id="optionAddStudent" class="btn btn-success btn-block disabled" data-toggle="modal" >
+                            <i class="fa fa-user-plus"></i>&nbsp;Agregar Estudiante</button>
                         <div class="line"></div>
-                        <button type="button" id="remove" class="btn btn-success btn-block disabled" data-toggle="modal">
-                            <i class="fa fa-minus"></i>&nbsp;Eliminar/Borrar Curso</button>
+                        <button type="button" id="optionEditStudent" class="btn btn-success btn-block" data-toggle="modal" data-target=".editStudent">
+                            <i class="fa fa-users"></i>&nbsp;Editar Estudiante</button>
                         <div class="line"></div>
 
                         <button type="button" id="openlearningObjects" class="btn btn-success btn-block">
@@ -148,7 +109,76 @@ $is_teacher = $user["is_teacher"];
                 </div>
             </div>
         </div>
+
+        <div class=" col-lg-9 col-md-9 col-sm-12 col-xs-12" id="" >
+            <div >
+
+
+                <!--coursesContent ---------------------------------------------------------------------------------------------->
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="coursesContent" >
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <i class="fa fa-info-circle"></i>  <strong>Importante</strong> Antes de iniciar con los temas revisa los documentos y tutoriales.
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="panel-group">
+                        <div class="panel panel-blue">
+                            <div class="panel-heading">
+                                Lista de Cursos
+                            </div>
+                            <div class="panel-body " id="scrCourse" style=" margin-right: 2px;  max-height:50%;  overflow-y: scroll;">
+                                <ul id="courses" class="coursecontent">
+                                    <!--courses here-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--MessageContent -------------------------------------------------------------------------------------------->
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" id="messageContent"  >
+                    <div class="text-right box">
+                        <!--showMessages--------------------------------------------------------------------------------------->
+                        <div class="msg_container" id="scrollMsj">
+                            <ul id="messages">
+                                <!--messages here-->
+                            </ul>
+                        </div>
+                        <div class="send_container">
+                            <!--inputMessages---------------------------------------------------------------------------------->
+                            <textarea placeholder="Type a message here" class="form-control" id="message"></textarea>
+                            <!--sendButton and image loader-------------------------------------------------------------------->
+                            <div class="butimg">
+                                <form enctype="multipart/form-data" class="formulario">
+                                    <button type="button" class="btn btn-success" id="send">
+                                        <i class="fa fa-send-o"></i></button>
+                                    <span class="btn  botton btn-file">
+                                <span id="loadImage">Image&nbsp;<i class="fa fa-camera"></i></span>
+                                <input name="archivo" type="file" id="imagen"/>
+                            </span>
+                                    <div style="padding-left: 40%; padding-right: 40%"><img src="loader.gif" id="loader"/></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
     </div>
+
 </div>
 
 <?php
@@ -158,6 +188,8 @@ if(!$is_teacher){
 }
 require_once __DIR__ . '/modals/course.php';
 ?>
+
+<?php include 'learningobjects/inc/footer.php'; ?>
 <!-- Need for the connection sql-->
 <script type="text/javascript" src="js/conection.js" ></script>
 <!--check login-->

@@ -1,27 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <unit>
   <exercise value="presentation">
-    <id>1</id>
-    <title>suma</title>
+    <image>Ejemplodeejerciciosyrecursosmultimedia/1.jpg</image>
     <information>null</information>
     <question value="[-34]">¿Cual es el resultado?</question>
   </exercise>
+  <exercise value="presentationm">
+    <image>Ejemplodeejerciciosyrecursosmultimedia/1.jpg</image>
+    <information>null</information>
+    <question value="2">¿Cual es el resultado?</question>
+    <answer1>a) 10</answer1>
+    <answer2>b) -34</answer2>
+    <answer3>c) 100</answer3>
+  </exercise>
   <exercise value="questionary">
-    <id>2</id>
     <title>suma</title>
     <information>información:  -27 + (-7) = ?</information>
     <question value="[-34]">¿Cual es el resultado?</question>
   </exercise>
-  <exercise value="questionary">
-    <id>3</id>
-    <title>null</title>
-    <information>hola</information>
-    <question value="[hola]">hola</question>
+  <exercise value="multipleoptions">
+    <title>opción multiple </title>
+    <information>información:  -27 + (-7) = ?</information>
+    <question value="2">¿Cual es el resultado?</question>
+    <answer1>a) 10</answer1>
+    <answer2>b) -34</answer2>
+    <answer3>c) 100</answer3>
   </exercise>
   <exercise value="questionary">
-    <id>4</id>
     <title>null</title>
-    <information>1</information>
-    <question value="[1]">1</question>
+    <information>información:  -27 + (-7) = ?</information>
+    <question value="[-34]">¿Cual es el resultado?</question>
+  </exercise>
+  <resource value="resource">
+    <title>imagen</title>
+    <resourcetype>image</resourcetype>
+    <file>Ejemplodeejerciciosyrecursosmultimedia/n.jpg</file>
+  </resource>
+  <resource value="resource">
+    <title>video</title>
+    <resourcetype>video</resourcetype>
+    <file>Ejemplodeejerciciosyrecursosmultimedia/trucos.mp4</file>
+  </resource>
+  <resource value="resource">
+    <title>imagen animada</title>
+    <resourcetype>image</resourcetype>
+    <file>Ejemplodeejerciciosyrecursosmultimedia/909.gif</file>
+  </resource>
+  <exercise value="multipleoptions">
+    <title>null</title>
+    <information>información:  -27 + (-7) = ?</information>
+    <question value="2">¿Cual es el resultado?</question>
+    <answer1>34</answer1>
+    <answer2>-34</answer2>
+    <answer3>344</answer3>
   </exercise>
 </unit>

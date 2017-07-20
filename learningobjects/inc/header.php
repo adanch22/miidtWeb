@@ -2,15 +2,15 @@
     <nav id="header-nav" class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <a href="index.php" class="pull-left visible-md visible-lg">
+                <!--<a href="index.php" class="pull-left visible-md visible-lg">
                     <div id="logo-img"></div>
                 </a>
-
+-->
                 <div class="navbar-brand">
                     <a href="index.php"><h1>Objetos de Aprendizaje</h1></a>
-                    <p>
+                   <!-- <p>
                         <span>Sitio web para docentes</span>
-                    </p>
+                    </p>-->
                 </div>
 
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
@@ -25,22 +25,60 @@
             <div id="collapsable-nav" class="collapse navbar-collapse">
 
                 <ul id="nav-list" class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="index.php">
-                            <span class="glyphicon glyphicon-home"></span><br class="hidden-xs"> Inicio</a>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Ayuda <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button class="btn btn-block" href="#"><i class="fa fa-fw fa-user"></i> Tutorial</button>
+                            </li>
+
+                        </ul>
                     </li>
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon  glyphicon-folder-open"></span><br class="hidden-xs"> Opciones</a>
+
+                    <li class="dropdown hidden-lg">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gear"></i> Menu de opciones <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button class="btn btn-block" id="optionn"><i class=""></i>Inicio</button>
+                            </li>
+                            <li>
+                                <button class="btn btn-block" id="optionn0"><i class="fa fa-fw fa-pencil"></i>Temáticas</button>
+                            </li>
+                            <li>
+                                <button class="btn btn-block" id="optionn1"><i class="fa fa-fw fa-pencil"></i>Objetos de Aprendizaje</button>
+                            </li>
+                            <li>
+                                <button class="btn btn-block" id="optionn2"><i class="fa fa-fw fa-pencil"></i>Ejercicios y actividades</button>
+                            </li>
+                            <li>
+                                <button id="optionreturn2" class="btn btn-block"><i class=""></i> Regresar a principal</button>
+                            </li>
+
+                        </ul>
                     </li>
-                    <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-exclamation-sign"></span><br class="hidden-xs"> ayuda</a>
+
+
+                    <li class="dropdown hidden-md hidden-xs hidden-sm">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Usuario <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button class="btn btn-block" href="#"><i class="fa fa-fw fa-user"></i> Perfil</button>
+                            </li>
+                            <li>
+                                <button class="btn btn-block"  href="#"><i class="fa fa-fw fa-gear"></i> Opciones</button>
+                            </li>
+                            <li class="divider"></li>
+                        </ul>
                     </li>
+
 
                 </ul><!-- #nav-list -->
 
             </div><!-- .collapse .navbar-collapse -->
         </div><!-- .container -->
+
+
+
     </nav><!-- #header-nav -->
 </header>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <unit>
   <exercise value="presentation">
-    <title>suma</title>
+    <image>Ejemplodeejerciciosyrecursosmultimedia/1.jpg</image>
     <information>null</information>
     <question value="[-34]">¿Cual es el resultado?</question>
   </exercise>
   <exercise value="presentationm">
-    <title>suma</title>
+    <image>Ejemplodeejerciciosyrecursosmultimedia/1.jpg</image>
     <information>null</information>
     <question value="2">¿Cual es el resultado?</question>
     <answer1>a) 10</answer1>

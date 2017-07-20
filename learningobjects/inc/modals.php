@@ -13,9 +13,10 @@
                 <form>
 
                     <div class="form-group">
-                        <label for="exampleSelect1">Temática del Objeto de aprendizaje </label>
-                        <select class="form-control" id="bookSelected">
-                            <!-- -tematicas here  -->
+                        <label for="exampleSelect1">Tipo de objeto de aprendizaje  </label>
+                        <select class="form-control" id="typeSelected">
+                            <option>Por defecto</option>
+                            <option>VideoQuiz</option>
                         </select>
 
                         <h4> --------------------------------------- Metadatos ---------------------------------------</h4>

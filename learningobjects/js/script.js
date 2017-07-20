@@ -12,7 +12,30 @@ $(document).ready(function(){
 
 
 
+    //codigo de boton para abir /ciex/learningobjects/index.php
+    $('#home').on('click',function(){
+        window.open("index.php","_self");
+    });
+    $('#optionn').on('click',function(){
+        window.open("index.php","_self");
+    });
+
+
     $("#optionp0").on( "click", function() {
+        $('#oaHome').hide();
+        $('#tematicaContent').show();
+        $('#oaContent').hide(); //
+        $('#oaContentexercise').hide(); //
+        $('button#optionp1').removeClass('btn-primary');
+        $('button#optionp0').addClass('btn-primary');
+        $('button#optionp2').removeClass('btn-primary');
+
+        $('button#optionr1').addClass('invisible');
+        $('button#optione1').addClass('invisible');
+        getbooks();//obtener todas las temáticas
+    });
+
+    $("#optionn0").on( "click", function() {
         $('#oaHome').hide();
         $('#tematicaContent').show();
         $('#oaContent').hide(); //
@@ -39,7 +62,37 @@ $(document).ready(function(){
         getbooks();//obtener todas las temáticas
     });
 
+    $("#optionn1").on( "click", function() {
+        $('#oaHome').hide();
+        $('#tematicaContent').hide();
+        $('#oaContent').show(); //
+        $('#oaContentexercise').hide(); //
+        $('button#optionp0').removeClass('btn-primary');
+        $('button#optionp1').addClass('btn-primary');
+        $('button#optionp2').removeClass('btn-primary');
+
+
+        getbooks();//obtener todas las temáticas
+    });
+
     $("#optionp2").on( "click", function() {
+        $('#oaHome').hide();
+        $('#tematicaContent').hide();
+        $('#oaContent').hide(); //
+        $('#oaContentexercise').show(); //
+        $('button#optionp0').removeClass('btn-primary');
+        $('button#optionp1').removeClass('btn-primary');
+        $('button#optionp2').addClass('btn-primary');
+
+        getallbooks();
+        var book_id = $('select#bookexerciseSelect').val();
+
+        $('button#option7').addClass('invisible');
+        $('button#option8').addClass('invisible');
+
+    });
+
+    $("#optionn2").on( "click", function() {
         $('#oaHome').hide();
         $('#tematicaContent').hide();
         $('#oaContent').hide(); //
@@ -732,7 +785,7 @@ function getallbooks() {
 
 
 
-$('button#deleteok1').on('click', function () {
+$('button#optionr1').on('click', function () {
 
     var select = $(this).attr('pk');
 
@@ -770,7 +823,7 @@ $('button#deleteok1').on('click', function () {
 
 });
 
-$('button#deleteok2').on('click', function () {
+$('button#optionr2').on('click', function () {
 
     var select = $(this).attr('pk');
     var id_tematica = $('select#tematicasSelected option:selected').text();
@@ -900,3 +953,8 @@ $('button#optionreturn').on('click',function(){
     window.open("/../ciex/panel.php","_self");
 });
 
+
+//codigo para click boton regresar a panel
+$('button#optionreturn2').on('click',function(){
+    window.open("/../ciex/panel.php","_self");
+});

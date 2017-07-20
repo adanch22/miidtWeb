@@ -54,15 +54,18 @@ $is_teacher = $user["is_teacher"];
     <div id="home-tiles" class="row">
 
 
-        <div class=" panel-body col-sm-12 col-md-12 col-lg-3 hidden-xs sidebar " id="optionsContent">
+         <div class=" panel-body col-sm-12 col-md-12 col-lg-3 hidden-xs hidden-sm hidden-md sidebar " id="optionsContent">
             <ul class="nav nav-sidebar">
 
             </ul>
-            <ul class="nav nav-sidebar">
-                <li><button type="button" id="optionp0" class="btn btn-default btn-block ">Temáticas</button></li>
-                <li><button type="button" id="optionp1" class="btn btn-block btn-default">Objetos de aprendizaje </button></li>
-                <li><button type="button" id="optionp2" class="btn btn-block btn-default">Ejercicios Y Actividades</button></li>
+            <ul class="nav nav-sidebar ">
+                <li ><button type="button" id="home" class="btn btn-default btn-block">Inicio</button></li>
+                <li ><button type="button" id="optionp0" class="btn btn-default btn-block ">Temáticas</button></li>
+                <li ><button type="button" id="optionp1" class="btn btn-block btn-default">Objetos de aprendizaje </button></li>
+                <li ><button type="button" id="optionp2" class="btn btn-block btn-default">Ejercicios Y Actividades</button></li>
                 <li><button type="button" id="optionreturn" class="btn btn-danger btn-block">Regresar a principal</button></li>
+
+                <img src="img/ic_launcher-web.png" class="img-responsive center-block" width="200" height="200">
 
             </ul>
             <ul class="nav nav-sidebar">
@@ -81,28 +84,146 @@ $is_teacher = $user["is_teacher"];
                         <!-- area para objetos de aprendizaje -->
                         <div class="col-lg-12 col-md-12 col-xs-12" id="oaHome">
 
-                            <div class="panel-group">
-                                <div id="paneloaHome" class="panel panel-body">
-                                    <div class="panel-group ">
-                                        <div class="panel-body " >
-                                            <img src="img/ic_launcher-web.png" class="img-responsive center-block" width="300" height="236">
-                                            <h1 id="banner" class="center-block" align="center">B I E N V E N I D @</h1>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header">
+                                        Bienvenidos <small>(Vista para el docente)</small>
+                                    </h1>
+                                   <!-- <ol class="breadcrumb">
+                                        <li class="active">
+                                            <i class="fa fa-dashboard"></i>
+                                        </li>
+                                    </ol>-->
+                                </div>
+                            </div>
 
-                                        </div>
-                                    </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-info alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <i class="fa fa-info-circle"></i>  <strong>Importante</strong> Antes de iniciar con los temas revisa los documentos y tutoriales.
                                 </div>
                             </div>
 
 
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="panel panel-blue">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-comments fa-5x"></i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <div class="huge">X</div>
+                                                    <div>Documentos</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#">
+                                            <div class="panel-heading">
+                                                <span class="pull-left">Detalles</span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="panel panel-green">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-tasks fa-5x"></i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <div class="huge">X</div>
+                                                    <div>Tutoriales</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#">
+                                            <div class="panel-heading">
+                                                <span class="pull-left">Detalles</span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="panel panel-yellow">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <i class="fa fa-tasks fa-5x"></i>
+                                                </div>
+                                                <div class="col-xs-9 text-right">
+                                                    <div class="huge">X</div>
+                                                    <div>Documentos</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#">
+                                            <div class="panel-heading">
+                                                <span class="pull-left">Detalles</span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.row -->
+
+
+                           <!-- <div class="panel-group">
+                                <div id="paneloaHome" class="panel panel-body">
+                                    <div class="panel-group ">
+                                        <div class="panel-body " >
+                                            <img src="img/ic_launcher-web.png" class="img-responsive center-block" width="300" height="236">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                        </div>
                         </div>
 
-                        <!-- area para objetos de aprendizaje -->
+
+
+
+
+
+                        <!-- area para administrar las tematicas -->
                         <div class="col-lg-12 col-md-12 col-xs-12" id="tematicaContent">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header">
+                                        Temáticas <small>(Panel)</small>
+                                    </h1>
+                                    <!-- <ol class="breadcrumb">
+                                         <li class="active">
+                                             <i class="fa fa-dashboard"></i>
+                                         </li>
+                                     </ol>-->
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-12">
+                                <div class="alert alert-info alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <i class="fa fa-info-circle"></i>  <strong>Nota</strong> En este apartado podras administrar las temáticas(Agregar, editar, eliminar).
+                                </div>
+                            </div>
 
                             <div class="panel-group">
                                 <div id="paneltematica" class="panel panel-body">
                                     <div class="panel-default " align="center" >
-                                        <h2 class="">Temáticas</h2>
                                         <div id="remove-tematica" class="upload-msg"></div><!--Para mostrar la respuesta del archivo llamado via ajax -->
 
                                     </div>
@@ -135,13 +256,35 @@ $is_teacher = $user["is_teacher"];
                         </div>
 
 
+
+
+
+
                         <div class="col-lg-12 col-md-12 col-xs-12" id="oaContent">
 
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header">
+                                        Objetos de aprendizaje <small>(Panel)</small>
+                                    </h1>
+                                    <!-- <ol class="breadcrumb">
+                                         <li class="active">
+                                             <i class="fa fa-dashboard"></i>
+                                         </li>
+                                     </ol>-->
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="alert alert-info alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <i class="fa fa-info-circle"></i>  <strong>Nota</strong> Espacio para administrar los OA por temáticas.
+                                </div>
+                            </div>
 
                             <div class="panel-group">
                                 <div id="paneloa" class="panel panel-body">
                                     <div class="panel-default " align="center" >
-                                        <h2 class=" btn-block" >Objetos de Aprendizaje</h2>
                                         <div id="remove-oa" class="upload-msg">
                                         </div>
 
@@ -190,10 +333,30 @@ $is_teacher = $user["is_teacher"];
 
 
                     <div class="col-lg-12 col-md-12 col-xs-12" id="oaContentexercise">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 class="page-header">
+                                    Ejercicios y recursos multimedia <small>(Panel)</small>
+                                </h1>
+                                <!-- <ol class="breadcrumb">
+                                     <li class="active">
+                                         <i class="fa fa-dashboard"></i>
+                                     </li>
+                                 </ol>-->
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <i class="fa fa-info-circle"></i>  <strong>Nota</strong> Espacio para administrar los ejercicios y recursos multimedia.
+                            </div>
+                        </div>
+
                         <div class="panel-group">
                             <div id="panelexercise" class="panel panel-body">
                                 <div class="panel-default " align="center" >
-                                    <h2 class=" btn-block">Ejercicios  y recursos multimedia</h2>
                                     <div id="alert-exercise" class="upload-msg"></div><!--Para mostrar la respuesta del archivo llamado via ajax -->
                                 </div>
                                 <div class="panel-default " align="center" >
@@ -222,8 +385,8 @@ $is_teacher = $user["is_teacher"];
                                     <div class="col-lg-12">
                                         <button type="button" id="option2" class="col-lg-2 btn btn-primary btn-md  invisible" data-toggle="modal" data-target="#addexercise"><i class='glyphicon glyphicon-pencil'></i> </button>
                                         <button type="button" id="option4" class="col-lg-2 btn btn-primary  btn-md invisible" data-toggle="modal" data-target="#addresource"><i class='glyphicon glyphicon-picture'></i> </button>
-                                        <button type="button" id="option5" class="col-lg-2 btn btn-primary btn-md  invisible" data-toggle="modal" data-target="#addexercise"><i class='glyphicon glyphicon-facetime-video'></i>  </button>
-                                        <button type="button" id="option6"  class="col-lg-2 btn btn-primary  btn-md invisible" data-toggle="modal" data-target="#addresource"><i class='glyphicon glyphicon-pencil'></i> </button>
+                                        <button type="button" id="option5" class="col-lg-2 btn btn-primary btn-md  invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-facetime-video'></i>  </button>
+                                        <button type="button" id="option6"  class="col-lg-2 btn btn-primary  btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-pencil'></i> </button>
                                         <button type="button" id="option7" value="" class="col-lg-1 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-trash'></i> </button>
                                         <button type="button" id="option8" class="col-lg-1 btn btn-info btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-edit'></i> </button>
 
