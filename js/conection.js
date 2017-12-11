@@ -540,6 +540,10 @@ $(document).ready(function () {
 
 
 //******************* OPTION BUTTONS *********************
+    $('button#downloadApp').on('click',function(){
+        window.open("/../miidt/downloadApp.php\"","_self");
+    });
+
     $('button#remove').on('click',function(){
         $("label[for='question']").html("Course "+$('#remove').attr('course_name')+". What do you want to do?");
     });
@@ -566,10 +570,6 @@ $(document).ready(function () {
 
 
 });
-
-
-
-
 
 
 function cleanSpecialChar(el){

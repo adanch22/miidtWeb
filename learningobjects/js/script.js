@@ -950,11 +950,11 @@ function upload_image(){//Funcion encargada de enviar el archivo via AJAX
 
 //codigo para click boton regresar a panel
 $('button#optionreturn').on('click',function(){
-    window.open("/../ciex/panel.php","_self");
+    window.open("/../miidt/panel.php","_self");
 });
 
 
 //codigo para click boton regresar a panel
 $('button#optionreturn2').on('click',function(){
-    window.open("/../ciex/panel.php","_self");
+    window.open("/../miidt/panel.php","_self");
 });

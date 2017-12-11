@@ -63,7 +63,7 @@ $is_teacher = $user["is_teacher"];
                 <li ><button type="button" id="optionp0" class="btn btn-default btn-block ">Temáticas</button></li>
                 <li ><button type="button" id="optionp1" class="btn btn-block btn-default">Objetos de aprendizaje </button></li>
                 <li ><button type="button" id="optionp2" class="btn btn-block btn-default">Ejercicios Y Actividades</button></li>
-                <li><button type="button" id="optionreturn" class="btn btn-danger btn-block">Regresar a principal</button></li>
+                <li><button type="button" id="optionreturn" class="btn btn-success btn-block">Regresar a principal*</button></li>
 
                 <img src="img/ic_launcher-web.png" class="img-responsive center-block" width="200" height="200">
 

@@ -45,35 +45,39 @@ $name="";
     <script src="../js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div id="loginBody" class="modal-sm center-block" style=" margin-top:100px; height: 200px; width: 400px" role="document">
-        <div class="modal-content">
-            <!--configs------------------------------------------------------------------------------------------------>
-            <div class="modal-header">
-                <h4 class="modal-title" id="gridSystemModalLabel">MIIDT: OBJETOS DE APRENDIZAJE </h4>
-            </div>
-            <!--inputs------------------------------------------------------------------------------------------------->
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-12 col-sm-12 col-md-12">
-                        <form method="post" action="../v1/admin/login">
-                            <div class="form-group">
-                                <label for="inputAdminName">Admin</label>
-                                <input type="text" class="form-control" name="admin_name"  placeholder="Type Admin Name">
-                                <br>
-                                <label for="inputAdminPassword">Password</label>
-                                <input type="password" class="form-control" name="password"
-                                       placeholder="Type Password">
-                            </div>
-                            <!--Buttons------------------------------------------------------------------------------------>
-                            <div class="modal-footer">
-                                <button type="button" id="downloadApp" class="btn btn-info">Download App</button>
-                                <input type="submit" id="loginButton_" class="btn btn-primary" value="Log in">
-                            </div>
-                        </form>
-                    </div>
+
+
+  <div id="loginBody" class="modal-sm center-block" style=" margin-top:50px; height: 200px; width: 400px" role="document">
+    <div class="modal-content">
+        <div class="modal-header" align="center">
+            <img src="logo.png" class="img-responsive" >
+            <h3 class="modal-title" id="gridSystemModalLabel">OBJETOS DE APRENDIZAJE </h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12">
+                    <form method="post" action="../v1/admin/login">
+                        <div class="form-group">
+                            <label for="inputAdminName">Administrador</label>
+                            <input type="text" class="form-control" name="admin_name"  placeholder="Type Admin Name">
+                            <br>
+                            <label for="inputAdminPassword">Contraseña</label>
+                            <input type="password" class="form-control" name="password"
+                                   placeholder="Type Password">
+                        </div>
+
+                        <div class="modal-footer">
+<!--                            <button type="button" id="downloadApp" class="btn btn-info">Descargar App</button>-->
+                            <a target="_blank" href="/../miidt/downloadApp.php">Descargar la App</a>
+                            <input type="submit" id="loginButton_" class="btn btn-primary" value="Ingresar">
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

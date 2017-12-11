@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="icon" href="logo.png">
-    <title>CIEX Admin: <?= $_SESSION['admin_name']?></title>
+    <title>Miidt: Student: </title>
 
 
     <!-- Bootstrap -->
@@ -39,9 +39,10 @@
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="modal-body">
             <form action="app-debug.apk">
-                <input type="submit" class="btn btn-primary btn-block center-block" value="Press to download App_Ciex updated:19-08" />
+                <h2 class="text-center">Descarga e Instala la aplicación movil para dispositivos Android</h2>
+                <input type="submit" class="btn btn-primary btn-block center-block" value="Clic aqui para descargar - Versión 1.0" />
                 <p>Para poder instalar la aplicación nos dirigimos a <strong>Ajustes o configuración &gt; Seguridad</strong>. En este apartado activamos la opción de “Orígenes desconocidos”.</p>
                 <p><a href="http://tabletzona.es/app/uploads/2012/07/Ajustes-de-seguridad-de-Android-5.png" data-rel="lightbox[gallery-pl4j]" title=""><img class="img-responsive" src="http://tabletzona.es/app/uploads/2012/07/Ajustes-de-seguridad-de-Android-5-656x410.png" alt="Ajustes de seguridad de Android 5" width="656" height="410" srcset="http://tabletzona.es/app/uploads/2012/07/Ajustes-de-seguridad-de-Android-5-656x410.png 656w, http://tabletzona.es/app/uploads/2012/07/Ajustes-de-seguridad-de-Android-5-300x188.png 300w, http://tabletzona.es/app/uploads/2012/07/Ajustes-de-seguridad-de-Android-5-531x332.png 531w" sizes="(max-width: 656px) 100vw, 656px"></a></p>
                 <p>El propio sistema de Android nos mostrará una advertencia indicando que instalando aplicaciones no formadas podemos comprometer la seguridad de nuestra tablet.</p>
