@@ -119,8 +119,6 @@ class parseXML{
         $carpeta2 = '../levels/level1/' . $v_book_name . '/' . $v_title;
 
 
-        // Eliminamos todas las fotos contenidas en el directorio - mis_fotos - y seguidamente
-        // eliminamos la carpeta o directorio
         foreach(glob($carpeta2."/*.*") as $archivos_carpeta)
         {
             unlink($archivos_carpeta);     // Eliminamos todos los archivos de la carpeta hasta dejarla vacia

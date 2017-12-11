@@ -29,12 +29,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> - <?= $_SESSION['admin_name']?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <button class="btn btn-block" href="#"><i class="fa fa-fw fa-user"></i> Perfil</button>
-                            </li>
-                            <li>
-                                <button class="btn btn-block"  href="#"><i class="fa fa-fw fa-gear"></i> Opciones</button>
+                                <button class="btn btn-block btn-default" href="#"><i class="fa fa-fw fa-user"></i> Perfil</button>
                             </li>
                             <li class="divider"></li>
+                            <li>
+                                <button class="btn btn-block btn-default"  href="#"><i class="fa fa-fw fa-gear"></i> Opciones</button>
+                            </li>
                         </ul>
                     </li>
 

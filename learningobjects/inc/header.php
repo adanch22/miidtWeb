@@ -30,7 +30,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Ayuda <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <button class="btn btn-block" href="#"><i class="fa fa-fw fa-user"></i> Tutorial</button>
+                                <button class="btn btn-block btn-default" href="#"><i class="fa fa-fw fa-user"></i> Tutorial</button>
                             </li>
 
                         </ul>
@@ -63,12 +63,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Usuario <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <button class="btn btn-block" href="#"><i class="fa fa-fw fa-user"></i> Perfil</button>
+                                <button class="btn btn-block btn-default" href="#"><i class="fa fa-fw fa-user"></i> Perfil</button>
                             </li>
                             <li>
-                                <button class="btn btn-block"  href="#"><i class="fa fa-fw fa-gear"></i> Opciones</button>
+                                <button class="btn btn-block btn-default"  href="#"><i class="fa fa-fw fa-gear"></i> Opciones</button>
                             </li>
-                            <li class="divider"></li>
+<!--                            <li class="divider"></li>-->
                         </ul>
                     </li>
 

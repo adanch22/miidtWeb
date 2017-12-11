@@ -5,19 +5,16 @@
  * Date: 11/04/16
  * Time: 6:11 PM
  */
-
 session_start();
 if(isset($_SESSION['admin_name'])) {
     header("location:../index.php");
 }
-
 ?>
 
 <?php
 require_once __DIR__ . '/../adminpanel.php';
 $panel = new panel();
 $name="";
-
 ?>
 <!Doctype html>
 <html>
@@ -47,10 +44,10 @@ $name="";
 <body>
 
 
-  <div id="loginBody" class="modal-sm center-block" style=" margin-top:50px; height: 200px; width: 400px" role="document">
+<div id="loginBody" class="modal-sm center-block" style=" margin-top:50px; height: 200px; width: 400px" role="document">
     <div class="modal-content">
         <div class="modal-header" align="center">
-            <img src="logo.png" class="img-responsive" >
+            <img src="logo.png" class="img-responsive">
             <h3 class="modal-title" id="gridSystemModalLabel">OBJETOS DE APRENDIZAJE </h3>
         </div>
         <div class="modal-body">
@@ -67,7 +64,7 @@ $name="";
                         </div>
 
                         <div class="modal-footer">
-<!--                            <button type="button" id="downloadApp" class="btn btn-info">Descargar App</button>-->
+                            <!--                            <button type="button" id="downloadApp" class="btn btn-info">Descargar App</button>-->
                             <a target="_blank" href="/../miidt/downloadApp.php">Descargar la App</a>
                             <input type="submit" id="loginButton_" class="btn btn-primary" value="Ingresar">
                         </div>

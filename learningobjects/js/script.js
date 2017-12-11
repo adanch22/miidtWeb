@@ -276,9 +276,7 @@ function getLearningobjects(id) {
             $('#optione2').removeClass('invisible');
             $('#optionr2').removeClass('invisible');
 
-            $('button#optionr2').attr('id_oa', $(this).attr('id'));
-            $('button#optionr2').attr('name_oa', $(this).attr('OA_name'));
-
+            $('#pk_learningobject').text($(this).attr('id'));
 
         });
         $('select#oaexerciseSelect').html(li2);
@@ -423,6 +421,7 @@ function getbooks() {
 
             $('button#optionr1').attr('id_book', $(this).attr('id'));
             $('button#optionr1').attr('name_book', $(this).text());
+            $('#pk_tema').text($(this).attr('id'));
             $('button#optione1').removeClass('invisible');
             $('button#optionr1').removeClass('invisible');
 
@@ -610,7 +609,7 @@ function getallexercises(id) {
                 courses=
                     // alert(object.exercise_type)  ;
                     li  += '<li  class=" btn btn-default btn-block btn-xs"  data-toggle="tooltip" title=""' + ' id=' + object.exercise_type+'>' +
-                        '<h5 align="left">'+ object.exercise_type + ' '+ object.exercise_id+' </h5></li>';
+                        '<h5 align="left">'+ object.exercise_type +object.exercise_name+' </h5></li>';
 
 
             });
@@ -787,8 +786,8 @@ function getallbooks() {
 
 $('button#optionr1').on('click', function () {
 
-    var select = $(this).attr('pk');
-
+    var select = $('#pk_tema').text();
+    alert(select)
     $.post("../v1/books/delete/",
         {id_tematica: select},
         function (data) {
@@ -804,6 +803,7 @@ $('button#optionr1').on('click', function () {
 
             if(!data.error){
                 getbooks();
+                $('#pk_tema').text('?');
                 $('button#optionr1').addClass('invisible');
                 $('button#optione1').addClass('invisible');
             }
@@ -825,9 +825,9 @@ $('button#optionr1').on('click', function () {
 
 $('button#optionr2').on('click', function () {
 
-    var select = $(this).attr('pk');
+    var select = $('#pk_learningobject').text();
     var id_tematica = $('select#tematicasSelected option:selected').text();
-
+    alert(select);
 
     $.post("../v1/learningobjects/delete/",
         {id_oa: select, name_tematica: id_tematica},

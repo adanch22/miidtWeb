@@ -1012,7 +1012,7 @@ class DbHandler {
      *  search learningobjects
      ***************************************************/
     public function searchlearningobject($id) {
-        $stmt = $this->conn->prepare("SELECT learningobject_name,learningobject_type  from learningobjects WHERE learningobject_id = ?");
+        $stmt = $this->conn->prepare("SELECT learningobject_name  from learningobjects WHERE learningobject_id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $tasks = $stmt->get_result();

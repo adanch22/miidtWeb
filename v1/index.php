@@ -1318,7 +1318,7 @@ $app->get('/learningObjects/', function() {
 
 
 /***************************************************
- *  Delete book
+ *  Delete learningobjects
  ***************************************************/
 $app->post('/learningobjects/delete/', function() use ($app) {
     // check for required params
@@ -1346,7 +1346,7 @@ $app->post('/learningobjects/delete/', function() use ($app) {
     if ($res == CREATED_SUCCESSFULLY) {
 
         $xml = new parseXML();
-        $res2 = $xml->removeMetadata($id_tematica,$unit['learningobject_name'], $id_oa);
+        $res2 = $xml->removeMetadata($id_tematica, $unit['learningobject_name'], $id_oa);
         $response["error"] = false;
         $response["message"] = "El OA se elimino correctamente";
         // $response["message"] = $unit['learningobject_name'];
@@ -1545,7 +1545,7 @@ $app->get('/exercises/:id', function($name_learningobjects) {
     foreach ($result as $valor) {
         $tmp = array();
         $tmp["exercise_type"] = $valor['exercise_type'];
-        $tmp["exercise_id"] = $valor['exercise_id'];
+        $tmp["exercise_name"] = $valor['exercise_name'];
 
         array_push($response["exercise"], $tmp);
     }
