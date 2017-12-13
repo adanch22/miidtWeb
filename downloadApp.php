@@ -33,16 +33,19 @@
 
 </head>
 <body>
-<br>
-<br>
-<br>
-<br>
+<?php include 'include/download_header.php'; ?>
 <div class="container-fluid">
     <div class="row">
-        <div class="modal-body">
+        <div class="col-lg-3" align="center">
             <form action="app-debug.apk">
-                <h2 class="text-center">Descarga e Instala la aplicación movil para dispositivos Android</h2>
+                <img src="learningobjects/img/ic_launcher-web.png" class="img-responsive">
                 <input type="submit" class="btn btn-primary btn-block center-block" value="Clic aqui para descargar - Versión 1.0" />
+            </form>
+        </div>
+
+        <div class="col-lg-9">
+            <form action="app-debug.apk">
+                <h2 class="text-info">Instrucciones para instalar la aplicación móvil</h2>
                 <p>Para poder instalar la aplicación nos dirigimos a <strong>Ajustes o configuración &gt; Seguridad</strong>. En este apartado activamos la opción de “Orígenes desconocidos”.</p>
                 <p><a href="http://tabletzona.es/app/uploads/2012/07/Ajustes-de-seguridad-de-Android-5.png" data-rel="lightbox[gallery-pl4j]" title=""><img class="img-responsive" src="http://tabletzona.es/app/uploads/2012/07/Ajustes-de-seguridad-de-Android-5-656x410.png" alt="Ajustes de seguridad de Android 5" width="656" height="410" srcset="http://tabletzona.es/app/uploads/2012/07/Ajustes-de-seguridad-de-Android-5-656x410.png 656w, http://tabletzona.es/app/uploads/2012/07/Ajustes-de-seguridad-de-Android-5-300x188.png 300w, http://tabletzona.es/app/uploads/2012/07/Ajustes-de-seguridad-de-Android-5-531x332.png 531w" sizes="(max-width: 656px) 100vw, 656px"></a></p>
                 <p>El propio sistema de Android nos mostrará una advertencia indicando que instalando aplicaciones no formadas podemos comprometer la seguridad de nuestra tablet.</p>

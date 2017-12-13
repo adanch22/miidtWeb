@@ -568,6 +568,11 @@ $(document).ready(function () {
         window.open("learningobjects/index.php","_self");
     });
 
+    //codigo de boton para abir /ciex/learningobjects/index.php
+    $('button#openlearningObjectstwo').on('click',function(){
+        window.open("learningobjects/index.php","_self");
+    });
+
 
 });
 

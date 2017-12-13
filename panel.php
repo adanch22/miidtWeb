@@ -106,6 +106,19 @@ $is_teacher = $user["is_teacher"];
 
                         <button type="button" id="closeSession" class="btn btn-danger btn-block">Cerrar sesion&nbsp;<i class="fa fa-sign-out"></i></button>
                     </div>
+
+                    <div class="panel-body" id="options2">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Menú de Opciones
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <button id="openlearningObjectstwo" class="dropdown-item" href="#">Abrir Objetos de Aprendizaje</button>
+                                <button class="dropdown-item" href="#">link 1</button>
+                                <button class="dropdown-item" href="#">link 2</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,8 +137,6 @@ $is_teacher = $user["is_teacher"];
                             </div>
                         </div>
                     </div>
-
-
 
                     <div class="panel-group">
                         <div class="panel panel-blue">

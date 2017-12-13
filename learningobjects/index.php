@@ -228,7 +228,7 @@ $is_teacher = $user["is_teacher"];
                                             <button type="button" id="option0" class="col-lg-3 btn btn-primary" data-toggle="modal" data-target=".viewtematicas"><i class='glyphicon glyphicon-plus'></i> </button>
                                             <button type="button" id="optionr1" id_book="" name_book="" class="col-lg-1 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#tematicaDelete"><i class='glyphicon glyphicon-trash'></i> </button>
                                             <button type="button" id="optione1" class="col-lg-1 btn btn-info btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-edit'></i> </button>
-                                            <h5 class="" id="pk_tema">?</h5>
+                                            <h5 class="invisible" id="pk_tema">?</h5>
 
 
 
