@@ -108,16 +108,21 @@ $is_teacher = $user["is_teacher"];
                     </div>
 
                     <div class="panel-body" id="options2">
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Menú de Opciones
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <button id="openlearningObjectstwo" class="dropdown-item" href="#">Abrir Objetos de Aprendizaje</button>
-                                <button class="dropdown-item" href="#">link 1</button>
-                                <button class="dropdown-item" href="#">link 2</button>
-                            </div>
-                        </div>
+                        <button type="button" id="openlearningObjects" class="btn btn-success col-xs-6">
+                            Abrir Objetos de Aprendizaje&nbsp;</button>
+                        <button type="button" id="closeSession" class="btn btn-danger col-xs-6">Cerrar sesion&nbsp;<i class="fa fa-sign-out"></i></button>
+
+
+                        <!-- <div class="btn-group" role="group">
+                             <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 Menú de Opciones
+                             </button>
+                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                 <button id="openlearningObjectstwo" class="dropdown-item" href="learningobjects/index.php">Abrir Objetos de Aprendizaje</button>
+                                 <button class="dropdown-item" href="#">link 1</button>
+                                 <button class="dropdown-item" href="#">link 2</button>
+                             </div>
+                         </div>-->
                     </div>
                 </div>
             </div>
@@ -128,7 +133,7 @@ $is_teacher = $user["is_teacher"];
 
 
                 <!--coursesContent ---------------------------------------------------------------------------------------------->
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="coursesContent" >
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" id="coursesContent" >
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="alert alert-info alert-dismissable">
@@ -154,7 +159,7 @@ $is_teacher = $user["is_teacher"];
 
 
                 <!--MessageContent -------------------------------------------------------------------------------------------->
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" id="messageContent"  >
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="messageContent"  >
                     <div class="text-right box">
                         <!--showMessages--------------------------------------------------------------------------------------->
                         <div class="msg_container" id="scrollMsj">

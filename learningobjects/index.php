@@ -63,7 +63,7 @@ $is_teacher = $user["is_teacher"];
                 <li ><button type="button" id="optionp0" class="btn btn-default btn-block ">Temáticas</button></li>
                 <li ><button type="button" id="optionp1" class="btn btn-block btn-default">Objetos de aprendizaje </button></li>
                 <li ><button type="button" id="optionp2" class="btn btn-block btn-default">Ejercicios Y Actividades</button></li>
-                <li><button type="button" id="optionreturn" class="btn btn-success btn-block">Regresar a principal*</button></li>
+                <li><button type="button" id="optionreturn" class="btn btn-info btn-block">Regresar a principal*</button></li>
 
                 <img src="img/ic_launcher-web.png" class="img-responsive center-block" width="200" height="200">
 
@@ -107,7 +107,7 @@ $is_teacher = $user["is_teacher"];
 
 
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-4">
+                                    <!--<div class="col-lg-4 col-md-4">
                                         <div class="panel panel-blue">
                                             <div class="panel-heading">
                                                 <div class="row">
@@ -128,8 +128,8 @@ $is_teacher = $user["is_teacher"];
                                                 </div>
                                             </a>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4">
+                                    </div>-->
+                                    <div class="col-lg-6 col-md-6">
                                         <div class="panel panel-green">
                                             <div class="panel-heading">
                                                 <div class="row">
@@ -137,8 +137,8 @@ $is_teacher = $user["is_teacher"];
                                                         <i class="fa fa-tasks fa-5x"></i>
                                                     </div>
                                                     <div class="col-xs-9 text-right">
-                                                        <div class="huge">X</div>
-                                                        <div>Tutoriales</div>
+                                                        <div class="huge">Documentos</div>
+                                                        <div>Archivos</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -151,7 +151,7 @@ $is_teacher = $user["is_teacher"];
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4">
+                                    <div class="col-lg-6 col-md-6">
                                         <div class="panel panel-yellow">
                                             <div class="panel-heading">
                                                 <div class="row">
@@ -159,8 +159,8 @@ $is_teacher = $user["is_teacher"];
                                                         <i class="fa fa-tasks fa-5x"></i>
                                                     </div>
                                                     <div class="col-xs-9 text-right">
-                                                        <div class="huge">X</div>
-                                                        <div>Documentos</div>
+                                                        <div class="huge">Videotutoriales</div>
+                                                        <div>Videos</div>
                                                     </div>
                                                 </div>
                                             </div>
