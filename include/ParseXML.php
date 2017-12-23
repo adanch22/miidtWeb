@@ -763,7 +763,7 @@ class parseXML{
 
         foreach($xml->exercise as $item){
 
-            $exercise_c['exercise_id'] = $item->id;
+            $exercise_c['exercise_id'] = '' . $item->id;
             if($item->attributes()->$att == 'questionary')   {
 
                 $exercise_c['exercise_type'] = 'Ejercicio tipo pregunta abierta' ;
@@ -800,8 +800,8 @@ class parseXML{
         foreach($xml->resource as $item){
             if($item->attributes()->$att == 'resource'){
 
-                $exercise_c['exercise_type'] = 'Recurso de tipo: ' . $item->resourcetype;
-                $exercise_c['exercise_id'] = $item->id;
+                $exercise_c['exercise_type'] = 'Recurso de tipo: ' . $item->resourcetype ;
+                $exercise_c['exercise_id'] = '' . $item->id;
                 array_push ( $array_exercises ,$exercise_c );
             }
 

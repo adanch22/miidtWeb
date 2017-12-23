@@ -1545,7 +1545,7 @@ $app->get('/exercises/:id', function($name_learningobjects) {
     foreach ($result as $valor) {
         $tmp = array();
         $tmp["exercise_type"] = $valor['exercise_type'];
-        $tmp["exercise_name"] = $valor['exercise_name'];
+        $tmp["exercise_id"] = $valor['exercise_id'];
 
         array_push($response["exercise"], $tmp);
     }

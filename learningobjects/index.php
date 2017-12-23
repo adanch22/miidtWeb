@@ -54,24 +54,25 @@ $is_teacher = $user["is_teacher"];
     <div id="home-tiles" class="row">
 
 
-        <div class=" panel-body col-sm-12 col-md-12 col-lg-3 hidden-xs hidden-sm hidden-md sidebar " id="optionsContent">
-            <ul class="nav nav-sidebar">
+        <div class=" panel-primary col-sm-12 col-md-12 col-lg-3 hidden-xs hidden-sm hidden-md sidebar " id="optionsContent">
+            <div class="panel-body">
+                <ul class="nav nav-sidebar ">
+                    <li ><button type="button" id="home" class="btn btn-default btn-block">Inicio</button></li>
+                    <li ><button type="button" id="optionp0" class="btn btn-default btn-block ">Temáticas</button></li>
+                    <li ><button type="button" id="optionp1" class="btn btn-block btn-default">Objetos de aprendizaje </button></li>
+                    <li ><button type="button" id="optionp2" class="btn btn-block btn-default">Ejercicios y Actividades</button></li>
+                    <li><button type="button" id="optionreturn" class="btn btn-danger btn-block">Regresar a principal*</button></li>
 
-            </ul>
-            <ul class="nav nav-sidebar ">
-                <li ><button type="button" id="home" class="btn btn-default btn-block">Inicio</button></li>
-                <li ><button type="button" id="optionp0" class="btn btn-default btn-block ">Temáticas</button></li>
-                <li ><button type="button" id="optionp1" class="btn btn-block btn-default">Objetos de aprendizaje </button></li>
-                <li ><button type="button" id="optionp2" class="btn btn-block btn-default">Ejercicios Y Actividades</button></li>
-                <li><button type="button" id="optionreturn" class="btn btn-info btn-block">Regresar a principal*</button></li>
+                    <img src="img/ic_launcher-web.png" class="img-responsive center-block" width="200" height="200">
 
-                <img src="img/ic_launcher-web.png" class="img-responsive center-block" width="200" height="200">
+                </ul>
+                <ul class="nav nav-sidebar">
 
-            </ul>
-            <ul class="nav nav-sidebar">
+                </ul>
 
-            </ul>
-        </div>
+            </div>
+
+    </div>
 
 
         <div class="col-lg-9 col-md-12 col-xs-12 main" id="workspaceContent" data-spy="scroll" data-offset="50">
@@ -260,13 +261,13 @@ $is_teacher = $user["is_teacher"];
 
 
 
-
+                        <!--    Objetos de aprendizaje    -->
                         <div class="col-lg-12 col-md-12 col-xs-12" id="oaContent">
 
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h1 class="page-header">
-                                        Objetos de aprendizaje <small>(Panel)</small>
+                                        Objetos de Aprendizaje  <small>(Panel)</small>
                                     </h1>
                                     <!-- <ol class="breadcrumb">
                                          <li class="active">
@@ -288,15 +289,17 @@ $is_teacher = $user["is_teacher"];
                                             <h5 class="backgroud btn-block">.</h5>
                                         </div>
 
-                                        <h5 align="left">Lista de temáticas</h5>
-                                        <div class="col-lg-12">
+                                        <h4 align="left">Lista de temáticas</h4>
 
-                                            <div class="col-lg-4 form-inline">
+                                        <div class=" col-lg-12">
+
+                                            <div class="col-lg-4 col-md-4 col-sm-4 form-inline">
                                                 <select class="form-control" id="tematicasSelected">
 
                                                 </select>
                                             </div>
-                                            <div class="col-lg-6  form-inline" >
+
+                                            <div class="col-lg-8  form-inline" >
 
                                                 <button type="button" id="option1" class="col-lg-6 btn btn-primary" data-toggle="modal" data-target="#addObjectlearning"><i class='glyphicon glyphicon-plus'></i> OA</button>
                                                 <button type="button" id="optionr2" id_oa="" name_oa=""class="col-lg-2 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#oaDelete"><i class='glyphicon glyphicon-trash'></i> </button>
@@ -305,17 +308,19 @@ $is_teacher = $user["is_teacher"];
 
                                             </div>
                                         </div>
+
                                         <div class="panel-body"></div>
-                                        <div id="" class=" align="">
-                                        <h5  class=" btn-block" align="left">Objetos de Aprendiazaje</h5>
-                                        <ul class="list-group" id="learningobjects">
-                                            <!--OA  here-->
-                                        </ul>
+                                        <div class="panel">
+                                                <div  class=" align="left">
+                                                <h4  class=" btn-block" align="left"></h4>
+                                                <ul class="list-group" id="learningobjects">
+                                                    <!--OA  here-->
+                                                </ul>
+                                        </div>
+
 
                                     </div>
-                                    <div class="panel-body">
 
-                                    </div>
                                     <div class="panel-default " align="center" >
                                         <h5 class="backgroud btn-block">.</h5>
                                     </div>
@@ -342,7 +347,7 @@ $is_teacher = $user["is_teacher"];
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1 class="page-header">
-                                    Ejercicios y recursos multimedia <small>(Panel)</small>
+                                    Ejercicios y recursos multimedia <small>(Editor)</small>
                                 </h1>
                                 <!-- <ol class="breadcrumb">
                                      <li class="active">
@@ -383,12 +388,13 @@ $is_teacher = $user["is_teacher"];
 
                                     </div>
                                     <div class="col-lg-12">
-                                        <button type="button" id="option2" class="col-lg-2 btn btn-primary btn-md  invisible" data-toggle="modal" data-target="#addexercise"><i class='glyphicon glyphicon-pencil'></i> </button>
-                                        <button type="button" id="option4" class="col-lg-2 btn btn-primary  btn-md invisible" data-toggle="modal" data-target="#addresource"><i class='glyphicon glyphicon-picture'></i> </button>
-                                        <button type="button" id="option5" class="col-lg-2 btn btn-primary btn-md  invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-facetime-video'></i>  </button>
-                                        <button type="button" id="option6"  class="col-lg-2 btn btn-primary  btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-pencil'></i> </button>
+                                        <button type="button" id="option2" class="col-lg-2 btn btn-info btn-md  invisible" data-toggle="modal" data-target="#addexercise"><i class='glyphicon glyphicon-pencil'></i> </button>
+                                        <button type="button" id="option4" class="col-lg-2 btn btn-info  btn-md invisible" data-toggle="modal" data-target="#addresource"><i class='glyphicon glyphicon-picture'></i> </button>
+                                        <button type="button" id="option5" class="col-lg-2 btn btn-info btn-md  invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-facetime-video'></i>  </button>
+                                        <button type="button" id="option6"  class="col-lg-2 btn btn-info  btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-pencil'></i> </button>
                                         <button type="button" id="option7" value="" class="col-lg-1 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-trash'></i> </button>
                                         <button type="button" id="option8" class="col-lg-1 btn btn-info btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-edit'></i> </button>
+                                        <h4 type="button" id="option9" class=""  data-target="#">#</h4>
 
 
                                     </div>

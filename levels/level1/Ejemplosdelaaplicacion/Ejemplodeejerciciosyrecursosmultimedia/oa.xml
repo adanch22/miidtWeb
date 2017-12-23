@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <unit>
   <exercise value="presentation">
+  	<id>1</id>
     <image>Ejemplodeejerciciosyrecursosmultimedia/1.jpg</image>
     <information>null</information>
     <question value="[-34]">¿Cual es el resultado?</question>
   </exercise>
   <exercise value="presentationm">
+  	<id>2</id>
     <image>Ejemplodeejerciciosyrecursosmultimedia/1.jpg</image>
     <information>null</information>
     <question value="2">¿Cual es el resultado?</question>
@@ -14,11 +16,13 @@
     <answer3>c) 100</answer3>
   </exercise>
   <exercise value="questionary">
+  	<id>3</id>
     <title>suma</title>
     <information>información:  -27 + (-7) = ?</information>
     <question value="[-34]">¿Cual es el resultado?</question>
   </exercise>
   <exercise value="multipleoptions">
+  	<id>4</id>
     <title>opción multiple </title>
     <information>información:  -27 + (-7) = ?</information>
     <question value="2">¿Cual es el resultado?</question>
@@ -27,26 +31,31 @@
     <answer3>c) 100</answer3>
   </exercise>
   <exercise value="questionary">
+  	<id>5</id>
     <title>null</title>
     <information>información:  -27 + (-7) = ?</information>
     <question value="[-34]">¿Cual es el resultado?</question>
   </exercise>
   <resource value="resource">
+  	<id>6</id>
     <title>imagen</title>
     <resourcetype>image</resourcetype>
     <file>Ejemplodeejerciciosyrecursosmultimedia/n.jpg</file>
   </resource>
   <resource value="resource">
+  	<id>7</id>
     <title>video</title>
     <resourcetype>video</resourcetype>
     <file>Ejemplodeejerciciosyrecursosmultimedia/trucos.mp4</file>
   </resource>
   <resource value="resource">
+  	<id>8</id>
     <title>imagen animada</title>
     <resourcetype>image</resourcetype>
     <file>Ejemplodeejerciciosyrecursosmultimedia/909.gif</file>
   </resource>
   <exercise value="multipleoptions">
+  	<id>9</id>
     <title>null</title>
     <information>información:  -27 + (-7) = ?</information>
     <question value="2">¿Cual es el resultado?</question>

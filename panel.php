@@ -74,10 +74,20 @@ $is_teacher = $user["is_teacher"];
         <!--OptionsContent -------------------------------------------------------------------------------------------->
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id="optionsContent" >
             <div class="panel-group">
+
+                <div class="panel panel-primary" id="options">
+                    <div class="panel-body">
+                        <button type="button" id="openlearningObjects" class="btn btn-primary btn-block">
+                            Abrir Objetos de Aprendizaje&nbsp;</button>
+
+
+                    </div>
+
+                </div>
                 <div class="panel panel-primary">
                     <div class="panel-body" id="options">
                         <!--options here-->
-                        <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target=".addCourse">
+                        <button type="button"class="btn btn-success btn-block" data-toggle="modal" data-target=".addCourse">
                             <i class="fa fa-plus"></i>&nbsp;Agregar Curso</button>
                         <div class="line"></div>
                         <button type="button" id="remove" class="btn btn-success btn-block disabled" data-toggle="modal">
@@ -100,29 +110,20 @@ $is_teacher = $user["is_teacher"];
                             <i class="fa fa-users"></i>&nbsp;Editar Estudiante</button>
                         <div class="line"></div>
 
-                        <button type="button" id="openlearningObjects" class="btn btn-success btn-block">
-                            Abrir Objetos de Aprendizaje&nbsp;</button>
-                        <div class="line"></div>
-
                         <button type="button" id="closeSession" class="btn btn-danger btn-block">Cerrar sesion&nbsp;<i class="fa fa-sign-out"></i></button>
                     </div>
 
                     <div class="panel-body" id="options2">
-                        <button type="button" id="openlearningObjects" class="btn btn-success col-xs-6">
-                            Abrir Objetos de Aprendizaje&nbsp;</button>
-                        <button type="button" id="closeSession" class="btn btn-danger col-xs-6">Cerrar sesion&nbsp;<i class="fa fa-sign-out"></i></button>
 
-
-                        <!-- <div class="btn-group" role="group">
+                         <div class="btn-group" role="group">
                              <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                  Menú de Opciones
                              </button>
                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                 <button id="openlearningObjectstwo" class="dropdown-item" href="learningobjects/index.php">Abrir Objetos de Aprendizaje</button>
-                                 <button class="dropdown-item" href="#">link 1</button>
-                                 <button class="dropdown-item" href="#">link 2</button>
+                                 <button id="openlearningObjects" class="dropdown-item btn-success" href="learningobjects/index.php">Abrir Objetos de Aprendizaje</button>
+                                 <button id="closeSession" class="dropdown-item btn-danger" href="#">Cerrar Sesión</button>
                              </div>
-                         </div>-->
+                         </div>
                     </div>
                 </div>
             </div>

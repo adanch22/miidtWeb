@@ -240,7 +240,7 @@ function getLearningobjects(id) {
                 // li  += '<li  class="list-group-item text-left"  data-toggle="" title=""' + 'OA_name='+ object.learningobject_name +  'id=' + object.book_id+'><h5>'+ object.learningobject_name  + ' </h5><button class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i>Eliminar</button></li>';
 
                 li  += '<li  class="btn btn-default btn-xs btn-block "  data-toggle="tooltip" title=""' + 'OA_name=' + object.learningobject_name + ' id=' + object.learningobject_id+'>' +
-                    '<h5 align="left">'+'Título: '+object.learningobject_name+ ' Tipo: '+object.learningobject_type+ ' </h5></li>';
+                    '<span class="badge">' +cont + '</span><h5 align="left">'+'Título: '+object.learningobject_name+ ' Tipo: '+object.learningobject_type+ ' </h5></li>';
 
                 /* lix += '<li class="margin_e"><button class="btn btn-danger" data-toggle="modal" data-target= "#dataDeleteoa" data-id='+ object.book_id +' >' +
                  '<i class="glyphicon glyphicon-trash"></i></button><button class="btn btn-info" data-toggle="modal" data-target= "#dataDeleteoa" data-id='+ object.book_id +'>' +
@@ -400,7 +400,7 @@ function getbooks() {
             courses=
                 cont = cont +1;
             li  += '<li  class="btn btn-block btn-xs btn-default"  data-toggle="tooltip" title=""' + 'book_name=' + object.book_name + ' id=' + object.book_id+'>' +
-                '<h5 align="left">'+object.book_name+' </h5></li>';
+                '<span class="badge">' + cont +'</span><h5 align="left">'+object.book_name+' </h5></li>';
 
             /* lix += '<li class="margin_e"><button class="btn btn-danger btn-md" data-toggle="modal" data-target= "#dataDelete" data-id='+ object.book_id +'>' +
              '<i class="glyphicon glyphicon-trash"></i></button><button class="btn btn-info btn-md" data-toggle="modal" data-target= "#dataDelete" data-id='+ object.book_id +'>' +
@@ -608,8 +608,8 @@ function getallexercises(id) {
             $.each(data.exercise, function (i, object) {
                 courses=
                     // alert(object.exercise_type)  ;
-                    li  += '<li  class=" btn btn-default btn-block btn-xs"  data-toggle="tooltip" title=""' + ' id=' + object.exercise_type+'>' +
-                        '<h5 align="left">'+ object.exercise_type +object.exercise_name+' </h5></li>';
+                    li  += '<li  class=" btn btn-default btn-xs"  data-toggle="tooltip" title=""' + ' id=' + object.exercise_id +'>' +
+                        '<h5 align="left">'+ object.exercise_type +' </h5></li>';
 
 
             });
@@ -624,7 +624,7 @@ function getallexercises(id) {
                 $('button#option7').attr('value', select);
                 $('button#option7').removeClass('invisible');
                 $('button#option8').removeClass('invisible');
-
+                $('#option9').text($(this).attr('id'));
 
 
             });
@@ -787,13 +787,12 @@ function getallbooks() {
 $('button#optionr1').on('click', function () {
 
     var select = $('#pk_tema').text();
-    alert(select)
     $.post("../v1/books/delete/",
         {id_tematica: select},
         function (data) {
             //alert(data.message);
             $('#remove-tematica').append('<div class="alert alert-success alert-dismissible" role="alert">' +
-                '<strong>Message!</strong><p>' + data.message +'</p></div>');
+                '<strong>Mensaje!</strong><p>' + data.message +'</p></div>');
             window.setTimeout(function() {
                 $(".alert-dismissible").fadeTo(2000, 0).slideUp(500, function()
                 { $(this).remove();});
@@ -827,14 +826,13 @@ $('button#optionr2').on('click', function () {
 
     var select = $('#pk_learningobject').text();
     var id_tematica = $('select#tematicasSelected option:selected').text();
-    alert(select);
 
     $.post("../v1/learningobjects/delete/",
         {id_oa: select, name_tematica: id_tematica},
         function (data) {
             //alert(data.message);
             $('#remove-oa').append('<div class="alert alert-success alert-dismissible" role="alert">' +
-                '<strong>Message!</strong><p>' + data.message +'</p></div>');
+                '<strong>Mensaje</strong><p>' + data.message +'</p></div>');
             window.setTimeout(function() {
                 $(".alert-dismissible").fadeTo(2000, 0).slideUp(500, function()
                 { $(this).remove();});

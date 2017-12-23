@@ -187,7 +187,7 @@ body {
 
 #optionsContent{
   background-color: #E0E0E0;
-  display: block;
+  /*display: block;*/
 
 }
 
@@ -265,6 +265,11 @@ body {
   margin-right: auto;
 }
 
+#panellearningobjects{
+  background: rgba(249, 242, 255, 0.27);
+  border: #1b7ca1;
+  opacity: 30;
+}
 
 /********** Large devices only **********/
 @media (min-width: 1200px) {
