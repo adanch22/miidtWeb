@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_FILES["fileToUpload"]["type"]
     $oa_name = strtr($oa_name,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
         'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 
-$target_dir = "../levels/level1/MetodosNumericos/". $oa_name . "/";
+$target_dir = "../levels/level1/Ejemplosdelaaplicacion/". $oa_name . "/";
 $carpeta=$target_dir;
 if (!file_exists($carpeta)) {
     mkdir($carpeta, 0777, true);

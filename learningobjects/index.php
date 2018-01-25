@@ -227,13 +227,12 @@ $is_teacher = $user["is_teacher"];
 
                                         <div class="panel-body">
                                             <button type="button" id="option0" class="col-lg-3 btn btn-primary" data-toggle="modal" data-target=".viewtematicas"><i class='glyphicon glyphicon-plus'></i> </button>
-                                            <button type="button" id="optionr1" id_book="" name_book="" class="col-lg-1 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#tematicaDelete"><i class='glyphicon glyphicon-trash'></i> </button>
+                                            <button type="button" id="optionr1" id_book="" name_book="" class="col-lg-1 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#remove-data"><i class='glyphicon glyphicon-trash'></i> </button>
                                             <button type="button" id="optione1" class="col-lg-1 btn btn-info btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-edit'></i> </button>
                                             <h5 class="invisible" id="pk_tema">?</h5>
 
-
-
                                         </div>
+
                                         <div class="panel-body " id="scrOA" style=" margin-right: 2px;  max-height:30%;  overflow-y: scroll;">
                                             <ul class="list-group " id="tematicas">
                                                 <!--temáticas  here-->
@@ -302,7 +301,7 @@ $is_teacher = $user["is_teacher"];
                                             <div class="col-lg-8  form-inline" >
 
                                                 <button type="button" id="option1" class="col-lg-6 btn btn-primary" data-toggle="modal" data-target="#addObjectlearning"><i class='glyphicon glyphicon-plus'></i> OA</button>
-                                                <button type="button" id="optionr2" id_oa="" name_oa=""class="col-lg-2 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#oaDelete"><i class='glyphicon glyphicon-trash'></i> </button>
+                                                <button type="button" id="optionr2" id_oa="" name_oa=""class="col-lg-2 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#remove-data2"><i class='glyphicon glyphicon-trash'></i> </button>
                                                 <button type="button" id="optione2" class="col-lg-2 btn btn-info btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-edit'></i> </button>
                                                 <h4 class="invisible" id="pk_learningobject">?</h4>
 
@@ -341,7 +340,7 @@ $is_teacher = $user["is_teacher"];
                     </div>
 
 
-
+                    <!-- àrea donde se administran todos los ejercios y recursos de los objetos de aprendizaje -->
                     <div class="col-lg-12 col-md-12 col-xs-12" id="oaContentexercise">
 
                         <div class="row">
@@ -362,7 +361,6 @@ $is_teacher = $user["is_teacher"];
                         <div class="panel-group">
                             <div id="panelexercise" class="panel panel-body">
                                 <div class="panel-default " align="center" >
-                                    <div id="alert-exercise" class="upload-msg"></div><!--Para mostrar la respuesta del archivo llamado via ajax -->
                                 </div>
                                 <div class="panel-default " align="center" >
                                     <h5 class="backgroud btn-block">.</h5>
@@ -385,26 +383,27 @@ $is_teacher = $user["is_teacher"];
                                             </select>
                                         </div>
 
-
                                     </div>
                                     <div class="col-lg-12">
-                                        <button type="button" id="option2" class="col-lg-2 btn btn-info btn-md  invisible" data-toggle="modal" data-target="#addexercise"><i class='glyphicon glyphicon-pencil'></i> </button>
-                                        <button type="button" id="option4" class="col-lg-2 btn btn-info  btn-md invisible" data-toggle="modal" data-target="#addresource"><i class='glyphicon glyphicon-picture'></i> </button>
-                                        <button type="button" id="option5" class="col-lg-2 btn btn-info btn-md  invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-facetime-video'></i>  </button>
-                                        <button type="button" id="option6"  class="col-lg-2 btn btn-info  btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-pencil'></i> </button>
-                                        <button type="button" id="option7" value="" class="col-lg-1 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-trash'></i> </button>
+                                        <button type="button" id="option2" class="col-lg-2 btn btn-primary btn-md  " data-toggle="modal" data-target="#addexercise"><i class='glyphicon glyphicon-pencil'></i> </button>
+                                        <button type="button" id="option4" class="col-lg-2 btn btn-primary  btn-md " data-toggle="modal" data-target="#addresource"><i class='glyphicon glyphicon-picture'></i> </button>
+                                        <button type="button" id="option5" class="col-lg-2 btn btn-primary btn-md  " data-toggle="modal" data-target="#addVideo_videoQuiz"><i class='glyphicon glyphicon-facetime-video'></i>  </button>
+                                        <button type="button" id="option6"  class="col-lg-2 btn btn-primary  btn-md " data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-pencil'></i> </button>
+                                        <button type="button" id="option7" value="" class="col-lg-1 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#remove-data3"><i class='glyphicon glyphicon-trash'></i> </button>
                                         <button type="button" id="option8" class="col-lg-1 btn btn-info btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-edit'></i> </button>
-                                        <h4 type="button" id="option9" class=""  data-target="#">#</h4>
+                                        <h4 type="button" id="option9" class="invisible"  data-target="#">#</h4>
 
 
                                     </div>
-                                    <div class="col-lg-12 panel-body " id="scrOA" style=" margin-right: 2px;  max-height:50%;  overflow-y: scroll;">
-                                        <ul class="list-group " id="exercises">
-                                            <!--exercises  here-->
+                                    <div class="panel-body" id="scrOA" style=" margin-right: 2px;  max-height:50%;  overflow-y: scroll;">
+                                        <ul class="list-group " id="videoquiz">
+                                            <!--video  here-->
 
                                         </ul>
 
-
+                                        <ul class="list-group " id="exercises">
+                                            <!--exercises  here-->
+                                        </ul>
 
                                     </div>
 
@@ -418,6 +417,8 @@ $is_teacher = $user["is_teacher"];
                         </div>
 
                         <div class="col-lg-12">
+                            <div id="alert-exercise-resource" class="upload-exercise"></div><!--Para mostrar la respuesta del archivo llamado via ajax -->
+
                             <div class="alert alert-info alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 <i class="fa fa-info-circle"></i>  <strong>Nota</strong> Espacio para administrar los ejercicios y recursos multimedia.

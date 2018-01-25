@@ -174,7 +174,7 @@ body {
 .btn-press {
   background: rgba(0,0,0,0);
   color: #0f0f0f;
-  box-shadow: inset 0 0 0 1px #0f0f0f;
+  box-shadow: inset 0 0 0 2px #0f0f0f;
 }
 
 
@@ -231,12 +231,11 @@ body {
 }
 
 
-
 /*imagen*/
 
 .panel-body .listaoa li {
   color: #000;
-  font-size: 12px;
+  font-size: 14px;
   border-bottom: 1px solid #B6B6B6;
 }
 
@@ -269,6 +268,11 @@ body {
   background: rgba(249, 242, 255, 0.27);
   border: #1b7ca1;
   opacity: 30;
+}
+
+
+#scrOA{
+  background: #f7f7f7;
 }
 
 /********** Large devices only **********/
@@ -409,6 +413,7 @@ body {
 
 
 
+
 /********** Super extra small devices Only :-) (e.g., iPhone 4) **********/
 @media (max-width: 479px) {
   /* Header */
@@ -439,12 +444,16 @@ body {
   }
 }
 
+#learning_name, #resource_name{
+  text-shadow: #0b0b0b;
+  color: deepskyblue;
+}
 
 
 /* Custom Colored Panels */
 
 .huge {
-  font-size: 40px;
+  font-size: 35px;
 }
 
 .panel-green {

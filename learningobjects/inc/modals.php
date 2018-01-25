@@ -54,7 +54,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
                 <button type="button" id="addOA" class="btn btn-primary">Crear OA(actividad)</button>
             </div>
         </div><!-- /.modal-content -->
@@ -77,10 +77,11 @@
                 <form>
 
                     <div class="form-group">
-                        <label for="exampleSelect1">Selecciona el OA a incluir el ejercicio </label>
-                        <select class="form-control" id="learningobjectsSelected">
-                        <!-- learningObjects here -->
-                        </select>
+                        <label for="exampleSelect1">Nombre del objeto de Aprendizaje</label>
+                        <!--<select class="form-control" id="learningobjectsSelected">
+
+                        </select>-->
+                        <h5  id="learning_name">nombre del OA</h5>
 
 <!--                        <label for="recipient-name" class="control-label">Título</label>
                         <input type="text" id="inputNameExercise" class="form-control" placeholder="Escribe un título breve(opcional)">-->
@@ -90,6 +91,10 @@
                             <label class="radio-inline"><input type="radio" id="buttoncuestionary"name="optradio" value="1">Pregunta abierta</label>
                             <label class="radio-inline"><input type="radio" id="buttonoptions" name="optradio" value="2">Pregunta opción múltiple</label>
                         </div>
+                        <!--<div class="disabled" id="optionsquestion2">
+                            <label class="radio-inline disabled"><input type="radio" id="buttoncuestionary2"name="optradio" value="1">Pregunta abierta con imagen</label>
+                            <label class="radio-inline disabled"><input type="radio" id="buttonoptions2" name="optradio" value="2">Pregunta opción múltiple con imagen</label>
+                        </div>-->
                         <label for="recipient-name" class="control-label">Pregunta</label>
                         <input tye="text" id="inputQuestion" class="form-control"placeholder="Escribe la pregunta del ejercicio">
 
@@ -119,7 +124,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
                 <button type="button" id="addexercise"class="btn btn-primary">Agregar ejercicio</button>
             </div>
         </div><!-- /.modal-content -->
@@ -168,10 +173,12 @@
                     <div class="text-center">
                         <form>
                             <div class="form-group">
-                                <h4 for="learningobjectsSelected">Selecciona el OA a incluir el recurso multimedia </h4>
-                                <select class="form-control" id="learningobjectsResource">
-                                    <!-- learningObjects here -->
-                                </select>
+                                <label for="learningobjectsSelected">Objeto de Aprendizaje a incluir el recurso multimedia </label>
+<!--                                <select class="form-control" id="learningobjectsResource">-->
+<!--                                    <!-- learningObjects here -->
+<!--                                </select>-->
+                                <h5  id="resource_name">nombre del OA</h5>
+
                             </div>
 
                             <div class="form-group">
@@ -202,3 +209,119 @@
 
 
 
+<!-- /Modal para eliminar temáticas  -->
+<div class="modal fade " id="remove-data"  tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Alerta</h4>
+            </div>
+            <div class="modal-body">
+                <h4>¿Esta seguro de eliminar la tématica?</h4>
+
+            </div>
+            <div class="modal-footer">
+                <button id="optionrx1" type="button" class="btn btn-info" data-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <!--   <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- /Modal para eliminar oa  -->
+<div class="modal fade " id="remove-data2"  tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <h4>¿Esta seguro de eliminar el objeto de aprendizaje?</h4>
+
+            </div>
+            <div class="modal-footer">
+                <button id="optionrx2" type="button" class="btn btn-info" data-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <!--   <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- /Modal para eliminar ejercicios y/ recursos multimedia -->
+<div class="modal fade " id="remove-data3"  tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <h4>¿Esta seguro de eliminar el ejercicio/recurso multimedia?</h4>
+
+            </div>
+            <div class="modal-footer">
+                <button id="optionrx3" type="button" class="btn btn-info" data-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <!--   <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- /Modal para subir el video principal del VideoQuiz  -->
+<div class="modal fade " id="addVideo_videoQuiz"  tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Video principal del OA VideoQuiz</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="text-center">
+                    <form>
+                        <div class="form-group">
+                            <label for="learningobjectsSelected">Objeto de Aprendizaje a incluir el Video </label>
+                            <!--                                <select class="form-control" id="learningobjectsResource">-->
+                            <!--                                    <!-- learningObjects here -->
+                            <!--                                </select>-->
+                            <h5  id="videoquiz_name">nombre del OA</h5>
+
+                        </div>
+
+                        <div class="form-group">
+<!--                            <label id="type1" class="radio-inline"><input type="radio" name="typeradio" value="image" checked>IMAGEN</label>-->
+<!--                            <label id="type2" class="radio-inline"><input type="radio" name="typeradio" value="video" onselect="true">VIDEO</label>-->
+<!--                            <label id="type3" class="radio-inline"><input type="radio" name="typeradio" value="pdf">PDF</label>-->
+
+                        </div>
+
+                        <div class="form-group">
+                            <center><input class="btn btn-info" type="file"  id="fileToUpload" onchange="upload_image();"></center>
+                            <p class="help-block">Selecciona un video.</p>
+                        </div>
+                        <div class="upload-msg"></div><!--Para mostrar la respuesta del archivo llamado via ajax -->
+
+                    </form>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                <!--   <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

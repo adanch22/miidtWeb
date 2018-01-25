@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <unit>
   <exercise value="presentation">
-  	<id>1</id>
-    <image>Ejemplodeejerciciosyrecursosmultimedia/1.jpg</image>
+    <id>1</id>
+    <title/>
     <information>null</information>
     <question value="[-34]">¿Cual es el resultado?</question>
   </exercise>
   <exercise value="presentationm">
-  	<id>2</id>
-    <image>Ejemplodeejerciciosyrecursosmultimedia/1.jpg</image>
+    <id>2</id>
+    <title/>
     <information>null</information>
     <question value="2">¿Cual es el resultado?</question>
     <answer1>a) 10</answer1>
@@ -16,13 +16,13 @@
     <answer3>c) 100</answer3>
   </exercise>
   <exercise value="questionary">
-  	<id>3</id>
+    <id>3</id>
     <title>suma</title>
     <information>información:  -27 + (-7) = ?</information>
     <question value="[-34]">¿Cual es el resultado?</question>
   </exercise>
   <exercise value="multipleoptions">
-  	<id>4</id>
+    <id>4</id>
     <title>opción multiple </title>
     <information>información:  -27 + (-7) = ?</information>
     <question value="2">¿Cual es el resultado?</question>
@@ -31,36 +31,48 @@
     <answer3>c) 100</answer3>
   </exercise>
   <exercise value="questionary">
-  	<id>5</id>
+    <id>5</id>
     <title>null</title>
     <information>información:  -27 + (-7) = ?</information>
     <question value="[-34]">¿Cual es el resultado?</question>
   </exercise>
-  <resource value="resource">
-  	<id>6</id>
-    <title>imagen</title>
-    <resourcetype>image</resourcetype>
-    <file>Ejemplodeejerciciosyrecursosmultimedia/n.jpg</file>
-  </resource>
-  <resource value="resource">
-  	<id>7</id>
-    <title>video</title>
-    <resourcetype>video</resourcetype>
-    <file>Ejemplodeejerciciosyrecursosmultimedia/trucos.mp4</file>
-  </resource>
-  <resource value="resource">
-  	<id>8</id>
-    <title>imagen animada</title>
-    <resourcetype>image</resourcetype>
-    <file>Ejemplodeejerciciosyrecursosmultimedia/909.gif</file>
-  </resource>
   <exercise value="multipleoptions">
-  	<id>9</id>
+    <id>6</id>
     <title>null</title>
     <information>información:  -27 + (-7) = ?</information>
     <question value="2">¿Cual es el resultado?</question>
     <answer1>34</answer1>
     <answer2>-34</answer2>
     <answer3>344</answer3>
+  </exercise>
+  <exercise value="questionary">
+    <id>7</id>
+    <title>null</title>
+    <information>1</information>
+    <question value="[1]">1</question>
+  </exercise>
+  <resource value="resource">
+    <id>8</id>
+    <title>imagen</title>
+    <resourcetype>image</resourcetype>
+    <file>Ejemplodeejerciciosyrecursosmultimedia/n.jpg</file>
+  </resource>
+  <resource value="resource">
+    <id>9</id>
+    <title>video</title>
+    <resourcetype>video</resourcetype>
+    <file>Ejemplodeejerciciosyrecursosmultimedia/trucos.mp4</file>
+  </resource>
+  <resource value="resource">
+    <id>10</id>
+    <title>imagen animada</title>
+    <resourcetype>image</resourcetype>
+    <file>Ejemplodeejerciciosyrecursosmultimedia/909.gif</file>
+  </resource>
+  <exercise value="questionary">
+    <id>11</id>
+    <title>null</title>
+    <information>1</information>
+    <question value="[1]">1</question>
   </exercise>
 </unit>

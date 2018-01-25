@@ -1245,6 +1245,7 @@ function authenticate(\Slim\Route $route) {
         echoRespnse(200, $response);
     }
 });*/
+
 $app->post('/learningobjects/add/', function() use ($app) {
     // check for required params
     verifyRequiredParams(array('learningobject_name','learningobject_image','book_id' ,'learningobject_idioma',
@@ -1431,6 +1432,32 @@ $app->post('/learningObjects/addresources/', function() use ($app) {
 });
 
 
+$app->post('/learningObjects/addvideoQuiz/', function() use ($app) {
+    // check for required params
+    verifyRequiredParams(array('learningobject', 'exercise_type','exercise_description'));
+
+    $response = array();
+
+    // reading post params
+    $learningobject = $app->request->post('learningobject');
+    $exercise_description = $app->request->post('exercise_description');
+    $exercise_type = $app->request->post('exercise_type');
+
+
+    $xml = new parseXML();
+    $res2 = $xml->addvideoquiz_video($learningobject,$exercise_type , $exercise_description);
+    if ($res2['result'] == "SUCCESSFULLY") {
+        $response["error"] = false;
+        $response["message"] = "El video principal ha sido agregado correctamente";
+        echoRespnse(201, $response);
+    } else if ($res2['result'] == "FAILED") {
+        $response["error"] = true;
+        $response["message"] = "Oops! An error occurred while registereing";
+        echoRespnse(200, $response);
+    }
+});
+
+
 
 
 
@@ -1516,7 +1543,7 @@ $app->post('/books/delete/', function() use ($app) {
         echoRespnse(201, $response);
     } else if ($res == CREATE_FAILED) {
         $response["error"] = true;
-        $response["message"] = "Oops! An error occurred while deleting";
+        $response["message"] = "Oops! Ocurrio un error mientras se eliminaba";
         echoRespnse(200, $response);
     } /*else if ($res == USER_NOT_EXISTED) {
         $response["error"] = true;
@@ -1528,7 +1555,7 @@ $app->post('/books/delete/', function() use ($app) {
 
 
 /***************************************************
- *  get exercises
+ *  Obtener todos los ejercicios
  ***************************************************/
 $app->get('/exercises/:id', function($name_learningobjects) {
     $response = array() ;
@@ -1553,6 +1580,35 @@ $app->get('/exercises/:id', function($name_learningobjects) {
 
     echoRespnse(200, $response);
 });
+
+/***************************************************
+ *  Borrar  ejercicios/ recursos multimedia
+ ***************************************************/
+$app->post('/exercises/delete/', function() use ($app) {
+    // check for required params
+
+    verifyRequiredParams(array('id_exercise', 'id_oa'));
+
+    $response = array();
+
+    // reading post params
+    $id_exercise = $app->request->post('id_exercise');
+    $id_oa = $app->request->post('id_oa');
+
+    $xml = new parseXML();
+    $res = $xml->deleteExercises($id_oa, $id_exercise);
+
+    if ($res['result'] == "SUCCESSFULLY") {
+        $response["error"] = false;
+        $response["message"] = "El ejercicio se elimino correctamente";
+        echoRespnse(201, $response);
+    } else if ($res['result'] == "FAILED") {
+        $response["error"] = true;
+        $response["message"] = "Oops! Ocurrio un error mientras se eliminaba";
+        echoRespnse(200, $response);
+    }
+});
+
 
 
 $app->run();

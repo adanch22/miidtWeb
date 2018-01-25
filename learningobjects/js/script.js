@@ -240,7 +240,7 @@ function getLearningobjects(id) {
                 // li  += '<li  class="list-group-item text-left"  data-toggle="" title=""' + 'OA_name='+ object.learningobject_name +  'id=' + object.book_id+'><h5>'+ object.learningobject_name  + ' </h5><button class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i>Eliminar</button></li>';
 
                 li  += '<li  class="btn btn-default btn-xs btn-block "  data-toggle="tooltip" title=""' + 'OA_name=' + object.learningobject_name + ' id=' + object.learningobject_id+'>' +
-                    '<span class="badge">' +cont + '</span><h5 align="left">'+'Título: '+object.learningobject_name+ ' Tipo: '+object.learningobject_type+ ' </h5></li>';
+                    '<span class="badge">' +cont + '</span><h4 align="left">'+ object.learningobject_name+ ' </h4><h6 align="right">'+ 'Tipo : ' + object.learningobject_type +  ' </h6></li>';
 
                 /* lix += '<li class="margin_e"><button class="btn btn-danger" data-toggle="modal" data-target= "#dataDeleteoa" data-id='+ object.book_id +' >' +
                  '<i class="glyphicon glyphicon-trash"></i></button><button class="btn btn-info" data-toggle="modal" data-target= "#dataDeleteoa" data-id='+ object.book_id +'>' +
@@ -399,8 +399,8 @@ function getbooks() {
         $.each(data.book, function (i, object) {
             courses=
                 cont = cont +1;
-            li  += '<li  class="btn btn-block btn-xs btn-default"  data-toggle="tooltip" title=""' + 'book_name=' + object.book_name + ' id=' + object.book_id+'>' +
-                '<span class="badge">' + cont +'</span><h5 align="left">'+object.book_name+' </h5></li>';
+            li  += '<li  class="btn btn-block btn-mx btn-default"  data-toggle="tooltip" title=""' + 'book_name=' + object.book_name + ' id=' + object.book_id+'>' +
+                '<span class="badge">' + cont +'</span><h4 align="center">'+object.book_name+' </h4></li>';
 
             /* lix += '<li class="margin_e"><button class="btn btn-danger btn-md" data-toggle="modal" data-target= "#dataDelete" data-id='+ object.book_id +'>' +
              '<i class="glyphicon glyphicon-trash"></i></button><button class="btn btn-info btn-md" data-toggle="modal" data-target= "#dataDelete" data-id='+ object.book_id +'>' +
@@ -460,7 +460,8 @@ $('button#addexercise').on('click', function () {
     // var title = $('input#inputNameExercise').val();
     var title = "null";
     var description = $('input#inputDescriptionExercise').val();
-    var oa_name = $('select#learningobjectsSelected option:selected').text();
+   // var oa_name = $('select#learningobjectsSelected option:selected').text();
+    var oa_name = $('select#oaexerciseSelect option:selected').text();
     var question = $('input#inputQuestion').val();
 
     var radio = $('input:radio[name=optradio]:checked').val();
@@ -599,17 +600,42 @@ $('button#addexercise').on('click', function () {
 //get exercise
 function getallexercises(id) {
     var li = '';
-    var li2 = '';
+    var li0 = '';
     var lix = '';
 
     $.getJSON("../v1/exercises/"+id, function (data) {
         if (!data.error) {
 
             $.each(data.exercise, function (i, object) {
-                courses=
                     // alert(object.exercise_type)  ;
-                    li  += '<li  class=" btn btn-default btn-xs"  data-toggle="tooltip" title=""' + ' id=' + object.exercise_id +'>' +
-                        '<h5 align="left">'+ object.exercise_type +' </h5></li>';
+                    if(object.exercise_id == 0){
+
+                        li0  += '<li  class=" btn btn-default btn-lg"  data-toggle="tooltip" title=""' + ' id=' + object.exercise_id +'>' +
+                            '<span class="badge">' + '0'  +'</span><h4 align="left">'+ 'Videoquiz(Video)' +' </h4></li>';
+
+                        $('button#option5').addClass('invisible');
+                    }
+                    else {
+
+                        li  += '<li  class=" btn btn-default btn-xs"  data-toggle="tooltip" title=""' + ' id=' + object.exercise_id +'>' +
+                            '<span class="badge">' + object.exercise_id  +'</span><h5 align="left">'+ object.exercise_type +' </h5></li>';
+                    }
+
+
+
+            });
+
+            $('ul#videoquiz').html(li0);
+            $('ul#videoquiz li').on('click', function () {
+               /* $('ul#videoquiz li').removeClass('btn-press');
+                $(this).addClass('btn-press');*/
+
+                // var select = $(this).text();
+                var select = $(this).prop('id');
+                $('button#option7').attr('value', select);
+                $('button#option7').removeClass('invisible');
+                $('button#option8').removeClass('invisible');
+                $('#option9').text($(this).attr('id'));
 
 
             });
@@ -631,6 +657,12 @@ function getallexercises(id) {
             //    $('ul#exer').html(lix);
 
         }else{
+            $('#alert-exercise-resource').append('<div class="alert alert-success alert-dismissible" role="alert">' +
+                '<strong>Importante!</strong><p>' + 'El objeto de aprendizaje seleccionado no contiene ningun elemento'+'</p></div>');
+            window.setTimeout(function() {
+                $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove();11
+                });	}, 3000);
 
         }
 
@@ -638,11 +670,20 @@ function getallexercises(id) {
     }).done(function () {
 
     }).fail(function () {
-        $('#upload-exercise').append('<div class="alert alert-danger alert-dismissible" role="alert">' +
-            '<strong>Message!</strong><p>' + 'Sorry! Unable to fetch topic messages'+'</p></div>');
+
+        lix  += '<li  class=" btn btn-block btn-default"' + '<h2 align="left">'+ 'El OA tiene cero elementos, agrega ejercios y/ recursos multimedia' +' </h2></li>';
+        li0  += '<li  class=" h5"<h5 align="left"></h5></li>';
+
+        $('ul#videoquiz').html(lix);
+        $('ul#exercises').html(li0);
+        $('button#option6').addClass('invisible');
+
+
+        $('#alert-exercise-resource').append('<div class="alert alert-warning alert-dismissible" role="alert">' +
+            '<strong>Importante!</strong><p>' + 'Existe un error en lectura de contenido del Objeto de Aprendizaje - revisar que el OA contenga al menos de un elemento '+'</p></div>');
         window.setTimeout(function() {
             $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
-                $(this).remove();
+                $(this).remove();11
             });	}, 3000);
 
     }).always(function () {
@@ -650,9 +691,6 @@ function getallexercises(id) {
     });
 }
 
-$('#option7').on('click', function () {
-    alert($(this).attr('value'));
-});
 
 
 /****************************************************************************************************
@@ -666,8 +704,10 @@ $('#addexercise').on('show.bs.modal', function () {
     $("#buttoncuestionary").attr('checked', true);
     $('#answer1').attr('checked', true);
 
+    $('#learning_name').text($('select#oaexerciseSelect option:selected').text())
+
     //obtener los objetos de aprendizaje de la base de datos
-    $.getJSON("../v1/learningObjects/", function (data) {
+    /*$.getJSON("../v1/learningObjects/", function (data) {
         var li = '';
         $.each(data.course, function (i, object) {
 
@@ -677,7 +717,6 @@ $('#addexercise').on('show.bs.modal', function () {
 
         });
         $('select#learningobjectsSelected').html(li);
-
         // $('#scrollMsj').scrollTop($('#scrollMsj').prop("scrollHeight"));
     }).done(function () {
 
@@ -685,7 +724,7 @@ $('#addexercise').on('show.bs.modal', function () {
         alert('Sorry! Unable to fetch');
     }).always(function () {
 
-    });
+    });*/
 
 });
 
@@ -701,7 +740,9 @@ $('#addObjectlearning').on('show.bs.modal', function () {
 /*evento los modals estan visibles*/
 $('#addresource').on('show.bs.modal', function () {
 
-    $.getJSON("../v1/learningObjects/", function (data) {
+    $('#resource_name').text($('select#oaexerciseSelect option:selected').text())
+
+    /*$.getJSON("../v1/learningObjects/", function (data) {
         var li = '';
         $.each(data.course, function (i, object) {
 
@@ -720,12 +761,21 @@ $('#addresource').on('show.bs.modal', function () {
         alert('Sorry! Unable to fetch');
     }).always(function () {
 
-    });
+    });*/
 
 
 });
 
+/*evento los modals estan visibles*/
+$('#addVideo_videoQuiz').on('show.bs.modal', function () {
 
+    $('#videoquiz_name').text($('select#oaexerciseSelect option:selected').text())
+    $("#type2").attr('checked', true);
+
+
+});
+
+/*
 $( "#formDeleteTematica" ).on('show.bs.modal',function(  ) {
     $('button#deleteok1').attr('pk',$('button#optionr1').attr('id_book'));
     $('h5#textModal1').text('Esta acción eliminará la temática :'+ $('button#optionr1').attr('name_book'));
@@ -739,6 +789,7 @@ $( "#formDeleteOa" ).on('show.bs.modal',function(  ) {
 
     $('h5#textModal2').text('Esta acción eliminará el OA de nombre : '+ $('button#optionr2').attr('name_oa'));
 });
+*/
 
 
 /****************************************************************************************************
@@ -783,10 +834,11 @@ function getallbooks() {
 }
 
 
-
-$('button#optionr1').on('click', function () {
+//en construccion
+$('button#optionrx1').on('click', function () {
 
     var select = $('#pk_tema').text();
+
     $.post("../v1/books/delete/",
         {id_tematica: select},
         function (data) {
@@ -822,7 +874,7 @@ $('button#optionr1').on('click', function () {
 
 });
 
-$('button#optionr2').on('click', function () {
+$('button#optionrx2').on('click', function () {
 
     var select = $('#pk_learningobject').text();
     var id_tematica = $('select#tematicasSelected option:selected').text();
@@ -862,6 +914,50 @@ $('button#optionr2').on('click', function () {
 
 });
 
+$('#optionrx3').on('click', function () {
+
+    //alert($('button#option7').attr('value'));
+    var select = $('button#option7').attr('value');
+    var name_oa = $('select#oaexerciseSelect option:selected').text();
+
+    $.post("../v1/exercises/delete/",
+        {id_exercise: select, id_oa: name_oa},
+        function (data) {
+            //alert(data.message);
+            $('#alert-exercise-resource').append('<div class="alert alert-success alert-dismissible" role="alert">' +
+                '<strong>Mensaje</strong><p>' + data.message +'</p></div>');
+            window.setTimeout(function() {
+                $(".alert-dismissible").fadeTo(2000, 0).slideUp(500, function()
+                { $(this).remove();});
+            }, 3000);
+
+
+
+            if(!data.error){
+
+               // getallexercises();
+                $('button#optionr7').addClass('invisible');
+                $('button#optione8').addClass('invisible');
+            }
+        }).done(function () {
+
+    }).fail(function () {
+        // alert('Sorry! Internal error');
+        $('#alert-exercise-resource').append('<div class="alert alert-danger alert-dismissible" role="alert">' +
+            '<strong>Message!</strong><p>' + 'Lo sentimos el sistema experimento un error, intente nuevamente' +'</p></div>');
+        window.setTimeout(function() {
+            $(".alert-dismissible").fadeTo(2000, 0).slideUp(500, function(){
+                $(this).remove();
+            });	}, 3000);
+    }).always(function () {
+
+    });
+
+});
+
+
+
+/*
 
 $('#dataDelete').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Botón que activó el modal
@@ -869,6 +965,7 @@ $('#dataDelete').on('show.bs.modal', function (event) {
     var modal = $(this);
     modal.find('#id_tematica').val(id)
 });
+*/
 
 
 
@@ -881,7 +978,7 @@ function upload_image(){//Funcion encargada de enviar el archivo via AJAX
     var file = inputFileImage.files[0];
     var data = new FormData();
     var filename = $('input[type=file]').val().split('\\').pop();
-    var oa_name = $('select#learningobjectsResource option:selected').text();
+    var oa_name = $('select#oaexerciseSelect option:selected').text();
     data.append('fileToUpload',file);
     data.append('oa_name', oa_name);
 
@@ -900,6 +997,7 @@ function upload_image(){//Funcion encargada de enviar el archivo via AJAX
         success: function(data)   // A function to be called if request succeeds
         {
 
+            alert(oa_name);
 
             $.post("../v1/learningObjects/addresources/",
                 {learningobject: oa_name, exercise_type: oktype, exercise_description: filename},
@@ -921,7 +1019,77 @@ function upload_image(){//Funcion encargada de enviar el archivo via AJAX
                                 $(this).remove();
                             });	}, 5000);
 
+                        getallexercises($('select#oaexerciseSelect option:selected').text());
+                        //assigCourse(data.student_id, c_id);
+                    }else{
+                        $('.upload-msg').append('<div class="alert alert-danger alert-dismissible" role="alert">' +
+                            '<strong>Error!</strong><p>' + data2.message +'</p></div>');
+                        window.setTimeout(function() {
+                            $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
+                                $(this).remove();
+                            });	}, 3000);
 
+                    }
+                }).done(function () {
+
+            }).fail(function () {
+                alert('Sorry! Internal error');
+            }).always(function () {
+
+            });
+
+        }
+    });
+
+}
+
+function upload_video(){//Funcion encargada de enviar el archivo via AJAX
+    $(".upload-msg").text('Cargando...');
+    var inputFileImage = document.getElementById("fileToUpload");
+    var file = inputFileImage.files[0];
+    var data = new FormData();
+    var filename = 'nombredelarchivo.mp4'
+    filename = $('input[type=file]').val().split('\\').pop();
+    var oa_name = $('select#oaexerciseSelect option:selected').text();
+    data.append('fileToUpload',file);
+    data.append('oa_name', oa_name);
+
+    var oktype = 'video';
+    /*jQuery.each($('#fileToUpload')[0].files, function(i, file) {
+     data.append('file'+i, file);
+     });*/
+
+    $.ajax({
+        url: "upload.php",        // Url to which the request is send
+        type: "POST",             // Type of request to be send, called as method
+        data: data, 			  // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+        contentType: false,       // The content type used when sending data to the server.
+        cache: false,             // To unable request pages to be cached
+        processData:false,        // To send DOMDocument or non processed data file it is set to false
+        success: function(data)   // A function to be called if request succeeds
+        {
+
+            $.post("../v1/learningObjects/addvideoQuiz/",
+                {learningobject: oa_name, exercise_type: oktype, exercise_description: filename},
+                function (data2) {
+                    if (!data2.error) {
+
+                        /* $('.upload-msg').append('<div class="alert alert-success alert-dismissible" role="alert">' +
+                         '<strong>Message!</strong><p>' + data.message +'</p></div>');
+                         window.setTimeout(function() {
+                         $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
+                         $(this).remove();
+                         });	}, 3000);*/
+
+                        $(".upload-msg").html(data);
+                        $('.upload-msg').append('<div class="alert alert-success alert-dismissible" role="alert">' +
+                            '<strong>Message!</strong><p>' + data2.message +'</p></div>');
+                        window.setTimeout(function() {
+                            $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
+                                $(this).remove();
+                            });	}, 5000);
+
+                        getallexercises($('select#oaexerciseSelect option:selected').text());
                         //assigCourse(data.student_id, c_id);
                     }else{
                         $('.upload-msg').append('<div class="alert alert-danger alert-dismissible" role="alert">' +

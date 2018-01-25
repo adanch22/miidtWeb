@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <unit>
   <exercise value="presentation">
-    <id>0</id>
     <image></image>
     <information>Ejemplodevideoquiz/Proposiciones.mp4</information>
     <question value="[]">null</question>
   </exercise>
 
   <exercise value="multipleoptions">
-  <id>1</id>
     <title>opción multiple </title>
     <information>5</information>
     <question value="1">¿Como se llama el titulo?</question>
@@ -18,7 +16,6 @@
   </exercise>
 
   <exercise value="multipleoptions">
-    <id>2</id>
     <title>opción multiple </title>
     <information>10</information>
     <question value="3">La negacion de una negacion es:</question>
@@ -28,7 +25,6 @@
   </exercise>
 
    <exercise value="multipleoptions">
-   <id>3</id>
     <title>opción multiple </title>
     <information>15</information>
     <question value="1">La oracion es una:</question>
