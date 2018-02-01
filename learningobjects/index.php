@@ -58,10 +58,10 @@ $is_teacher = $user["is_teacher"];
             <div class="panel-body">
                 <ul class="nav nav-sidebar ">
                     <li ><button type="button" id="home" class="btn btn-default btn-block">Inicio</button></li>
-                    <li ><button type="button" id="optionp0" class="btn btn-default btn-block ">Temáticas</button></li>
+                    <li ><button type="button" id="optionp0" class="btn btn-default btn-block ">Temáticas/ Asignaturas</button></li>
                     <li ><button type="button" id="optionp1" class="btn btn-block btn-default">Objetos de aprendizaje </button></li>
                     <li ><button type="button" id="optionp2" class="btn btn-block btn-default">Ejercicios y Actividades</button></li>
-                    <li><button type="button" id="optionreturn" class="btn btn-danger btn-block">Regresar a principal*</button></li>
+                    <li><button type="button" id="optionreturn" class="btn btn-danger btn-block">Regresar a Panel de Admin*</button></li>
 
                     <img src="img/ic_launcher-web.png" class="img-responsive center-block" width="200" height="200">
 
@@ -183,7 +183,7 @@ $is_teacher = $user["is_teacher"];
                                      <div id="paneloaHome" class="panel panel-body">
                                          <div class="panel-group ">
                                              <div class="panel-body " >
-                                                 <img src="img/ic_launcher-web.png" class="img-responsive center-block" width="300" height="236">
+                                                 <img src="img/ic_launcher-webb.png" class="img-responsive center-block" width="500" height="536">
                                              </div>
                                          </div>
                                      </div>
@@ -288,17 +288,17 @@ $is_teacher = $user["is_teacher"];
                                             <h5 class="backgroud btn-block">.</h5>
                                         </div>
 
-                                        <h4 align="left">Lista de temáticas</h4>
+                                        <h3 align="left">Lista de Temàticas - Selecciona - </h3>
 
                                         <div class=" col-lg-12">
 
-                                            <div class="col-lg-4 col-md-4 col-sm-4 form-inline">
+                                            <div class="col-lg-5 col-md-5 col-sm-5 form-inline">
                                                 <select class="form-control" id="tematicasSelected">
 
                                                 </select>
                                             </div>
 
-                                            <div class="col-lg-8  form-inline" >
+                                            <div class="col-lg-7 col-md-7 col-sm-7 form-inline" >
 
                                                 <button type="button" id="option1" class="col-lg-6 btn btn-primary" data-toggle="modal" data-target="#addObjectlearning"><i class='glyphicon glyphicon-plus'></i> OA</button>
                                                 <button type="button" id="optionr2" id_oa="" name_oa=""class="col-lg-2 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#remove-data2"><i class='glyphicon glyphicon-trash'></i> </button>
@@ -373,7 +373,10 @@ $is_teacher = $user["is_teacher"];
                                             <label for="sel1">Selecciona una temática</label>
                                             <select class="form-control" id="bookexerciseSelect">
                                                 <option>selecciona una temática</option>
+
                                             </select>
+                                           <!--  Etiqueta auxiliar -->
+                                            <h5 class="invisible" id="book_select_id">select</h5>
                                         </div>
 
                                         <div class="col-lg-6 form-group">
@@ -387,11 +390,12 @@ $is_teacher = $user["is_teacher"];
                                     <div class="col-lg-12">
                                         <button type="button" id="option2" class="col-lg-2 btn btn-primary btn-md  " data-toggle="modal" data-target="#addexercise"><i class='glyphicon glyphicon-pencil'></i> </button>
                                         <button type="button" id="option4" class="col-lg-2 btn btn-primary  btn-md " data-toggle="modal" data-target="#addresource"><i class='glyphicon glyphicon-picture'></i> </button>
-                                        <button type="button" id="option5" class="col-lg-2 btn btn-primary btn-md  " data-toggle="modal" data-target="#addVideo_videoQuiz"><i class='glyphicon glyphicon-facetime-video'></i>  </button>
-                                        <button type="button" id="option6"  class="col-lg-2 btn btn-primary  btn-md " data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-pencil'></i> </button>
+                                        <button type="button" id="option5" class="col-lg-2 btn btn-primary btn-md  " data-toggle="modal" data-target="#addresource"><i class='glyphicon glyphicon-facetime-video'></i>  </button>
+                                        <button type="button" id="option6"  class="col-lg-2 btn btn-primary  btn-md " data-toggle="modal" data-target="#addexerciseVideoQuiz"><i class='glyphicon glyphicon-pencil'></i> </button>
                                         <button type="button" id="option7" value="" class="col-lg-1 btn btn-danger btn-md invisible" data-toggle="modal" data-target="#remove-data3"><i class='glyphicon glyphicon-trash'></i> </button>
                                         <button type="button" id="option8" class="col-lg-1 btn btn-info btn-md invisible" data-toggle="modal" data-target="#"><i class='glyphicon glyphicon-edit'></i> </button>
                                         <h4 type="button" id="option9" class="invisible"  data-target="#">#</h4>
+                                        <h4 type="button" id="option10" class="invisible"  data-target="#">#</h4>
 
 
                                     </div>

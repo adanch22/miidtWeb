@@ -1372,12 +1372,13 @@ $app->post('/learningobjects/delete/', function() use ($app) {
  ***************************************************/
 $app->post('/learningObjects/addexercises/', function() use ($app) {
     // check for required params
-    verifyRequiredParams(array('learningobject', 'exercise_type', 'exercise_name','exercise_description',
+    verifyRequiredParams(array('bookname','learningobject', 'exercise_type', 'exercise_name','exercise_description',
         'exercise_question', 'exercise_answer1', 'exercise_answer2', 'exercise_answer3', 'exercise_ok'));
 
     $response = array();
 
     // reading post params
+    $bookname = $app->request->post('bookname');
     $learningobject = $app->request->post('learningobject');
     $exercise_name = $app->request->post('exercise_name');
     $exercise_description = $app->request->post('exercise_description');
@@ -1392,7 +1393,7 @@ $app->post('/learningObjects/addexercises/', function() use ($app) {
 
 
     $xml = new parseXML();
-    $res2 = $xml->addexercises($learningobject,$exercise_type ,$exercise_name, $exercise_description,
+    $res2 = $xml->addexercises($bookname,$learningobject,$exercise_type ,$exercise_name, $exercise_description,
         $exercise_question, $exercise_answer1, $exercise_answer2, $exercise_answer3, $exercise_ok);
     if ($res2['result'] == "SUCCESSFULLY") {
         $response["error"] = false;
@@ -1408,18 +1409,19 @@ $app->post('/learningObjects/addexercises/', function() use ($app) {
 
 $app->post('/learningObjects/addresources/', function() use ($app) {
     // check for required params
-    verifyRequiredParams(array('learningobject', 'exercise_type','exercise_description'));
+    verifyRequiredParams(array('bookname', 'learningobject', 'exercise_type','exercise_description'));
 
     $response = array();
 
     // reading post params
+    $bookname = $app->request->post('bookname');
     $learningobject = $app->request->post('learningobject');
     $exercise_description = $app->request->post('exercise_description');
     $exercise_type = $app->request->post('exercise_type');
 
 
     $xml = new parseXML();
-    $res2 = $xml->addresources($learningobject,$exercise_type , $exercise_description);
+    $res2 = $xml->addresources($bookname, $learningobject, $exercise_type , $exercise_description);
     if ($res2['result'] == "SUCCESSFULLY") {
         $response["error"] = false;
         $response["message"] = "El recurso multimedia ha sido agregado correctamente";
@@ -1434,18 +1436,19 @@ $app->post('/learningObjects/addresources/', function() use ($app) {
 
 $app->post('/learningObjects/addvideoQuiz/', function() use ($app) {
     // check for required params
-    verifyRequiredParams(array('learningobject', 'exercise_type','exercise_description'));
+    verifyRequiredParams(array('bookname', 'learningobject', 'exercise_type','exercise_description'));
 
     $response = array();
 
     // reading post params
+    $bookname = $app->request->post('bookname');
     $learningobject = $app->request->post('learningobject');
     $exercise_description = $app->request->post('exercise_description');
     $exercise_type = $app->request->post('exercise_type');
 
 
     $xml = new parseXML();
-    $res2 = $xml->addvideoquiz_video($learningobject,$exercise_type , $exercise_description);
+    $res2 = $xml->addvideoquiz_video($bookname, $learningobject,$exercise_type , $exercise_description);
     if ($res2['result'] == "SUCCESSFULLY") {
         $response["error"] = false;
         $response["message"] = "El video principal ha sido agregado correctamente";
@@ -1557,12 +1560,23 @@ $app->post('/books/delete/', function() use ($app) {
 /***************************************************
  *  Obtener todos los ejercicios
  ***************************************************/
-$app->get('/exercises/:id', function($name_learningobjects) {
+$app->get('/exercises/:id', function($id_learningobjects) {
     $response = array() ;
     $xml = new parseXML();
+    $db = new DbHandler();
+
+    $resultx = $db->getOneLearningObjects($id_learningobjects);
+    // pushing single chat room into array
+
+    $name_learningobjects = $resultx["learningobject_name"];
+    $id_book =$resultx["book_id"];
+       // $tmp["book_name"] = $book["book_name"];
+
+    $resulty = $db->getOnebooks($id_book);
+    $name_book = $resulty["book_name"];
 
     // fetching all user tasks
-    $result = $xml->getAllexercises($name_learningobjects);
+    $result = $xml->getAllexercises($name_book, $name_learningobjects);
 
     $response["error"] = false;
     $response["exercise"]  = array();

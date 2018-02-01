@@ -85,8 +85,8 @@ $(document).ready(function(){
         $('button#optionp2').addClass('btn-primary');
 
         getallbooks();
+        getallbooks();
         var book_id = $('select#bookexerciseSelect').val();
-
         $('button#option7').addClass('invisible');
         $('button#option8').addClass('invisible');
 
@@ -101,6 +101,7 @@ $(document).ready(function(){
         $('button#optionp1').removeClass('btn-primary');
         $('button#optionp2').addClass('btn-primary');
 
+        getallbooks();
         getallbooks();
         var book_id = $('select#bookexerciseSelect').val();
 
@@ -232,6 +233,8 @@ function getLearningobjects(id) {
         var li = '';
         var li2 ='';
         var cont = 0;
+
+
         $.each(data.course, function (i, object) {
             if(id == object.book_id){
                 courses=
@@ -246,22 +249,25 @@ function getLearningobjects(id) {
                  '<i class="glyphicon glyphicon-trash"></i></button><button class="btn btn-info" data-toggle="modal" data-target= "#dataDeleteoa" data-id='+ object.book_id +'>' +
                  '<i class="glyphicon glyphicon-edit"></i></button></li>';*/
 
-                li2 += '<option  value='+ object.learningobject_type  +' name ='+ object.learningobject_name + '>'+ object.learningobject_name+'</option>';
+                li2 += '<option  value='+ object.learningobject_type  +' name ='+ object.learningobject_id +'>'+ object.learningobject_name+'</option>';
                 //    '<li  class="btn btn-default btn-block" course_name='+course.course_name+' id='+course.course_id+'><label>Group: </label><span>'+" "+course.course_name+' </span></li>';
 
                 if (cont ==1){
+
                     if (object.learningobject_type == "default"){
                         $('button#option2').removeClass('invisible');
                         $('button#option4').removeClass('invisible');
                         $('button#option5').addClass('invisible');
                         $('button#option6').addClass('invisible');
-                        getallexercises(object.learningobject_name);
+                        getallexercises(object.learningobject_id);
+                        $('#book_select_id').text(object.learningobject_id);
                     }else{
                         $('button#option2').addClass('invisible');
                         $('button#option4').addClass('invisible');
                         $('button#option5').removeClass('invisible');
                         $('button#option6').removeClass('invisible');
-                        getallexercises(object.learningobject_name);
+                        getallexercises(object.learningobject_id);
+                        $('#book_select_id').text(object.learningobject_id);
 
                     }
                 }
@@ -281,7 +287,8 @@ function getLearningobjects(id) {
         });
         $('select#oaexerciseSelect').html(li2);
         $('select#oaexerciseSelect').on('click', function () {
-            var select = $('select#oaexerciseSelect option:selected').text();
+            var select = $('select#oaexerciseSelect option:selected').attr('name');
+            $('#book_select_id').text($('select#oaexerciseSelect option:selected').attr('name'));
             // var select = $(this).text();
             var type = $(this).val();
             if (select =="")
@@ -461,7 +468,10 @@ $('button#addexercise').on('click', function () {
     var title = "null";
     var description = $('input#inputDescriptionExercise').val();
    // var oa_name = $('select#learningobjectsSelected option:selected').text();
+
     var oa_name = $('select#oaexerciseSelect option:selected').text();
+    var book_name = $('select#bookexerciseSelect option:selected').text();
+
     var question = $('input#inputQuestion').val();
 
     var radio = $('input:radio[name=optradio]:checked').val();
@@ -470,7 +480,7 @@ $('button#addexercise').on('click', function () {
     var answer3 = 0;
     var ok = 1;
 
-    var select = $('select#oaexerciseSelect option:selected').text();
+    var select = $('select#oaexerciseSelect option:selected').attr('name');
     if(radio == 1){
         //obtener variables de los campos de texto
 
@@ -482,7 +492,7 @@ $('button#addexercise').on('click', function () {
         if (description && question && answer1)
         {
             $.post("../v1/learningObjects/addexercises/",
-                {learningobject: oa_name, exercise_name: title, exercise_type:radio, exercise_description: description,
+                {bookname: book_name, learningobject: oa_name, exercise_name: title, exercise_type:radio, exercise_description: description,
                     exercise_question:question, exercise_answer1:answer1, exercise_answer2:answer2, exercise_answer3:answer3, exercise_ok:ok},
                 function (data) {
                     if (!data.error) {
@@ -602,16 +612,25 @@ function getallexercises(id) {
     var li = '';
     var li0 = '';
     var lix = '';
+    var cont = 0;
+    var typeoa =$('select#oaexerciseSelect option:selected').val();
+
+    var book_name = $('#book_select_id').text();
+
+    var dir = book_name +'&#47'+ id;
+   // alert(dir);
 
     $.getJSON("../v1/exercises/"+id, function (data) {
         if (!data.error) {
 
             $.each(data.exercise, function (i, object) {
+                    
+                    cont = cont +1;
                     // alert(object.exercise_type)  ;
-                    if(object.exercise_id == 0){
+                    if(object.exercise_type == 'Ejercicio (pregunta abierta + imagen )' && typeoa == 'videoquiz'){
 
                         li0  += '<li  class=" btn btn-default btn-lg"  data-toggle="tooltip" title=""' + ' id=' + object.exercise_id +'>' +
-                            '<span class="badge">' + '0'  +'</span><h4 align="left">'+ 'Videoquiz(Video)' +' </h4></li>';
+                            '<span class="badge">' + object.exercise_id  +'</span><h4 align="left">'+ 'Videoquiz(Video)' +' </h4></li>';
 
                         $('button#option5').addClass('invisible');
                     }
@@ -682,9 +701,9 @@ function getallexercises(id) {
         $('#alert-exercise-resource').append('<div class="alert alert-warning alert-dismissible" role="alert">' +
             '<strong>Importante!</strong><p>' + 'Existe un error en lectura de contenido del Objeto de Aprendizaje - revisar que el OA contenga al menos de un elemento '+'</p></div>');
         window.setTimeout(function() {
-            $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
+            $(".alert-dismissible").fadeTo(200, 0).slideUp(200, function(){
                 $(this).remove();11
-            });	}, 3000);
+            });	}, 2000);
 
     }).always(function () {
 
@@ -739,8 +758,23 @@ $('#addObjectlearning').on('show.bs.modal', function () {
 
 /*evento los modals estan visibles*/
 $('#addresource').on('show.bs.modal', function () {
-
+    var type = $('select#oaexerciseSelect option:selected').val();
     $('#resource_name').text($('select#oaexerciseSelect option:selected').text())
+    $("#option10").text(type);
+
+    if (type == 'videoquiz') {
+
+        $('#type1').addClass('invisible');
+        $('#type3').addClass('invisible');
+         $('#titlerm').text('Video a agregar al OA tipo VideoQuiz');
+        
+    
+    } else{
+         $('#type1').removeClass('invisible');
+         $('#type3').removeClass('invisible');
+         $('#titlerm').text('Objeto de Aprendizaje a incluir el recurso multimedia');
+
+    }
 
     /*$.getJSON("../v1/learningObjects/", function (data) {
         var li = '';
@@ -767,11 +801,10 @@ $('#addresource').on('show.bs.modal', function () {
 });
 
 /*evento los modals estan visibles*/
-$('#addVideo_videoQuiz').on('show.bs.modal', function () {
+$('#addexerciseVideoQuiz').on('show.bs.modal', function () {
 
-    $('#videoquiz_name').text($('select#oaexerciseSelect option:selected').text())
-    $("#type2").attr('checked', true);
-
+    $('#learning_nameVQ').text($('select#oaexerciseSelect option:selected').text())
+   
 
 });
 
@@ -809,14 +842,20 @@ function getallbooks() {
                 cont = cont+1;
             li += '<option  value='+object.book_id +'>'+object.book_name+'</option>';
             //    '<li  class="btn btn-default btn-block" course_name='+course.course_name+' id='+course.course_id+'><label>Group: </label><span>'+" "+course.course_name+' </span></li>';
-            if (cont== 1)
+            if (cont== 1){
                 getLearningobjects(object.book_id);
+                getLearningobjects(object.book_id);
+               // $('#book_select_id').text(object.book_name);
+            }
+   
+            
 
         });
         $('select#bookexerciseSelect').html(li);
         $('select#bookexerciseSelect').click(function() {
             //alert($(this).val());
             getLearningobjects($('select#bookexerciseSelect option:selected').val());
+           // $('#book_select_id').text($('select#bookexerciseSelect option:selected').text());
             $('#option7').addClass('invisible');
             $('#option8').addClass('invisible');
 
@@ -958,15 +997,89 @@ $('#optionrx3').on('click', function () {
 
 
 /*
-
-$('#dataDelete').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Botón que activó el modal
-    var id = button.data('id'); // Extraer la información de atributos de datos
-    var modal = $(this);
-    modal.find('#id_tematica').val(id)
-});
+// Agergar ejercicios a los OA tipo VideoQuiz
 */
+//action for button addlearningobjects
+$('button#addexerciseVQ').on('click', function () {
 
+    // var title = $('input#inputNameExercise').val();
+    var title = "null";
+    var description = $('input#inputDescriptionExerciseVQ').val();
+   // var oa_name = $('select#learningobjectsSelected option:selected').text();
+    var oa_name = $('select#oaexerciseSelect option:selected').text();
+    var book_name = $('select#bookexerciseSelect option:selected').text();
+    
+    var question = $('input#inputQuestionVQ').val();
+
+    var radio = 2;
+    var answer1 = 0;
+    var answer2 = 0;
+    var answer3 = 0;
+    var ok = 1;
+
+    var select = $('select#oaexerciseSelect option:selected').attr('name');
+    
+
+        answer1 = $('input#inputAnswer1VQ').val();
+        answer2 = $('input#inputAnswer2VQ').val();
+        answer3 = $('input#inputAnswer3VQ').val();
+        ok = $('input:radio[name=ansradioVQ]:checked').val();
+
+        if (description && question && answer1 && answer2 && answer3)
+        {
+            $.post("../v1/learningObjects/addexercises/",
+                {bookname: book_name, learningobject: oa_name, exercise_type:radio, exercise_name: title, exercise_description: description,
+                    exercise_question:question, exercise_answer1:answer1, exercise_answer2:answer2, exercise_answer3:answer3, exercise_ok:ok},
+                function (data) {
+                    if (!data.error) {
+                        $('#upload-exerciseVQ').append('<div class="alert alert-success alert-dismissible" role="alert">' +
+                            '<strong>Message!</strong><p>' + data.message +'</p></div>');
+                        window.setTimeout(function() {
+                            $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
+                                $(this).remove();
+                            }); }, 3000);
+                        /* var li = '<li  class="btn btn-default btn-xs btn-block"><label>'+" "+title+' </label></li>';
+                         $('#learningobjects').append(li);*/
+                        $('#inputNameExerciseVQ').val("");
+                        $('#inputDescriptionExerciseVQ').val("");
+                        $('#inputQuestionVQ').val("");
+                        $('#inputAnswer1VQ').val("");
+                        $('#inputAnswer2VQ').val("");
+                        $('#inputAnswer3VQ').val("");
+                        $("#answer1VQ").attr('checked', true);
+
+                        getallexercises(select);
+
+                        //assigCourse(data.student_id, c_id);
+                    }else{
+
+                        $('#upload-exerciseVQ').append('<div class="alert alert-danger alert-dismissible" role="alert">' +
+                            '<strong>Message!</strong><p>' + data.message +'</p></div>');
+                        window.setTimeout(function() {
+                            $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
+                                $(this).remove();
+                            }); }, 3000);                        }
+                }).done(function () {
+
+            }).fail(function () {
+                alert('Sorry! Internal error');
+            }).always(function () {
+
+            });
+
+
+        }else{
+            $('#upload-exerciseVQ').append('<div class="alert alert-warning alert-dismissible" role="alert">' +
+                '<strong>Error!</strong><p>Los campos estan vacios, ingresa la información e intenta nuevamente</p></div>');
+            window.setTimeout(function() {
+                $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
+                    $(this).remove();
+                }); }, 3000);
+        }
+
+    
+
+});
 
 
 
@@ -974,18 +1087,26 @@ $('#dataDelete').on('show.bs.modal', function (event) {
 //funcion AJAX para subir archivos a servidor
 function upload_image(){//Funcion encargada de enviar el archivo via AJAX
     $(".upload-msg").text('Cargando...');
-    var inputFileImage = document.getElementById("fileToUpload");
-    var file = inputFileImage.files[0];
-    var data = new FormData();
-    var filename = $('input[type=file]').val().split('\\').pop();
+    
+    var typemodal = $('select#oaexerciseSelect option:selected').val();
     var oa_name = $('select#oaexerciseSelect option:selected').text();
-    data.append('fileToUpload',file);
-    data.append('oa_name', oa_name);
+    var book_name = $('select#bookexerciseSelect option:selected').text();
 
-    var oktype = $('input:radio[name=typeradio]:checked').val();
-    /*jQuery.each($('#fileToUpload')[0].files, function(i, file) {
-     data.append('file'+i, file);
-     });*/
+
+
+    var inputFileImage = document.getElementById("fileToUpload");
+        var file = inputFileImage.files[0];
+        var data = new FormData();
+        var filename = $('input[type=file]').val().split('\\').pop();
+    
+         //tipo de carga 1) recurso multimedia 2)videoquiz
+        data.append('fileToUpload',file);
+        data.append('oa_name', oa_name);
+
+        var oktype = $('input:radio[name=typeradio]:checked').val();
+        /*jQuery.each($('#fileToUpload')[0].files, function(i, file) {
+        data.append('file'+i, file);
+        });*/
 
     $.ajax({
         url: "upload.php",        // Url to which the request is send
@@ -997,10 +1118,12 @@ function upload_image(){//Funcion encargada de enviar el archivo via AJAX
         success: function(data)   // A function to be called if request succeeds
         {
 
-            alert(oa_name);
+           // alert(typemodal);
 
-            $.post("../v1/learningObjects/addresources/",
-                {learningobject: oa_name, exercise_type: oktype, exercise_description: filename},
+            if (typemodal == 'default') {
+                
+                $.post("../v1/learningObjects/addresources/",
+                {bookname:book_name, learningobject: oa_name, exercise_type: oktype, exercise_description: filename},
                 function (data2) {
                     if (!data2.error) {
 
@@ -1009,7 +1132,7 @@ function upload_image(){//Funcion encargada de enviar el archivo via AJAX
                          window.setTimeout(function() {
                          $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
                          $(this).remove();
-                         });	}, 3000);*/
+                         });    }, 3000);*/
 
                         $(".upload-msg").html(data);
                         $('.upload-msg').append('<div class="alert alert-success alert-dismissible" role="alert">' +
@@ -1017,9 +1140,9 @@ function upload_image(){//Funcion encargada de enviar el archivo via AJAX
                         window.setTimeout(function() {
                             $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
                                 $(this).remove();
-                            });	}, 5000);
+                            }); }, 5000);
 
-                        getallexercises($('select#oaexerciseSelect option:selected').text());
+                        getallexercises($('select#oaexerciseSelect option:selected').attr('name'));
                         //assigCourse(data.student_id, c_id);
                     }else{
                         $('.upload-msg').append('<div class="alert alert-danger alert-dismissible" role="alert">' +
@@ -1027,7 +1150,7 @@ function upload_image(){//Funcion encargada de enviar el archivo via AJAX
                         window.setTimeout(function() {
                             $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
                                 $(this).remove();
-                            });	}, 3000);
+                            }); }, 3000);
 
                     }
                 }).done(function () {
@@ -1038,39 +1161,10 @@ function upload_image(){//Funcion encargada de enviar el archivo via AJAX
 
             });
 
-        }
-    });
+            }else if (typemodal == 'videoquiz'){
 
-}
-
-function upload_video(){//Funcion encargada de enviar el archivo via AJAX
-    $(".upload-msg").text('Cargando...');
-    var inputFileImage = document.getElementById("fileToUpload");
-    var file = inputFileImage.files[0];
-    var data = new FormData();
-    var filename = 'nombredelarchivo.mp4'
-    filename = $('input[type=file]').val().split('\\').pop();
-    var oa_name = $('select#oaexerciseSelect option:selected').text();
-    data.append('fileToUpload',file);
-    data.append('oa_name', oa_name);
-
-    var oktype = 'video';
-    /*jQuery.each($('#fileToUpload')[0].files, function(i, file) {
-     data.append('file'+i, file);
-     });*/
-
-    $.ajax({
-        url: "upload.php",        // Url to which the request is send
-        type: "POST",             // Type of request to be send, called as method
-        data: data, 			  // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-        contentType: false,       // The content type used when sending data to the server.
-        cache: false,             // To unable request pages to be cached
-        processData:false,        // To send DOMDocument or non processed data file it is set to false
-        success: function(data)   // A function to be called if request succeeds
-        {
-
-            $.post("../v1/learningObjects/addvideoQuiz/",
-                {learningobject: oa_name, exercise_type: oktype, exercise_description: filename},
+                  $.post("../v1/learningObjects/addvideoQuiz/",
+                {bookname: book_name, learningobject: oa_name, exercise_type: oktype, exercise_description: filename},
                 function (data2) {
                     if (!data2.error) {
 
@@ -1079,7 +1173,7 @@ function upload_video(){//Funcion encargada de enviar el archivo via AJAX
                          window.setTimeout(function() {
                          $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
                          $(this).remove();
-                         });	}, 3000);*/
+                         });    }, 3000);*/
 
                         $(".upload-msg").html(data);
                         $('.upload-msg').append('<div class="alert alert-success alert-dismissible" role="alert">' +
@@ -1087,9 +1181,9 @@ function upload_video(){//Funcion encargada de enviar el archivo via AJAX
                         window.setTimeout(function() {
                             $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
                                 $(this).remove();
-                            });	}, 5000);
+                            }); }, 5000);
 
-                        getallexercises($('select#oaexerciseSelect option:selected').text());
+                        getallexercises($('select#oaexerciseSelect option:selected').attr('name'));
                         //assigCourse(data.student_id, c_id);
                     }else{
                         $('.upload-msg').append('<div class="alert alert-danger alert-dismissible" role="alert">' +
@@ -1097,7 +1191,7 @@ function upload_video(){//Funcion encargada de enviar el archivo via AJAX
                         window.setTimeout(function() {
                             $(".alert-dismissible").fadeTo(500, 0).slideUp(500, function(){
                                 $(this).remove();
-                            });	}, 3000);
+                            }); }, 3000);
 
                     }
                 }).done(function () {
@@ -1107,6 +1201,11 @@ function upload_video(){//Funcion encargada de enviar el archivo via AJAX
             }).always(function () {
 
             });
+
+            }else{
+                alert('ninguna opcion');
+            }
+         
 
         }
     });

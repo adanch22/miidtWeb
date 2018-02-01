@@ -173,7 +173,7 @@
                     <div class="text-center">
                         <form>
                             <div class="form-group">
-                                <label for="learningobjectsSelected">Objeto de Aprendizaje a incluir el recurso multimedia </label>
+                                <label id="titlerm" for="learningobjectsSelected">Objeto de Aprendizaje a incluir el recurso multimedia </label>
 <!--                                <select class="form-control" id="learningobjectsResource">-->
 <!--                                    <!-- learningObjects here -->
 <!--                                </select>-->
@@ -277,50 +277,53 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!-- /Modal para subir el video principal del VideoQuiz  -->
-<div class="modal fade " id="addVideo_videoQuiz"  tabindex="-1" role="dialog">
+<!--Modal agregar actividades al videoQuiz -->
+<div class="modal fade" id="addexerciseVideoQuiz" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Video principal del OA VideoQuiz</h4>
+                <h4 id="titleh4" class="modal-title">Agregar actividades al OA VideoQuiz</h4>
             </div>
+
             <div class="modal-body">
+                <div id="upload-exerciseVQ"  class="upload-msg"></div><!--Para mostrar la respuesta del archivo llamado via ajax -->
 
+                <form>
 
-                <div class="text-center">
-                    <form>
-                        <div class="form-group">
-                            <label for="learningobjectsSelected">Objeto de Aprendizaje a incluir el Video </label>
-                            <!--                                <select class="form-control" id="learningobjectsResource">-->
-                            <!--                                    <!-- learningObjects here -->
-                            <!--                                </select>-->
-                            <h5  id="videoquiz_name">nombre del OA</h5>
+                    <div class="form-group">
+                         <h5  id="learning_nameVQ">Nombre del OA</h5>
 
-                        </div>
+                        <label for="recipient-name" class="control-label">Tiempo donde aparece esta actividad en  el video </label>
+                        <input type="number" id="inputDescriptionExerciseVQ" class="form-control" placeholder="Ejemplo: 30 [segundos] ">
+                        <!--<div class="disabled" id="optionsquestion2">
+                            <label class="radio-inline disabled"><input type="radio" id="buttoncuestionary2"name="optradio" value="1">Pregunta abierta con imagen</label>
+                            <label class="radio-inline disabled"><input type="radio" id="buttonoptions2" name="optradio" value="2">Pregunta opción múltiple con imagen</label>
+                        </div>-->
+                        <label for="recipient-name" class="control-label">Pregunta</label>
+                        <input tye="text" id="inputQuestionVQ" class="form-control"placeholder="Escribe la pregunta del ejercicio">
 
-                        <div class="form-group">
-<!--                            <label id="type1" class="radio-inline"><input type="radio" name="typeradio" value="image" checked>IMAGEN</label>-->
-<!--                            <label id="type2" class="radio-inline"><input type="radio" name="typeradio" value="video" onselect="true">VIDEO</label>-->
-<!--                            <label id="type3" class="radio-inline"><input type="radio" name="typeradio" value="pdf">PDF</label>-->
+                    </div>
+                    <div class="form-group" id="multipleoption">
 
-                        </div>
+                        <h5 for="recipient-name" class="control-label">Respuesta 1</h5>
+                        <input type="text" id="inputAnswer1VQ" class="form-control"placeholder="Escribe posible respuesta">
+                        <h5 for="recipient-name" class="control-label">Respuesta 2</h5>
+                        <input type="text" id="inputAnswer2VQ" class="form-control"placeholder="Escribe posible respuesta">
+                        <h5 for="recipient-name" class="control-label">Respuesta 3</h5>
+                        <input type="text" id="inputAnswer3VQ" class="form-control"placeholder="Escribe posible respuesta">
+                        <h5 class="form-inline">Selecciona respuesta correcta:</h5>
+                        <label id="answer1VQ" class="radio-inline"><input type="radio" name="ansradioVQ" value="1" checked>[ 1 ]</label>
+                        <label id="answer2VQ" class="radio-inline"><input type="radio" name="ansradioVQ" value="2">[ 2 ]</label>
+                        <label id="answer3VQ" class="radio-inline"><input type="radio" name="ansradioVQ" value="3">[ 3 ]</label>
 
-                        <div class="form-group">
-                            <center><input class="btn btn-info" type="file"  id="fileToUpload" onchange="upload_image();"></center>
-                            <p class="help-block">Selecciona un video.</p>
-                        </div>
-                        <div class="upload-msg"></div><!--Para mostrar la respuesta del archivo llamado via ajax -->
+                    </div>
 
-                    </form>
-                </div>
-
-
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                <!--   <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
+                <button type="button" id="addexerciseVQ"class="btn btn-primary">Agregar ejercicio</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

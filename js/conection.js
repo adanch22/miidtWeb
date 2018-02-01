@@ -65,11 +65,12 @@ $(document).ready(function () {
 
 //get courses
     function getCourses() {
-        $.getJSON("v1/courses/"+admin_id, function (data) {
+
+        $.getJSON("v1/courses/"+ admin_id, function (data) {
             var li = '';
             $.each(data.course, function (i, course) {
                 courses=
-                li += '<li  class="btn btn-default btn-block" course_name='+course.course_name+' id='+course.course_id+'><label>Nombre: </label><span>'+" "+course.course_name+' </span></li>';
+                li += '<li  class="btn btn-default btn-block" course_name='+course.course_name+' id='+course.course_id+'><label>Nombre del Curso: </label><span>'+" "+course.course_name+' </span></li>';
             });
             $('ul#courses').html(li);
             $('ul#courses li').click(function() {
@@ -268,7 +269,7 @@ $(document).ready(function () {
         var nam = $('input#inputNameAddTeacher').val();
         if (nam!=null && nam!="") {
             $.post("v1/admin/register/",
-                {admin_name: nam, is_teacher: "1", password: "ciex2016"},
+                {admin_name: nam, is_teacher: "1", password: "miidt2016"},
                 function (data) {
                     alert(data.message);
                 }).done(function () {

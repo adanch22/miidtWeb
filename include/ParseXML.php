@@ -288,7 +288,7 @@ class parseXML{
 
 
     //funcion
-    public function addexercises($learningobject, $exercise_type, $exercise_name, $exercise_description,
+    public function addexercises($bookname, $learningobject, $exercise_type, $exercise_name, $exercise_description,
                                  $exercise_question, $exercise_answer1,$exercise_answer2,$exercise_answer3, $exercise_ok){
 
         $learningobject = str_replace(' ', '', $learningobject);
@@ -298,7 +298,17 @@ class parseXML{
         $learningobject = strtr($learningobject, utf8_decode($originales),$modificadas);
         $learningobject = utf8_encode($learningobject);
 
-        $name_file = '../levels/level1/Ejemplosdelaaplicacion/'. $learningobject . '/oa.xml';
+        $bookname = str_replace(' ', '', $bookname);
+        $bookname = utf8_decode($bookname);
+        $originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕó';
+        $modificadas = 'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRro';
+        $bookname = strtr($bookname, utf8_decode($originales),$modificadas);
+        $bookname = utf8_encode($bookname);
+
+
+        //$name_file = '../levels/level1/Ejemplosdelaaplicacion/'. $learningobject . '/oa.xml';
+        $name_file = '../levels/level1/'. $bookname .'/'. $learningobject . '/oa.xml';
+
 
         //contador
         $cont = 0;
@@ -744,7 +754,7 @@ class parseXML{
         return $array_units;
     }
 
-    function getAllexercises($name_file){
+    function getAllexercises($name_filebook, $name_file){
 
         $name_file = str_replace(' ', '', $name_file);
         $name_file = utf8_decode($name_file);
@@ -753,7 +763,15 @@ class parseXML{
         $name_file = strtr($name_file, utf8_decode($originales),$modificadas);
         $name_file = utf8_encode($name_file);
 
-        $name_file = '../levels/level1/Ejemplosdelaaplicacion/'. $name_file . '/oa.xml';
+        $name_filebook = str_replace(' ', '', $name_filebook);
+        $name_filebook = utf8_decode($name_filebook);
+        $originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕó';
+        $modificadas = 'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRro';
+        $name_filebook = strtr($name_filebook, utf8_decode($originales),$modificadas);
+        $name_filebook = utf8_encode($name_filebook);
+
+        //$name_file = '../levels/level1/'. $name_file . '/oa.xml';
+        $name_file = '../levels/level1/' . $name_filebook . '/' . $name_file . '/oa.xml';
 
         $xml = simplexml_load_file($name_file);
 
@@ -994,7 +1012,7 @@ class parseXML{
 
 
     //funcion para agregar recursos multimedia
-    public function addvideoquiz_video($learningobject, $exercise_type, $exercise_description){
+    public function addvideoquiz_video($bookname, $learningobject, $exercise_type, $exercise_description){
 
         $learningobject = str_replace(' ', '', $learningobject);
         $learningobject = utf8_decode($learningobject);
@@ -1003,7 +1021,13 @@ class parseXML{
         $learningobject = strtr($learningobject, utf8_decode($originales),$modificadas);
         $learningobject = utf8_encode($learningobject);
 
-        $name_file = '../levels/level1/Ejemplosdelaaplicacion/'. $learningobject . '/oa.xml';
+        $bookname = str_replace(' ', '', $bookname);
+        $bookname = utf8_decode($bookname);
+        $originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕó';
+        $modificadas = 'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRro';
+        $bookname = strtr($bookname, utf8_decode($originales),$modificadas);
+        $bookname = utf8_encode($bookname);
+        $name_file = '../levels/level1/'. $bookname .'/'. $learningobject . '/oa.xml';
 
         //contador
         $cont = 0;
@@ -1172,7 +1196,7 @@ class parseXML{
     }
 
     //funcion para agregar recursos multimedia
-    public function addresources($learningobject, $exercise_type, $exercise_description){
+    public function addresources($book, $learningobject, $exercise_type, $exercise_description){
 
         $learningobject = str_replace(' ', '', $learningobject);
         $learningobject = utf8_decode($learningobject);
@@ -1181,7 +1205,15 @@ class parseXML{
         $learningobject = strtr($learningobject, utf8_decode($originales),$modificadas);
         $learningobject = utf8_encode($learningobject);
 
-        $name_file = '../levels/level1/Ejemplosdelaaplicacion/'. $learningobject . '/oa.xml';
+
+        $book = str_replace(' ', '', $book);
+        $book = utf8_decode($book);
+        $originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕó';
+        $modificadas = 'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRro';
+        $book = strtr($book, utf8_decode($originales),$modificadas);
+        $book = utf8_encode($book);
+
+        $name_file = '../levels/level1/'. $book . '/' . $learningobject . '/oa.xml';
 
         //contador
         $cont = 0;

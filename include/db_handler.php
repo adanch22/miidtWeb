@@ -917,6 +917,20 @@ class DbHandler {
         return $tasks;
     }
 
+    // fetching One learningobjects
+    public function getOneLearningObjects($learningobject_id) {
+
+        $stmt = $this->conn->prepare("SELECT learningobject_name, book_id FROM learningobjects WHERE learningobject_id = ?");
+        $stmt->bind_param("i", $learningobject_id);
+        if ($stmt->execute()) {
+            $user_id = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $user_id;
+        } else {
+            return NULL;
+        }
+    }
+
 
 
     /**************************************************
@@ -962,6 +976,19 @@ class DbHandler {
         return $tasks;
     }
 
+    // fetching One book
+    public function getOnebooks($book_id) {
+
+        $stmt = $this->conn->prepare("SELECT book_name FROM books WHERE book_id = ?");
+        $stmt->bind_param("i", $book_id);
+        if ($stmt->execute()) {
+            $user_id = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            return $user_id;
+        } else {
+            return NULL;
+        }
+    }
     /**************************************************
      *  Delete book
      ***************************************************/

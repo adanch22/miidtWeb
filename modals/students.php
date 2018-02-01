@@ -9,17 +9,17 @@
 <div class="modal fade addStudent" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <!--buttons------------------------------------------------------------------------------------------------>
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel">Agregar nuevo estudiante</h4>
+                <h4 class="modal-title" id="gridSystemModalLabel">Agregar Estudiante</h4>
             </div>
-            <!--inputs------------------------------------------------------------------------------------------------->
+
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="inputNameAddStudent">Nombre:</label>
+                            <label for="inputNameAddStudent">Nombre del estudiante:</label>
                             <input type="text" class="form-control" id="inputNameAddStudent" placeholder="Type Name">
                         </div>
                     </div>
@@ -27,16 +27,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="inputMatriculaAddUSer">ID estudiante:</label>
-                            <input type="number" class="form-control" id="inputMatriculaAddStudent" placeholder="Type Matricula">
+                            <label for="inputMatriculaAddUSer">ID del estudiante:</label>
+                            <input type="number" class="form-control" id="inputMatriculaAddStudent" placeholder="Type Number">
                         </div>
                     </div>
                 </div>
             </div>
-            <!--Buttons------------------------------------------------------------------------------------------------>
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" id="addStudent" class="btn btn-primary">Agregar estudiante</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                <button type="button" id="addStudent" class="btn btn-primary">Agregar Estudiante</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -49,7 +49,7 @@
             <!--buttons------------------------------------------------------------------------------------------------>
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel">Agregar nuevo estudiante</h4>
+                <h4 class="modal-title" id="gridSystemModalLabel">Editar Datos del estudiante</h4>
             </div>
             <!--inputs------------------------------------------------------------------------------------------------->
             <div class="modal-body">
@@ -87,8 +87,8 @@
             <!--Buttons------------------------------------------------------------------------------------------------>
             <div class="modal-footer">
                 <button type="button" id="deleteStudent" class="btn btn-danger">Eliminar</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" id="updateStudent" class="btn btn-primary">Actualziar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                <button type="button" id="updateStudent" class="btn btn-primary">Actualizar</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
