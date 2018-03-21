@@ -1101,7 +1101,10 @@ function upload_image(){//Funcion encargada de enviar el archivo via AJAX
     
          //tipo de carga 1) recurso multimedia 2)videoquiz
         data.append('fileToUpload',file);
+        data.append('book_name', book_name);
         data.append('oa_name', oa_name);
+        
+
 
         var oktype = $('input:radio[name=typeradio]:checked').val();
         /*jQuery.each($('#fileToUpload')[0].files, function(i, file) {

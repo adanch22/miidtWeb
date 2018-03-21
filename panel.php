@@ -77,16 +77,18 @@ $is_teacher = $user["is_teacher"];
 
                 <div class="panel panel-primary" id="options">
                     <div class="panel-body">
-                        <button type="button" id="openlearningObjects" class="btn btn-primary btn-block">
+                        <button type="button" id="openlearningObjects" class="btn btn-primary btn-block btn-md">
                             Abrir Objetos de Aprendizaje&nbsp;</button>
-
-
                     </div>
 
                 </div>
-                <div class="panel panel-primary">
+                <div class="panel panel-info">
                     <div class="panel-body" id="options">
                         <!--options here-->
+                        <button type="button"class="btn btn-primary btn-block" data-toggle="modal" data-target=".addAdmin">
+                            <i class="fa fa-plus"></i>&nbsp;Crear un Nuevo Administrador</button>
+                        <div class="line"></div>
+
                         <button type="button"class="btn btn-success btn-block" data-toggle="modal" data-target=".addCourse">
                             <i class="fa fa-plus"></i>&nbsp;Agregar Curso</button>
                         <div class="line"></div>
@@ -108,9 +110,6 @@ $is_teacher = $user["is_teacher"];
                         <div class="line"></div>
                         <button type="button" id="optionEditStudent" class="btn btn-success btn-block" data-toggle="modal" data-target=".editStudent">
                             <i class="fa fa-users"></i>&nbsp;Editar Estudiante</button>
-                        <div class="line"></div>
-
-                        <button type="button" id="closeSession" class="btn btn-danger btn-block">Cerrar sesion&nbsp;<i class="fa fa-sign-out"></i></button>
                     </div>
 
                     <div class="panel-body" id="options2">
@@ -126,6 +125,14 @@ $is_teacher = $user["is_teacher"];
                          </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="panel panel-primary" id="options">
+                <div class="panel-body">
+                    <button type="button" id="closeSession" class="btn btn-danger btn-block">Cerrar sesion&nbsp;<i class="fa fa-sign-out"></i></button>
+
+                </div>
+
             </div>
         </div>
 

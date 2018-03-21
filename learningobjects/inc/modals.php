@@ -34,10 +34,19 @@
 
 
                     <div class="form-group">
-                        <label for="recipient-name" class="control-label">Version</label>
-                        <input type="number" id="inputVersion" class="form-control" placeholder="V1.1" >
-                        <label for="recipient-name" class="control-label">Autor</label>
-                        <input type="text" id="inputAutor" class="form-control" placeholder="Ej. Adán Chávez ">
+                        <div class="col-lg-6 form-group">
+                            <label for="recipient-name" class="control-label">Version</label>
+                            <input type="number" id="inputVersion" class="form-control" placeholder="V1.1" >
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label for="recipient-name" class="control-label">Autor</label>
+                            <input type="text" id="inputAutor" class="form-control" placeholder="Ej. Adán Chávez ">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <h4> --------------------------------------- Metadatos ---------------------------------------</h4>
+
                     </div>
 
 
@@ -143,14 +152,15 @@
                 <div id="upload-tematica" class="upload-msg"></div><!--Para mostrar la respuesta del archivo llamado via ajax -->
                 <div class="form-group">
                     <h4 class="modal-title">Escribe nueva tématica</h4>
-                    <input type="text" id="inputTematica" class="form-control" placeholder="Ej. Métodos Númericos" >
+                    <input type="text" id="inputTematica" class="form-control" placeholder="Ej. Métodos Numéricos" >
                     <div class="line"></div>
 
                 </div>
             </div>
 
             <div class="modal-footer">
-                <button type="button" id="addtematica" class="btn btn-success">Agregar tématica</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                <button type="button" id="addtematica" class="btn btn-success">Agregar temática</button>
                 <!--   <button type="button" class="btn btn-primary">Guardar Cambios</button> -->
             </div>
           </div><!-- /.modal-content -->

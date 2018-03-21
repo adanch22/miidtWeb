@@ -14,18 +14,5 @@
     <type>videoquiz</type>
     <id>76</id>
   </unit>
-  <unit value="Ejemplodeejercicios2/oa">
-    <title>Ejemplo de ejercicios 2</title>
-    <description>Mi ejemplo de un objeto de aprendizaje con ejercicios</description>
-    <author>Ing. Adán Chávez olivera</author>
-    <type>default</type>
-    <id>78</id>
-  </unit>
-  <unit value="EjemplodeVideoquiz2/oa">
-    <title>Ejemplo de Videoquiz 2</title>
-    <description>Mi ejemplo 2 de videoquiz</description>
-    <author>Ing. Adán Chávez olivera</author>
-    <type>videoquiz</type>
-    <id>79</id>
-  </unit>
+
 </book>

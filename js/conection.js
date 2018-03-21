@@ -285,6 +285,37 @@ $(document).ready(function () {
     });
 
 
+    //action for button ADDAdmin
+    $('button#addAdmin').on('click', function () {
+        var nam = $('input#inputNameAdmin').val();
+        var pass1 = $('input#inputPasswordAdmin').val();
+        var pass2 = $('input#inputPasswordAdmin2').val();
+        if (nam!=null && nam!=""&& pass1!="" && pass2!="") {
+
+            if(pass1 == pass2){
+                $.post("v1/admin/register/",
+                    {admin_name: nam, is_teacher: "0", password:pass1 },
+                    function (data) {
+                        alert(data.message);
+                    }).done(function () {
+
+                }).fail(function () {
+                    alert('Sorry! Internal error');
+                }).always(function () {
+
+                });
+
+
+
+            }else{
+                alert("La contraseña no coinciden, intenta nuevamente")
+            }
+
+        }else{
+            alert(" Campos de texto vacios")
+        }
+    });
+
 //action for button SEARCHSTUDENT
     $('.searchButton').click(function(){
         if($('.searchTextBox').val() == '')

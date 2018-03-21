@@ -2,12 +2,26 @@
 $response = '';
 //echo count($_FILES["file0"]["name"]);exit;
 if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_FILES["fileToUpload"]["type"])){
-	$oa_name = $_POST["oa_name"];
-	$oa_name = str_replace(' ', '', $oa_name);
-    $oa_name = strtr($oa_name,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
-        'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+    $book_name = $_POST["book_name"];
+    $oa_name = $_POST["oa_name"];
 
-$target_dir = "../levels/level1/Ejemplosdelaaplicacion/". $oa_name . "/";
+    $book_name = str_replace(' ', '', $book_name);
+    $book_name = utf8_decode($book_name);
+    $originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕó';
+    $modificadas = 'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRro';
+    $book_name = strtr($book_name, utf8_decode($originales),$modificadas);
+    $book_name = utf8_encode($book_name);
+
+    $oa_name = str_replace(' ', '', $oa_name);
+    $oa_name = utf8_decode($oa_name);
+    $originales = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿŔŕó';
+    $modificadas = 'aaaaaaaceeeeiiiidnoooooouuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRro';
+    $oa_name = strtr($oa_name, utf8_decode($originales),$modificadas);
+    $oa_name = utf8_encode($oa_name);
+
+
+
+$target_dir = "../levels/level1/".$book_name."/". $oa_name . "/";
 $carpeta=$target_dir;
 if (!file_exists($carpeta)) {
     mkdir($carpeta, 0777, true);

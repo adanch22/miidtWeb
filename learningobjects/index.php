@@ -288,7 +288,7 @@ $is_teacher = $user["is_teacher"];
                                             <h5 class="backgroud btn-block">.</h5>
                                         </div>
 
-                                        <h3 align="left">Lista de Temàticas - Selecciona - </h3>
+                                        <h3 align="left">Lista de Temáticas - Selecciona - </h3>
 
                                         <div class=" col-lg-12">
 

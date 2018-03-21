@@ -6,6 +6,42 @@
  * Time: 11:58 AM
  */?>
 
+<div class="modal fade addAdmin" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Crear Nuevo Administrador</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="inputNameAddTeacher">Nombre de Administrador:</label>
+                            <input type="text" class="form-control" id="inputNameAdmin" placeholder="Type Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputNameAddTeacher">Contraseña:</label>
+                            <input type="password" class="form-control " id="inputPasswordAdmin" placeholder="Type ">
+                            <label for="inputNameAddTeacher">Confirma Contraseña:</label>
+                            <input type="password" class="form-control" id="inputPasswordAdmin2" placeholder="Type ">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                <button type="button" id="addAdmin" class="btn btn-primary">Agregar Administrador</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div class="modal fade addTeacher" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
